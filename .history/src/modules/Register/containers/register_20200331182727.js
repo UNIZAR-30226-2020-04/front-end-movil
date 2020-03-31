@@ -75,7 +75,7 @@ export default class App extends Component{
 
             <DatePicker
               style={{width: 200}}
-              date= {this.state.date ? "Select a date": this.state.dateOfBirth}
+              date={this.state.date}
               mode="date"
               placeholder={this.state.dateOfBirth}
               format="DD-MM-YYYY"

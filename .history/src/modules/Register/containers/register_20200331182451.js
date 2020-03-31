@@ -69,15 +69,11 @@ export default class App extends Component{
                 onChangeText={text => this.setState({password:text})}/>
             </View>
 
-            {/* <View>
-              <Text>{this.state.dateOfBirth}</Text>
-            </View> */}
-
             <DatePicker
               style={{width: 200}}
-              date= {this.state.date ? "Select a date": this.state.dateOfBirth}
+              date={this.state.date}
               mode="date"
-              placeholder={this.state.dateOfBirth}
+              placeholder="select date"
               format="DD-MM-YYYY"
               maxDate= {new Date()}
               confirmBtnText="Confirm"
@@ -155,7 +151,7 @@ export default class App extends Component{
       loginText:{
         color:"white"
       },
-
+      
       inputView:{
         width:"80%",
         backgroundColor:"#465881",
