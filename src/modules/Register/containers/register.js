@@ -11,7 +11,7 @@ export default class App extends Component{
   }
 
   login = () =>  {Alert.alert('Iniciando Sesion')}
-  register = () => {this.props.navigation.navigate('Register')}
+  register = () => {this.props.navigation.navigate('Login')}
     render(){
       return (
         
@@ -19,9 +19,10 @@ export default class App extends Component{
           <ImageBackground source={require('../../../Wallpapers/fondoPantallaPrincipal.jpg')} style={styles.backgroundImage}>
             
             <View style={styles.inputView} >
+
               <TextInput  
                 style={styles.inputText}
-                placeholder="Email..." 
+                placeholder="Pantalla Registro" 
                 placeholderTextColor="#FFFFFF"
                 onChangeText={text => this.setState({email:text})}/>
             </View>
@@ -38,7 +39,7 @@ export default class App extends Component{
         <TouchableOpacity style={styles.loginBtn} onPress={this.login}>
           <Text style={styles.loginText}>Iniciar Sesion</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={this.register}>
+        <TouchableOpacity>
           <Text style={styles.loginText}>Registrarse</Text>
         </TouchableOpacity>
 

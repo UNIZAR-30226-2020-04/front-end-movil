@@ -22,7 +22,7 @@ export default class App extends Component{
             <Text style={[styles.body, {marginTop: 15}]}>Sin tarjetas de crédito</Text>
             <Text style={[styles.body, {marginTop: 15, marginBottom:15}]}>En todos tus dispositivos</Text>
             <Button title='Free registrer' onPress={this.login} color="black"></Button> 
-            <Text style={[styles.body, {marginTop: 15, marginBottom:15}]}>Already registered?</Text>
+            <Text style={[styles.body, {marginTop: 15, marginBottom:15}]}>Estas ya Registrado?</Text>
             <Button title='Log in' onPress={this.login} color="black"></Button>
           </ImageBackground>
            
