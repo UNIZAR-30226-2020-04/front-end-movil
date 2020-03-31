@@ -50,9 +50,8 @@ const styles = StyleSheet.create({
   },
 
   logo : {
-    width : 250,
-    height: 200,
-    resizeMode : 'cover',
+    width : '50%',
+    resizeMode : 'contain',
     borderRadius : 30
   },
 
@@ -77,7 +76,7 @@ const styles = StyleSheet.create({
 
   loginBtn:{
     width:"80%",
-    backgroundColor:"#64EE85",
+    backgroundColor:"#fb5b5a",
     borderRadius:25,
     height:50,
     alignItems:"center",

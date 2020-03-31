@@ -112,14 +112,13 @@ export default class App extends Component{
       alignItems: 'center',
       flex: 1,
       resizeMode: "contain"},
-
       inputText:{
         height:50,
         color:"white"
       },
       loginBtn:{
         width:"80%",
-        backgroundColor:"#64EE85",
+        backgroundColor:"#fb5b5a",
         borderRadius:25,
         height:50,
         alignItems:"center",

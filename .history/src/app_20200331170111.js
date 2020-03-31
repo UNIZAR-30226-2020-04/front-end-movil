@@ -21,15 +21,13 @@ export default function App() {
         <Stack.Screen 
           name="Login" 
           component={Login}
-          options={{
-            headerMode: 'none',
-            headerTransparent: false,
-          }}
+          options={{ header: 'none' }}
         />
 
         <Stack.Screen 
-          name = "Register" 
-          component = {Register}
+          name="Register" 
+          component={Register}
+          options={{ header: 'null' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

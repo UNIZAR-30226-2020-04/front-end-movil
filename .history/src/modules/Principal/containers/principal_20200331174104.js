@@ -46,13 +46,13 @@ export default class App extends Component{
 const styles = StyleSheet.create({
   textButton: {
     color: '#f194ff',
-    fontSize: 20
+    fontSize: 30
   },
 
   logo : {
-    width : 250,
+    width : 200,
     height: 200,
-    resizeMode : 'cover',
+    resizeMode : 'contain',
     borderRadius : 30
   },
 

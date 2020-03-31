@@ -6,17 +6,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class App extends Component{
   state={
-    name: "",
-    surname: "",
-    username: "",
     email:"",
-    password:"",
-    dateOfBirth: ""
-    
+    password:""
   }
 
   login = () =>  {Alert.alert('Registrando usuario...')}
-  goLogin = () => {this.props.navigation.navigate('Login')}
+  register = () => {this.props.navigation.navigate('Login')}
     render(){
       return (
         
@@ -34,13 +29,6 @@ export default class App extends Component{
             <View style={styles.inputView} >
               <TextInput  
                 style={styles.inputText}
-                placeholder="Surname" 
-                placeholderTextColor="#FFFFFF"
-                onChangeText={text => this.setState({email:text})}/>
-            </View>
-            <View style={styles.inputView} >
-              <TextInput  
-                style={styles.inputText}
                 placeholder="Email" 
                 placeholderTextColor="#FFFFFF"
                 onChangeText={text => this.setState({email:text})}/>
@@ -49,15 +37,7 @@ export default class App extends Component{
             <View style={styles.inputView} >
               <TextInput  
                 style={styles.inputText}
-                placeholder="Username" 
-                placeholderTextColor="#FFFFFF"
-                onChangeText={text => this.setState({email:text})}/>
-            </View>
-
-            <View style={styles.inputView} >
-              <TextInput  
-                style={styles.inputText}
-                placeholder="Date of birth" 
+                placeholder="Email" 
                 placeholderTextColor="#FFFFFF"
                 onChangeText={text => this.setState({email:text})}/>
             </View>
@@ -66,12 +46,12 @@ export default class App extends Component{
               <TextInput  
                 secureTextEntry
                 style={styles.inputText}
-                placeholder="Password" 
+                placeholder="Contraseña..." 
                 placeholderTextColor="#FFFFFF"
                 onChangeText={text => this.setState({password:text})}/>
             </View>
 
-            <TouchableOpacity style={styles.loginBtn} onPress={this.goLogin}>
+            <TouchableOpacity style={styles.loginBtn} onPress={this.login}>
               <Text style={styles.loginText}>Sing up! :)</Text>
             </TouchableOpacity>
 
@@ -113,13 +93,22 @@ export default class App extends Component{
       flex: 1,
       resizeMode: "contain"},
 
+      inputView:{
+        width:"80%",
+        backgroundColor:"#465881",
+        borderRadius:25,
+        height: 50,
+        marginBottom:20,
+        justifyContent:"center",
+        padding:20
+      },
       inputText:{
         height:50,
         color:"white"
       },
       loginBtn:{
         width:"80%",
-        backgroundColor:"#64EE85",
+        backgroundColor:"#fb5b5a",
         borderRadius:25,
         height:50,
         alignItems:"center",

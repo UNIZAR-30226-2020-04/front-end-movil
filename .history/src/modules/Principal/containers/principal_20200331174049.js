@@ -50,9 +50,9 @@ const styles = StyleSheet.create({
   },
 
   logo : {
-    width : 250,
+    width : 200,
     height: 200,
-    resizeMode : 'cover',
+    resizeMode : 'contain',
     borderRadius : 30
   },
 

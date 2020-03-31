@@ -23,7 +23,6 @@ export default function App() {
           component={Login}
           options={{
             headerMode: 'none',
-            headerTransparent: false,
           }}
         />
 

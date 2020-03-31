@@ -17,20 +17,8 @@ export default function App() {
           name="Home"
           component={Principal}
         />
-
-        <Stack.Screen 
-          name="Login" 
-          component={Login}
-          options={{
-            headerMode: 'none',
-            headerTransparent: false,
-          }}
-        />
-
-        <Stack.Screen 
-          name = "Register" 
-          component = {Register}
-        />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Register" component={Register} headerMode='none' />
       </Stack.Navigator>
     </NavigationContainer>
   );

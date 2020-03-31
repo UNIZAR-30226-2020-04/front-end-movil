@@ -24,6 +24,7 @@ export default function App() {
           options={{
             headerMode: 'none',
             headerTransparent: false,
+            header: null
           }}
         />
 

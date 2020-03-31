@@ -35,7 +35,7 @@ export default class App extends Component{
         <TouchableOpacity style={styles.loginBtn} onPress={this.login}>
           <Text style={styles.loginText}>Iniciar Sesion</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={this.register}>
+        <TouchableOpacity onPress={this.login}>
           <Text style={styles.loginText}>Registrarse</Text>
         </TouchableOpacity>
 

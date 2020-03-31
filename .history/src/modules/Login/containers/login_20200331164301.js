@@ -46,6 +46,18 @@ export default class App extends Component{
     }
   }
   const styles = StyleSheet.create({
+    textButton: {
+      color: '#f194ff',
+      fontSize: 20
+    },
+  
+    logo : {
+      marginTop: 0,
+      width : 150,
+      height : 150,
+      resizeMode : 'contain',
+      borderRadius : 30
+    },
   
     body : {
       alignItems : 'center',
@@ -66,35 +78,32 @@ export default class App extends Component{
       flex: 1,
       resizeMode: "contain"},
 
-    inputView:{
-      width:"80%",
-      backgroundColor:"#465881",
-      borderRadius:25,
-      height: 50,
-      marginBottom:20,
-      justifyContent:"center",
-      padding:20
-    },
-
-    inputText:{
-      height:50,
-      color:"white"
-    },
-
-    loginBtn:{
-      width:"80%",
-      backgroundColor:"#64EE85",
-      borderRadius:25,
-      height:50,
-      alignItems:"center",
-      justifyContent:"center",
-      marginTop:40,
-      marginBottom:10
-    },
-
-    loginText:{
-      color:"white"
-    }
+      inputView:{
+        width:"%",
+        backgroundColor:"#465881",
+        borderRadius:25,
+        height: 50,
+        marginBottom:20,
+        justifyContent:"center",
+        padding:20
+      },
+      inputText:{
+        height:50,
+        color:"white"
+      },
+      loginBtn:{
+        width:"80%",
+        backgroundColor:"#fb5b5a",
+        borderRadius:25,
+        height:50,
+        alignItems:"center",
+        justifyContent:"center",
+        marginTop:40,
+        marginBottom:10
+      },
+      loginText:{
+        color:"white"
+      }
 
   });
   

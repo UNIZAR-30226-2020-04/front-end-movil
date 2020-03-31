@@ -20,7 +20,7 @@ export default class App extends Component{
       
       <View style={styles.container}>
           <ImageBackground source={require('../../../Wallpapers/fondoPantallaPrincipal.jpg')} style={styles.backgroundImage}>
-            <Image style={[styles.logo]} source={require('../../../Wallpapers/logo.jpg')}
+            <Image style={[styles.logo, {marginBottom: 15}]} source={require('../../../Wallpapers/logo.jpg')}
               ></Image>
             
             <View>
@@ -50,9 +50,8 @@ const styles = StyleSheet.create({
   },
 
   logo : {
-    width : 250,
-    height: 200,
-    resizeMode : 'cover',
+    width : '80%',
+    resizeMode : 'contain',
     borderRadius : 30
   },
 
@@ -77,7 +76,7 @@ const styles = StyleSheet.create({
 
   loginBtn:{
     width:"80%",
-    backgroundColor:"#64EE85",
+    backgroundColor:"#fb5b5a",
     borderRadius:25,
     height:50,
     alignItems:"center",

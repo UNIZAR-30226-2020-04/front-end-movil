@@ -23,11 +23,9 @@ export default class App extends Component{
             <Image style={[styles.logo]} source={require('../../../Wallpapers/logo.jpg')}
               ></Image>
             
-            <View>
               <Text style={[styles.body, {marginTop: 15}]}>Listen your favourite songs.</Text>
               <Text style={[styles.body, {marginTop: 15}]}>No credit cards</Text>
               <Text style={[styles.body, {marginTop: 15}]}>In all your devices</Text>
-            </View>
 
             <TouchableOpacity style={styles.loginBtn} onPress={this.register}>
               <Text style={{color: 'white'}}>Free register</Text>
@@ -50,9 +48,8 @@ const styles = StyleSheet.create({
   },
 
   logo : {
-    width : 250,
-    height: 200,
-    resizeMode : 'cover',
+    width : '80%',
+    resizeMode : 'contain',
     borderRadius : 30
   },
 
@@ -77,7 +74,7 @@ const styles = StyleSheet.create({
 
   loginBtn:{
     width:"80%",
-    backgroundColor:"#64EE85",
+    backgroundColor:"#fb5b5a",
     borderRadius:25,
     height:50,
     alignItems:"center",

@@ -46,7 +46,7 @@ export default class App extends Component{
 const styles = StyleSheet.create({
   textButton: {
     color: '#f194ff',
-    fontSize: 20
+    fontSize: 50
   },
 
   logo : {
