@@ -9,7 +9,7 @@ export default class App extends Component{
   }
 
   // main = () =>  {this.props.navigation.navigate('Main')}
-  goToMain = () => { this.props.navigation.navigate('MainLogged', { screen: 'DashBoard' });}//Go to indexLogin}
+  //goToMain = () => { this.navigation.navigate('Main', { screen: 'Settings' });}//Go to indexLogin}
   register = () => {this.props.navigation.navigate('Register')}
     render(){
       return (
@@ -34,7 +34,7 @@ export default class App extends Component{
               onChangeText={text => this.setState({password:text})}/>
         </View>
 
-        <TouchableOpacity style={styles.loginBtn} onPress={this.goToMain}>
+        <TouchableOpacity style={styles.loginBtn} onPress={this.goToMain()}>
           <Text style={styles.loginText}>Iniciar Sesion</Text>
         </TouchableOpacity>
 

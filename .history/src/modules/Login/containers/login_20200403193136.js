@@ -9,7 +9,7 @@ export default class App extends Component{
   }
 
   // main = () =>  {this.props.navigation.navigate('Main')}
-  goToMain = () => { this.props.navigation.navigate('MainLogged', { screen: 'DashBoard' });}//Go to indexLogin}
+  goToMain = () => { this.props.navigation.navigate('Main', { screen: 'DashBoard' });}//Go to indexLogin}
   register = () => {this.props.navigation.navigate('Register')}
     render(){
       return (

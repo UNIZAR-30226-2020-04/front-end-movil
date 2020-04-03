@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Alert, ScrollView, Image, ImageBackground, TouchableOpacity } from 'react-native';
-//import IndexLogin from '../../../indexLogin';
 
 export default class App extends Component{
   state={
@@ -8,8 +7,7 @@ export default class App extends Component{
     password:""
   }
 
-  // main = () =>  {this.props.navigation.navigate('Main')}
-  goToMain = () => { this.props.navigation.navigate('MainLogged', { screen: 'DashBoard' });}//Go to indexLogin}
+  main = () =>  {this.props.navigation.navigate('Main')}
   register = () => {this.props.navigation.navigate('Register')}
     render(){
       return (
@@ -37,7 +35,6 @@ export default class App extends Component{
         <TouchableOpacity style={styles.loginBtn} onPress={this.goToMain}>
           <Text style={styles.loginText}>Iniciar Sesion</Text>
         </TouchableOpacity>
-
         <TouchableOpacity onPress={this.register}>
           <Text style={styles.loginText}>Registrarse</Text>
         </TouchableOpacity>

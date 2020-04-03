@@ -9,22 +9,20 @@ import Register from "./modules/Register/containers/register";
 import DashBoard from "./modules/DashBoard/containers/dashboard"; //Main screen after login
 import { Ionicons } from '@expo/vector-icons';
 
-
 const Stack = createStackNavigator();
+const 
 
 const MenuLoged = createBottomTabNavigator();
 
-//Pilas de pantallas de cada seccion
-const DashboardStack = createStackNavigator();
-const SearchStack = createStackNavigator();
-const LibraryStack = createStackNavigator();
-const ProfileStack = createStackNavigator();
-const OwnStack = createStackNavigator();
 
-
-
-
-//Funcion encargada de cambiar entre las diferentes secciones (estamos Logeados)
+//  function Menu(){
+//   return (
+//     <Tab.Navigator>
+//       <Tab.Screen name="Main" component={Main} />
+//       <Tab.Screen name="Settings" component={Main} />
+//     </Tab.Navigator>
+//   );
+// }
 function menuLogged(){
   return (
     <MenuLoged.Navigator
@@ -63,9 +61,9 @@ function menuLogged(){
       {/* Diferentes pilas de pantallas */}
       <MenuLoged.Screen name="Dashboard" component={DashboardStackScreen} />
       <MenuLoged.Screen name="Search" component={SearchStackScreen} />
-      <MenuLoged.Screen name="Library" component={LibraryStackScreen} />
-      <MenuLoged.Screen name="Profile" component={ProfileStackScreen} />
-      <MenuLoged.Screen name="Own" component={OwnStackScreen} />
+      <MenuLoged.Screen name="Library" component={DashBoard} />
+      <MenuLoged.Screen name="Profile" component={DashBoard} />
+      <MenuLoged.Screen name="Own" component={DashBoard} />
     </MenuLoged.Navigator>
   );}
 
@@ -73,42 +71,18 @@ function menuLogged(){
   //Funcion que contiene la pila del menu DashBoard (DashBoardStackSceren)
   function DashboardStackScreen() {
     return (
-      <DashboardStack.Navigator>
-        <DashboardStack.Screen name="Dashboard" component={DashBoard} />
-      </DashboardStack.Navigator>
+      <DashboardStackScreen.Navigator>
+        <DashboardStackScreen.Screen name="Dashboard" component={DashBoard} />
+      </DashboardStackScreen.Navigator>
     );
   }
 
   //Funcion que contiene la pila del menu DashBoard (DashBoardStackSceren)
   function SearchStackScreen() {
     return (
-      <SearchStack.Navigator>
-        <SearchStack.Screen name="Search" component={DashBoard} />
-      </SearchStack.Navigator>
-    );
-  }
-
-  function LibraryStackScreen() {
-    return (
-      <LibraryStack.Navigator>
-        <LibraryStack.Screen name="Library" component={DashBoard} />
-      </LibraryStack.Navigator>
-    );
-  }
-
-  function ProfileStackScreen() {
-    return (
-      <ProfileStack.Navigator>
-        <ProfileStack.Screen name="Profile" component={DashBoard} />
-      </ProfileStack.Navigator>
-    );
-  }
-
-  function OwnStackScreen() {
-    return (
-      <OwnStack.Navigator>
-        <OwnStack.Screen name="Own" component={DashBoard} />
-      </OwnStack.Navigator>
+      <HomeStack.Navigator>
+        <MenuLoged.Screen name="Search" component={DashBoard} />
+      </HomeStack.Navigator>
     );
   }
 

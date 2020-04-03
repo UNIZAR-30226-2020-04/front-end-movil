@@ -64,8 +64,8 @@ function menuLogged(){
       <MenuLoged.Screen name="Dashboard" component={DashboardStackScreen} />
       <MenuLoged.Screen name="Search" component={SearchStackScreen} />
       <MenuLoged.Screen name="Library" component={LibraryStackScreen} />
-      <MenuLoged.Screen name="Profile" component={ProfileStackScreen} />
-      <MenuLoged.Screen name="Own" component={OwnStackScreen} />
+      <MenuLoged.Screen name="Profile" component={DashBoard} />
+      <MenuLoged.Screen name="Own" component={DashBoard} />
     </MenuLoged.Navigator>
   );}
 
