@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TextInput, Button, Alert, ScrollView, Image, Im
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+//import IndexLogin from '../../../indexLogin';
 
 const Tabs = createBottomTabNavigator();
 const Menu = createStackNavigator();

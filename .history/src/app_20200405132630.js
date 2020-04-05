@@ -3,18 +3,11 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import { Ionicons } from '@expo/vector-icons';
-
 import Login from "./modules/Login/containers/login";
 import Principal from "./modules/Principal/containers/principal";
 import Register from "./modules/Register/containers/register";
-
 import DashBoard from "./modules/DashBoard/containers/dashboard"; //Main screen after login
-import Search from "./modules/Search/containers/search";
-import Library from "./modules/Library/containers/library";
-import Profile from "./modules/Profile/containers/profile";
-import Own from "./modules/Own/containers/own";
-
+import { Ionicons } from '@expo/vector-icons';
 
 
 const Stack = createStackNavigator();
@@ -81,7 +74,7 @@ function menuLogged(){
   function DashboardStackScreen() {
     return (
       <DashboardStack.Navigator>
-        <DashboardStack.Screen name="Dashboard" component={DashBoard}/>
+        <DashboardStack.Screen name="Dashboard" component={DashBoard} headerMode= 'none0'/>
       </DashboardStack.Navigator>
     );
   }
@@ -90,7 +83,7 @@ function menuLogged(){
   function SearchStackScreen() {
     return (
       <SearchStack.Navigator>
-        <SearchStack.Screen name="Search" component={Search} />
+        <SearchStack.Screen name="Search" component={DashBoard} />
       </SearchStack.Navigator>
     );
   }
@@ -98,16 +91,15 @@ function menuLogged(){
   function LibraryStackScreen() {
     return (
       <LibraryStack.Navigator>
-        <LibraryStack.Screen name="Library" component={Library} /> 
+        <LibraryStack.Screen name="Library" component={DashBoard} />
       </LibraryStack.Navigator>
     );
   }
-  // options={({ route }) => ({ title: route.params.name })}
 
   function ProfileStackScreen() {
     return (
-      <ProfileStack.Navigator >
-        <ProfileStack.Screen name="Profile" component={Profile} />
+      <ProfileStack.Navigator>
+        <ProfileStack.Screen name="Profile" component={DashBoard} />
       </ProfileStack.Navigator>
     );
   }
@@ -115,7 +107,7 @@ function menuLogged(){
   function OwnStackScreen() {
     return (
       <OwnStack.Navigator>
-        <OwnStack.Screen name="Own" component={Own} />
+        <OwnStack.Screen name="Own" component={DashBoard} />
       </OwnStack.Navigator>
     );
   }
@@ -124,9 +116,7 @@ function menuLogged(){
  export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{
-          headerShown: false
-        }}>
+      <Stack.Navigator>
         <Stack.Screen
           options={{ title: "Titulo igual lo quito luego" }}
           name="Home"

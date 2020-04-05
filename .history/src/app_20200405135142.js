@@ -90,7 +90,7 @@ function menuLogged(){
   function SearchStackScreen() {
     return (
       <SearchStack.Navigator>
-        <SearchStack.Screen name="Search" component={Search} />
+        <SearchStack.Screen name="Search" component={DashBoard} />
       </SearchStack.Navigator>
     );
   }
@@ -98,7 +98,7 @@ function menuLogged(){
   function LibraryStackScreen() {
     return (
       <LibraryStack.Navigator>
-        <LibraryStack.Screen name="Library" component={Library} /> 
+        <LibraryStack.Screen name="Library" component={DashBoard} /> 
       </LibraryStack.Navigator>
     );
   }
@@ -107,7 +107,7 @@ function menuLogged(){
   function ProfileStackScreen() {
     return (
       <ProfileStack.Navigator >
-        <ProfileStack.Screen name="Profile" component={Profile} />
+        <ProfileStack.Screen name="Profile" component={DashBoard} />
       </ProfileStack.Navigator>
     );
   }
@@ -115,7 +115,7 @@ function menuLogged(){
   function OwnStackScreen() {
     return (
       <OwnStack.Navigator>
-        <OwnStack.Screen name="Own" component={Own} />
+        <OwnStack.Screen name="Own" component={DashBoard} />
       </OwnStack.Navigator>
     );
   }

@@ -13,7 +13,7 @@ export default class Main extends Component{
   
     render(){
       return(
-        <Text>Hola</Text>
+        <Text></Text>
       );
     }
   }
