@@ -7,7 +7,7 @@ import { Card, ListItem,   } from 'react-native-elements'
 import Element from './element'
 
 
-//Leer de BD asignar a esta lista y
+//Leer de BD asignar a esta lista y mostrar
 const listSong = [
   {
     song_name: 'Album1',

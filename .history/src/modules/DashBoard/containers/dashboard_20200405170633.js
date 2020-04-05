@@ -7,8 +7,7 @@ import { Card, ListItem,   } from 'react-native-elements'
 import Element from './element'
 
 
-//Leer de BD asignar a esta lista y
-const listSong = [
+const list = [
   {
     song_name: 'Album1',
     image_album_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',

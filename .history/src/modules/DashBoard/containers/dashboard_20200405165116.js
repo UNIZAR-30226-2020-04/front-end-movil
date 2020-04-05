@@ -7,8 +7,7 @@ import { Card, ListItem,   } from 'react-native-elements'
 import Element from './element'
 
 
-//Leer de BD asignar a esta lista y
-const listSong = [
+const list = [
   {
     song_name: 'Album1',
     image_album_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
@@ -36,7 +35,7 @@ export default class Main extends Component{
         <ScrollView
           scrollEventThrottle={16}
         >
-          <View style={styles.container}>
+          <View style={{flex:1, backgroundColor: 'white', paddingTop: 20}}>
             <Text style={styles.title}>
               Songs recently listened
             </Text>
@@ -51,7 +50,7 @@ export default class Main extends Component{
           </View>
 
 
-          <View style={styles.container}>
+          <View style={{flex:1, backgroundColor: 'white', paddingTop: 20}}>
             <Text style={styles.title}>
               Playlist recently listened
             </Text>
@@ -65,22 +64,20 @@ export default class Main extends Component{
             </View>
           </View>
 
-          <View style={styles.container}>
+          <View style={{flex:1, backgroundColor: 'white', paddingTop: 20}}>
             <Text style={styles.title}>
               Podcast recently listened
             </Text>
             <View style={{height: 200, marginTop: 20}}>
               <ScrollView
                 horizontal={true}>
-                <Element type='song' image={{uri: 'https://www.federico-toledo.com/wp-content/uploads/2017/07/podcast-image.jpg'}} album_name="Redención" song_name="cualquiera"></Element>
-                <Element type='song' image={{uri: 'https://www.federico-toledo.com/wp-content/uploads/2017/07/podcast-image.jpg'}} album_name="Redención" song_name="cualquiera"></Element>
-                <Element type='song' image={{uri: 'https://www.federico-toledo.com/wp-content/uploads/2017/07/podcast-image.jpg'}} album_name="Redención" song_name="cualquiera"></Element>
+                <Element type='song' image={{uri: 'https://bucket3.glanacion.com/anexos/fotos/79/2667179h1080.jpg'}} album_name="Redención" song_name="cualquiera"></Element>
+                <Element type='song' image={{uri: 'https://bucket3.glanacion.com/anexos/fotos/79/2667179h1080.jpg'}} album_name="Redención" song_name="cualquiera"></Element>
+                <Element type='song' image={{uri: 'https://bucket3.glanacion.com/anexos/fotos/79/2667179h1080.jpg'}} album_name="Redención" song_name="cualquiera"></Element>
               </ScrollView>
             </View>
           </View>
         </ScrollView>
-        
-          
       );
   } 
 }
@@ -89,19 +86,13 @@ export default class Main extends Component{
   const styles = StyleSheet.create({
     container: {
       flex:1,
-      backgroundColor: '#fff',
-      paddingTop: 20
+      backgroundColor: '#000000',
+      justifyContent: 'center',
     },
 
     title:{
-      color:'black',//'#64EE85',
-      fontSize: 24,
+      fontSize:24,
       fontWeight: '600',
-      paddingHorizontal: 20
-    },
-
-    text:{
-      color:'#64EE85',
       paddingHorizontal: 20
     }
   });

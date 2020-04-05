@@ -7,8 +7,7 @@ import { Card, ListItem,   } from 'react-native-elements'
 import Element from './element'
 
 
-//Leer de BD asignar a esta lista y
-const listSong = [
+const list = [
   {
     song_name: 'Album1',
     image_album_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
@@ -51,7 +50,7 @@ export default class Main extends Component{
           </View>
 
 
-          <View style={styles.container}>
+          <View style={{flex:1, backgroundColor: 'white', paddingTop: 20}}>
             <Text style={styles.title}>
               Playlist recently listened
             </Text>
@@ -65,7 +64,7 @@ export default class Main extends Component{
             </View>
           </View>
 
-          <View style={styles.container}>
+          <View style={{flex:1, backgroundColor: 'white', paddingTop: 20}}>
             <Text style={styles.title}>
               Podcast recently listened
             </Text>
@@ -89,19 +88,14 @@ export default class Main extends Component{
   const styles = StyleSheet.create({
     container: {
       flex:1,
-      backgroundColor: '#fff',
+      backgroundColor: '#000000',
       paddingTop: 20
     },
 
     title:{
-      color:'black',//'#64EE85',
-      fontSize: 24,
+      color:'white',
+      fontSize:24,
       fontWeight: '600',
-      paddingHorizontal: 20
-    },
-
-    text:{
-      color:'#64EE85',
       paddingHorizontal: 20
     }
   });
