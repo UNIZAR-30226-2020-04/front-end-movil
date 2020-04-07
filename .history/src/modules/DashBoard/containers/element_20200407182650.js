@@ -37,7 +37,7 @@ export default class Element extends Component{
 
   const styles = StyleSheet.create({
     text:{
-        color:'white',
+        color:'#3F5C6A',
         paddingHorizontal: 20
       }
   });

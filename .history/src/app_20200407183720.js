@@ -82,15 +82,7 @@ const OwnStack = createStackNavigator();
 
   function ProfileStackScreen() {
     return (
-      <ProfileStack.Navigator screenOptions = {{
-        headerTransparent: true,
-        headerTintColor:'white',
-        headerTitleStyle:{
-          fontSize: 24,
-          fontWeight: '600',
-          paddingHorizontal: 20
-        },
-      }}>
+      <ProfileStack.Navigator >
         <ProfileStack.Screen name="Profile" component={Profile} />
       </ProfileStack.Navigator>
     );
@@ -98,15 +90,7 @@ const OwnStack = createStackNavigator();
 
   function OwnStackScreen() {
     return (
-      <OwnStack.Navigator screenOptions = {{
-        headerTransparent: true,
-        headerTintColor:'white',
-        headerTitleStyle:{
-          fontSize: 24,
-          fontWeight: '600',
-          paddingHorizontal: 20
-        },
-      }}>
+      <OwnStack.Navigator>
         <OwnStack.Screen name="Own" component={Own} />
       </OwnStack.Navigator>
     );

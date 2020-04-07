@@ -40,6 +40,7 @@ const OwnStack = createStackNavigator();
           fontWeight: '600',
           paddingHorizontal: 20
         },
+
       }}>
         <DashboardStack.Screen name="Dashboard" component={DashBoard} />
       </DashboardStack.Navigator>
@@ -49,15 +50,7 @@ const OwnStack = createStackNavigator();
   //Funcion que contiene la pila del menu DashBoard (DashBoardStackSceren)
   function SearchStackScreen() {
     return (
-      <SearchStack.Navigator screenOptions = {{
-        headerTransparent: true,
-        headerTintColor:'white',
-        headerTitleStyle:{
-          fontSize: 24,
-          fontWeight: '600',
-          paddingHorizontal: 20
-        },
-      }}>
+      <SearchStack.Navigator>
         <SearchStack.Screen name="Search" component={Search} />
       </SearchStack.Navigator>
     );
@@ -65,15 +58,7 @@ const OwnStack = createStackNavigator();
 
   function LibraryStackScreen() {
     return (
-      <LibraryStack.Navigator screenOptions = {{
-        headerTransparent: true,
-        headerTintColor:'white',
-        headerTitleStyle:{
-          fontSize: 24,
-          fontWeight: '600',
-          paddingHorizontal: 20
-        },
-      }}>
+      <LibraryStack.Navigator>
         <LibraryStack.Screen name="Library" component={Library} /> 
       </LibraryStack.Navigator>
     );
@@ -82,15 +67,7 @@ const OwnStack = createStackNavigator();
 
   function ProfileStackScreen() {
     return (
-      <ProfileStack.Navigator screenOptions = {{
-        headerTransparent: true,
-        headerTintColor:'white',
-        headerTitleStyle:{
-          fontSize: 24,
-          fontWeight: '600',
-          paddingHorizontal: 20
-        },
-      }}>
+      <ProfileStack.Navigator >
         <ProfileStack.Screen name="Profile" component={Profile} />
       </ProfileStack.Navigator>
     );
@@ -98,15 +75,7 @@ const OwnStack = createStackNavigator();
 
   function OwnStackScreen() {
     return (
-      <OwnStack.Navigator screenOptions = {{
-        headerTransparent: true,
-        headerTintColor:'white',
-        headerTitleStyle:{
-          fontSize: 24,
-          fontWeight: '600',
-          paddingHorizontal: 20
-        },
-      }}>
+      <OwnStack.Navigator>
         <OwnStack.Screen name="Own" component={Own} />
       </OwnStack.Navigator>
     );

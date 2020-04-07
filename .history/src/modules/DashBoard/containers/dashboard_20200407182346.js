@@ -90,19 +90,19 @@ export default class Dashboard extends Component{
   const styles = StyleSheet.create({
     container: {
       flex:1,
-      backgroundColor: '#000',
+      backgroundColor: '#385865',
       paddingTop: 20
     },
 
     title:{
-      color:'white',//'#64EE85',
+      color:'black',//'#64EE85',
       fontSize: 24,
       fontWeight: '600',
       paddingHorizontal: 20
     },
 
     text:{
-      color:'white',
+      color:'#64EE85',
       paddingHorizontal: 20
     }
   });

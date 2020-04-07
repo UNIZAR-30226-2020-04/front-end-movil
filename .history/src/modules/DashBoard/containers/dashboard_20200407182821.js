@@ -102,7 +102,7 @@ export default class Dashboard extends Component{
     },
 
     text:{
-      color:'white',
+      color:'#64EE85',
       paddingHorizontal: 20
     }
   });
