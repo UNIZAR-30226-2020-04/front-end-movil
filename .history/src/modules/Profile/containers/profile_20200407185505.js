@@ -10,18 +10,15 @@ export default class Main extends Component{
   state={
     
   }
-
-  render(){
-    return(
-      <View style={styles.container}>
-        <View>
-          <Text style={styles.text}>Hola</Text>
+  
+    render(){
+      return(
+        <View style={styles.container}>
+          <Text>Hola</Text>
         </View>
         
-      </View>
-      
-    );
-  }
+      );
+    }
   }
 
 

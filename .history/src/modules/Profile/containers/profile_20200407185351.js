@@ -10,31 +10,20 @@ export default class Main extends Component{
   state={
     
   }
-
-  render(){
-    return(
-      <View style={styles.container}>
+  
+    render(){
+      return(
         <View>
-          <Text style={styles.text}>Hola</Text>
+          <Text>Hola</Text>
         </View>
         
-      </View>
-      
-    );
-  }
+      );
+    }
   }
 
 
   const styles = StyleSheet.create({
-    container: {
-      flex:1,
-      backgroundColor: '#000',
-      paddingTop: 20
-    },
-    
-    text: {
-      color : 'white'
-    }
+  
 
   });
   

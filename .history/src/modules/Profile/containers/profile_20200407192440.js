@@ -11,6 +11,16 @@ export default class Main extends Component{
     
   }
 
+  static navigationOptions = {
+    headerRight: (
+      <Button
+        onPress={() => alert('This is a button!')}
+        title="Info"
+        color="#fff"
+      />
+    ),
+  };
+  
   render(){
     return(
       <View style={styles.container}>

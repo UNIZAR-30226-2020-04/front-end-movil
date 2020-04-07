@@ -90,7 +90,6 @@ const OwnStack = createStackNavigator();
           fontWeight: '600',
           paddingHorizontal: 20
         },
-
         headerRight: () => (
           <Button
             onPress={() => ToastAndroid.show('Button pressed', ToastAndroid.SHORT)}

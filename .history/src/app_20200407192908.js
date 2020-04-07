@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, ToastAndroid } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
@@ -90,13 +90,11 @@ const OwnStack = createStackNavigator();
           fontWeight: '600',
           paddingHorizontal: 20
         },
-
         headerRight: () => (
-          <Button
-            onPress={() => ToastAndroid.show('Button pressed', ToastAndroid.SHORT)}
-            title="Info"
-            color="blue" 
-          />
+            <Button
+              onPress={() => alert('This is a button!')}
+              title="Info"
+              color="#fff" />
         )
         
       }}

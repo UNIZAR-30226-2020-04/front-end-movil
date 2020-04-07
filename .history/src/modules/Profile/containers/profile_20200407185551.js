@@ -10,18 +10,15 @@ export default class Main extends Component{
   state={
     
   }
-
-  render(){
-    return(
-      <View style={styles.container}>
-        <View>
+  
+    render(){
+      return(
+        <View style={styles.container}>
           <Text style={styles.text}>Hola</Text>
         </View>
         
-      </View>
-      
-    );
-  }
+      );
+    }
   }
 
 
@@ -29,6 +26,7 @@ export default class Main extends Component{
     container: {
       flex:1,
       backgroundColor: '#000',
+      marginTop: 10,
       paddingTop: 20
     },
     

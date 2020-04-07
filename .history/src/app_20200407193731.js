@@ -91,6 +91,30 @@ const OwnStack = createStackNavigator();
           paddingHorizontal: 20
         },
 
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          //Si estoy en dashboard muestra este icono
+          if (route.name === 'Dashboard') {
+            iconName = focused
+              ? 'ios-information-circle'
+              : 'ios-information-circle-outline';
+          } else if (route.name === 'Search') {
+            //Si estoy en setting muestro este icono
+            iconName = focused ? 'ios-list-box' : 'ios-list';
+          }else if (route.name === 'Library') {
+            //Si estoy en setting muestro este icono
+            iconName = focused ? 'ios-list-box' : 'ios-list';
+          }else if (route.name === 'Profile') {
+            //Si estoy en setting muestro este icono
+            iconName = focused ? 'ios-list-box' : 'ios-list';
+          }else if (route.name === 'Own') {
+            //Si estoy en setting muestro este icono
+            iconName = focused ? 'ios-list-box' : 'ios-list';
+          }
+          // You can return any component that you like here!
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+
         headerRight: () => (
           <Button
             onPress={() => ToastAndroid.show('Button pressed', ToastAndroid.SHORT)}

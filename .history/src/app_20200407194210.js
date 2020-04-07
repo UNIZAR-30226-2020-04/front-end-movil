@@ -91,6 +91,14 @@ const OwnStack = createStackNavigator();
           paddingHorizontal: 20
         },
 
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          //Si estoy en dashboard muestra este icono
+          iconName = 'ios-information-circle'
+          // You can return any component that you like here!
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+
         headerRight: () => (
           <Button
             onPress={() => ToastAndroid.show('Button pressed', ToastAndroid.SHORT)}
