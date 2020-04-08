@@ -96,11 +96,11 @@ const OwnStack = createStackNavigator();
           paddingHorizontal: 20
         },
 
-        headerRight: ({ navigation, screenProps }) => (
+        headerRight: (navigation) => (
           <Button
-            onPress={(navigation) => navigation.navigate('HOLA')}
+            onPress={() => navigation.navigate('Settings')}
             title="Info"
-            color="skyblue" 
+            color="blue" 
           />
         )
         

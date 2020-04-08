@@ -7,31 +7,21 @@ import Element from '../../DashBoard/containers/element'
 
 const Tabs = createBottomTabNavigator();
 const Menu = createStackNavigator();
-export default class Profile extends Component{
+export default class Main extends Component{
   state={
-    user:{
-      email: "edu@edu.edu",
-      username: "ediaz",
-      info: "info"
-    }
+    
   }
-  goToSettings = () => {this.props.navigation.navigate("Settings")}
 
   render(){
     return(
       <View style={styles.container}>
         <ScrollView style={styles.screen}>
-
-          {/* Contenedor de info y imagen */}
-          <View style={{flexDirection : 'row', height: 200, marginTop: 50, marginLeft: 10, marginRight: 10}}>
+          <View style={{flexDirection : 'row', height: 200}}>
             <View style={styles.info}>
-              <View style={{marginLeft: 5}}>
-                <Text style={[styles.text, {fontSize: 24,fontWeight: '600', marginTop: 10}]}>{this.state.user.username}</Text>
-                <Button title="Settings" onPress={this.goToSettings}/>
-              </View>
+              <Text style={styles.text}>Hola</Text>
             </View>
             <View style={styles.profileImage}>
-              <Image source={require('../../../Wallpapers/profileImage.jpg')} style={{flex:1,width:null, height: null, resizeMode: 'cover'}} />
+              <Text style={styles.text}>Hola</Text>
             </View>
           </View>
           
@@ -81,6 +71,11 @@ export default class Profile extends Component{
               </ScrollView>
             </View>
           </View>
+          <View>
+            <Text style={styles.text}>Hola</Text>
+          </View>
+          
+
         </ScrollView>
       </View>
       
@@ -91,11 +86,13 @@ export default class Profile extends Component{
 
   const styles = StyleSheet.create({
     info: {
+      backgroundColor: 'blue',
       flex: 1,
-      flexDirection : 'row'
+      
     },
 
     profileImage: {
+      backgroundColor: 'skyblue',
       flex: 1,
 
     },
@@ -103,11 +100,11 @@ export default class Profile extends Component{
     container: {
       flex:1,
       backgroundColor: '#000',
-      paddingTop: 20,
+      paddingTop: 20
     },
 
     screen: {
-      marginTop: 0,
+      marginTop: 70,
       backgroundColor: '#000',   
       resizeMode: "cover", 
     },

@@ -15,7 +15,7 @@ export default class Profile extends Component{
       info: "info"
     }
   }
-  goToSettings = () => {this.props.navigation.navigate("Settings")}
+  goToSettings = () => {this.props.navigation.navigate("Settings")}}
 
   render(){
     return(
@@ -27,7 +27,7 @@ export default class Profile extends Component{
             <View style={styles.info}>
               <View style={{marginLeft: 5}}>
                 <Text style={[styles.text, {fontSize: 24,fontWeight: '600', marginTop: 10}]}>{this.state.user.username}</Text>
-                <Button title="Settings" onPress={this.goToSettings}/>
+                
               </View>
             </View>
             <View style={styles.profileImage}>

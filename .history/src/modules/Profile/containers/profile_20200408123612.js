@@ -7,34 +7,21 @@ import Element from '../../DashBoard/containers/element'
 
 const Tabs = createBottomTabNavigator();
 const Menu = createStackNavigator();
-export default class Profile extends Component{
+export default class Main extends Component{
   state={
-    user:{
-      email: "edu@edu.edu",
-      username: "ediaz",
-      info: "info"
-    }
+    
   }
-  goToSettings = () => {this.props.navigation.navigate("Settings")}
 
   render(){
     return(
       <View style={styles.container}>
         <ScrollView style={styles.screen}>
+          <View style={styles.info}>
 
-          {/* Contenedor de info y imagen */}
-          <View style={{flexDirection : 'row', height: 200, marginTop: 50, marginLeft: 10, marginRight: 10}}>
-            <View style={styles.info}>
-              <View style={{marginLeft: 5}}>
-                <Text style={[styles.text, {fontSize: 24,fontWeight: '600', marginTop: 10}]}>{this.state.user.username}</Text>
-                <Button title="Settings" onPress={this.goToSettings}/>
-              </View>
-            </View>
-            <View style={styles.profileImage}>
-              <Image source={require('../../../Wallpapers/profileImage.jpg')} style={{flex:1,width:null, height: null, resizeMode: 'cover'}} />
-            </View>
           </View>
-          
+          <View style={styles.profileImage}>
+
+          </View>
 
           <View style={styles.container}>
             <Text style={styles.title}>
@@ -42,8 +29,7 @@ export default class Profile extends Component{
             </Text>
             <View style={{height: 200, marginTop: 20}}>
               <ScrollView
-                horizontal={true}
-              >
+                horizontal={true}>
                 <Element type='song' image={{uri: 'http://metaltrip.com/wp-content/uploads/2015/05/Bullet-For-My-Valentine-400x400.jpg'}} album_name="Venom" song_name="cualquiera"></Element>
                 <Element type='song' image={{uri: 'http://metaltrip.com/wp-content/uploads/2015/05/Bullet-For-My-Valentine-400x400.jpg'}} album_name="Venom" song_name="cualquiera"></Element>
                 <Element type='song' image={{uri: 'http://metaltrip.com/wp-content/uploads/2015/05/Bullet-For-My-Valentine-400x400.jpg'}} album_name="Venom" song_name="cualquiera"></Element>
@@ -58,8 +44,7 @@ export default class Profile extends Component{
             </Text>
             <View style={{height: 200, marginTop: 20}}>
               <ScrollView
-                horizontal={true}
-              >
+                horizontal={true}>
                 <Element type='song' image={{uri: 'https://bucket3.glanacion.com/anexos/fotos/79/2667179h1080.jpg'}} album_name="Redención" song_name="cualquiera"></Element>
                 <Element type='song' image={{uri: 'https://bucket3.glanacion.com/anexos/fotos/79/2667179h1080.jpg'}} album_name="Redención" song_name="cualquiera"></Element>
                 <Element type='song' image={{uri: 'https://bucket3.glanacion.com/anexos/fotos/79/2667179h1080.jpg'}} album_name="Redención" song_name="cualquiera"></Element>
@@ -69,18 +54,19 @@ export default class Profile extends Component{
 
           <View style={styles.container}>
             <Text style={styles.title}>
-              Your podcasts
+              Podcast recently listened
             </Text>
             <View style={{height: 200, marginTop: 20}}>
               <ScrollView
-                horizontal={true}
-              >
+                horizontal={true}>
                 <Element type='song' image={{uri: 'https://www.federico-toledo.com/wp-content/uploads/2017/07/podcast-image.jpg'}} album_name="Redención" song_name="cualquiera"></Element>
                 <Element type='song' image={{uri: 'https://www.federico-toledo.com/wp-content/uploads/2017/07/podcast-image.jpg'}} album_name="Redención" song_name="cualquiera"></Element>
                 <Element type='song' image={{uri: 'https://www.federico-toledo.com/wp-content/uploads/2017/07/podcast-image.jpg'}} album_name="Redención" song_name="cualquiera"></Element>
               </ScrollView>
             </View>
           </View>
+          <Text style={styles.text}>Hola</Text>
+
         </ScrollView>
       </View>
       
@@ -90,25 +76,17 @@ export default class Profile extends Component{
 
 
   const styles = StyleSheet.create({
-    info: {
-      flex: 1,
-      flexDirection : 'row'
-    },
-
-    profileImage: {
-      flex: 1,
-
-    },
-
     container: {
       flex:1,
       backgroundColor: '#000',
-      paddingTop: 20,
+      paddingTop: 20
     },
 
     screen: {
-      marginTop: 0,
-      backgroundColor: '#000',   
+      marginTop: 70,
+      backgroundColor: '#000',
+      marginBottom : 20,
+      bottom : 10,   
       resizeMode: "cover", 
     },
     

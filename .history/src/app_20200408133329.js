@@ -13,13 +13,8 @@ import RecoverPassword from "./modules/RecoverPassword/containers/recoverPasswor
 import DashBoard from "./modules/DashBoard/containers/dashboard"; //Main screen after login
 import Search from "./modules/Search/containers/search";
 import Library from "./modules/Library/containers/library";
-
-import Own from "./modules/Own/containers/own";
-
 import Profile from "./modules/Profile/containers/profile";
-import SettingsProfile from "./modules/Profile/containers/settingsProfile.js";
-
-//ToastAndroid.show('Button pressed', ToastAndroid.SHORT)
+import Own from "./modules/Own/containers/own";
 
 
 
@@ -96,18 +91,17 @@ const OwnStack = createStackNavigator();
           paddingHorizontal: 20
         },
 
-        headerRight: ({ navigation, screenProps }) => (
+        headerRight: () => (
           <Button
-            onPress={(navigation) => navigation.navigate('HOLA')}
+            onPress={() => ToastAndroid.show('Button pressed', ToastAndroid.SHORT)}
             title="Info"
-            color="skyblue" 
+            color="blue" 
           />
         )
         
       }}
       >
         <ProfileStack.Screen name="Profile" component={Profile} />
-        <ProfileStack.Screen name="Settings" component={SettingsProfile} />
       </ProfileStack.Navigator>
     );
   }

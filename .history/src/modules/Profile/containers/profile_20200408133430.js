@@ -7,7 +7,7 @@ import Element from '../../DashBoard/containers/element'
 
 const Tabs = createBottomTabNavigator();
 const Menu = createStackNavigator();
-export default class Profile extends Component{
+export default class Main extends Component{
   state={
     user:{
       email: "edu@edu.edu",
@@ -15,7 +15,6 @@ export default class Profile extends Component{
       info: "info"
     }
   }
-  goToSettings = () => {this.props.navigation.navigate("Settings")}
 
   render(){
     return(
@@ -23,11 +22,12 @@ export default class Profile extends Component{
         <ScrollView style={styles.screen}>
 
           {/* Contenedor de info y imagen */}
-          <View style={{flexDirection : 'row', height: 200, marginTop: 50, marginLeft: 10, marginRight: 10}}>
+          <View style={{flexDirection : 'row', height: 200, marginTop: 10, marginLeft: 10, marginRight: 10}}>
             <View style={styles.info}>
-              <View style={{marginLeft: 5}}>
-                <Text style={[styles.text, {fontSize: 24,fontWeight: '600', marginTop: 10}]}>{this.state.user.username}</Text>
-                <Button title="Settings" onPress={this.goToSettings}/>
+              <View>
+                <Text style={[styles.text, {fontSize: 20,fontWeight: '600', marginTop: 10}]}>Username {"\n"}{this.state.user.username}</Text>
+                {/* <Text style={[styles.text, {fontSize: 20,fontWeight: '600', marginTop: 10}]}>Username {"\n"}{this.state.user.username}</Text>
+                <Text style={[styles.text, {fontSize: 20,fontWeight: '600', marginTop: 10}]}>Info {"\n"}{this.state.user.info}</Text> */}
               </View>
             </View>
             <View style={styles.profileImage}>
@@ -107,7 +107,7 @@ export default class Profile extends Component{
     },
 
     screen: {
-      marginTop: 0,
+      marginTop: 70,
       backgroundColor: '#000',   
       resizeMode: "cover", 
     },
