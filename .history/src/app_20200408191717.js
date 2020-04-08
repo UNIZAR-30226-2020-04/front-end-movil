@@ -95,15 +95,15 @@ const OwnStack = createStackNavigator();
           fontWeight: '600',
           paddingHorizontal: 20
         },
-
-        headerRight: ({ navigation, screenProps }) => (
-          <Button title="SETTINGS" ></Button>
-          //<Ionicons name='settings-outline' onPress={Alert.alert("HOLA")}></Ionicons>
-        ),
       }}
       >
         <ProfileStack.Screen name="Profile" component={Profile} />
-        <ProfileStack.Screen name="Settings" component={SettingsProfile} />
+        <ProfileStack.Screen name="Settings" component={SettingsProfile} screenOptions = {{
+          headerRight: ({ navigation, screenProps }) => (
+            <Button title="SETTINGS" onPress={Alert.alert("HOLA")}></Button>
+          //<Ionicons name='settings-outline' onPress={Alert.alert("HOLA")}></Ionicons>
+          ),
+        }}/>
       </ProfileStack.Navigator>
     );
   }

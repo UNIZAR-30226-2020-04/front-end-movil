@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Alert, ScrollView, Image, ImageBackground, TouchableOpacity } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import { Ionicons } from '@expo/vector-icons';
 import Element from '../../DashBoard/containers/element'
 
 const Tabs = createBottomTabNavigator();
 const Menu = createStackNavigator();
-export default class Main extends Component{
+export default class Profile extends Component{
   state={
     user:{
       email: "edu@edu.edu",
@@ -15,24 +15,29 @@ export default class Main extends Component{
       info: "info"
     }
   }
+  goToSettings = () => {this.props.navigation.navigate("Settings")}
 
+  
   render(){
     return(
       <View style={styles.container}>
         <ScrollView style={styles.screen}>
-            <View style={{alignItems: 'center'}}>
-                <Text style={[styles.text, {fontSize: 24,fontWeight: '600', marginTop: 10}]}>Select an element to delete</Text>
-                <Ionicons name='ios-information-circle' color='white'></Ionicons>
+          <View style={styles.header}>
+            <View style={styles.headerContent}>
+                <ImageBackground style={styles.avatar}
+                  source={{uri: 'https://picsum.photos/200/300'}}
+                />
             </View>
+            <Text style={styles.name}>Eduardico </Text>
+                <Text style={styles.userInfo}>eduardico@mail.com </Text>
+          </View>
 
           {/* Contenedor de info y imagen */}
-          <View style={{flexDirection : 'row', height: 200, marginTop: 10, marginLeft: 10, marginRight: 10}}>
+          <View style={{flexDirection : 'row', height: 200, marginTop: 50, marginLeft: 10, marginRight: 10}}>
             <View style={styles.info}>
               <View style={{marginLeft: 5}}>
-                <Text style={[styles.text, {fontSize: 24,fontWeight: '600', marginTop: 10}]}>En settings</Text>
-
-                {/* <Text style={[styles.text, {fontSize: 20,fontWeight: '600', marginTop: 10}]}>Username {"\n"}{this.state.user.username}</Text>
-                <Text style={[styles.text, {fontSize: 20,fontWeight: '600', marginTop: 10}]}>Info {"\n"}{this.state.user.info}</Text> */}
+                <Text style={[styles.text, {fontSize: 24,fontWeight: '600', marginTop: 10}]}>{this.state.user.username}</Text>
+                <Button title="Settings" onPress={this.goToSettings}/>
               </View>
             </View>
             <View style={styles.profileImage}>
@@ -112,20 +117,13 @@ export default class Main extends Component{
     },
 
     screen: {
-      marginTop: 70,
+      marginTop: 0,
       backgroundColor: '#000',   
       resizeMode: "cover", 
-      
     },
     
     text: {
       color : 'white'
-    },
-
-    container: {
-      flex:1,
-      backgroundColor: '#000',
-      paddingTop: 20
     },
 
     title:{
@@ -135,6 +133,32 @@ export default class Main extends Component{
       paddingHorizontal: 20
     },
 
+    header:{
+      backgroundColor: "#2D2525",
+    },
+    headerContent:{
+      padding:30,
+      alignItems: 'center',
+    },
+    avatar: {
+      flex: 1,
+      borderWidth: 4,
+      borderColor: "white",
+      marginBottom:10,
+    },
+    name:{
+      fontSize:22,
+      color:"white",
+      fontWeight:'600',
+    },
+    userInfo:{
+      fontSize:16,
+      color:"#778899",
+      fontWeight:'600',
+    },
+    icon:{
+      width:30,
+      height:30,
+      marginTop:20,
+    }
   });
-  
-  

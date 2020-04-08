@@ -22,7 +22,7 @@ export default class Main extends Component{
         <ScrollView style={styles.screen}>
             <View style={{alignItems: 'center'}}>
                 <Text style={[styles.text, {fontSize: 24,fontWeight: '600', marginTop: 10}]}>Select an element to delete</Text>
-                <Ionicons name='ios-information-circle' color='white'></Ionicons>
+                <Ionicons name='ios-information-circle'></Ionicons>
             </View>
 
           {/* Contenedor de info y imagen */}

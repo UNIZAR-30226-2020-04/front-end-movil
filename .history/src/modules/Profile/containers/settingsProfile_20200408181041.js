@@ -47,7 +47,7 @@ export default class Main extends Component{
             </Text>
             <View style={{height: 200, marginTop: 20}}>
               <ScrollView
-                horizontal={true}
+                horizontal={false}
               >
                 <Element type='song' image={{uri: 'http://metaltrip.com/wp-content/uploads/2015/05/Bullet-For-My-Valentine-400x400.jpg'}} album_name="Venom" song_name="cualquiera"></Element>
                 <Element type='song' image={{uri: 'http://metaltrip.com/wp-content/uploads/2015/05/Bullet-For-My-Valentine-400x400.jpg'}} album_name="Venom" song_name="cualquiera"></Element>

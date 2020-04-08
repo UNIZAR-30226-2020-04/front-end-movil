@@ -97,9 +97,14 @@ const OwnStack = createStackNavigator();
         },
 
         headerRight: ({ navigation, screenProps }) => (
-          <Button title="SETTINGS" ></Button>
+          <Button title="SETTINGS"></Button>
           //<Ionicons name='settings-outline' onPress={Alert.alert("HOLA")}></Ionicons>
         ),
+        tabBarIcon: ({ focused, color, size }) => {
+          return <Ionicons name={iconName} size={size} color={color} />;
+        }
+        
+        
       }}
       >
         <ProfileStack.Screen name="Profile" component={Profile} />

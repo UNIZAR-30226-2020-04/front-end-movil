@@ -97,7 +97,7 @@ const OwnStack = createStackNavigator();
         },
 
         headerRight: ({ navigation, screenProps }) => (
-          <Button title="SETTINGS" ></Button>
+          <Button title="SETTINGS" onPress={navigation.navigate("Settings")}></Button>
           //<Ionicons name='settings-outline' onPress={Alert.alert("HOLA")}></Ionicons>
         ),
       }}

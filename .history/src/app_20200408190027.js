@@ -97,9 +97,9 @@ const OwnStack = createStackNavigator();
         },
 
         headerRight: ({ navigation, screenProps }) => (
-          <Button title="SETTINGS" ></Button>
-          //<Ionicons name='settings-outline' onPress={Alert.alert("HOLA")}></Ionicons>
-        ),
+          <Ionicons name="settings-outline" onPress={Alert.alert("HOLA")}></Ionicons>
+        )
+        
       }}
       >
         <ProfileStack.Screen name="Profile" component={Profile} />
@@ -131,6 +131,8 @@ function menuLogged(){
   return (
     <MenuLoged.Navigator
       screenOptions={({ route }) => ({
+        
+
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           //Si estoy en dashboard muestra este icono
