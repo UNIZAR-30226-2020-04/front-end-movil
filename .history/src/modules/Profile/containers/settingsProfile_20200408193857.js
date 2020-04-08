@@ -1,37 +1,41 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ToastAndroid, TextInput, Button, Alert, ScrollView, Image, ImageBackground, TouchableOpacity } from 'react-native';
-import { NavigationContainer } from "@react-navigation/native";
+import { StyleSheet, Text, View, TextInput, Button, Alert, ScrollView, Image, ImageBackground, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import { Ionicons, AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import Element from '../../DashBoard/containers/element'
 
 const Tabs = createBottomTabNavigator();
 const Menu = createStackNavigator();
-export default class Profile extends Component{
+export default class Main extends Component{
   state={
     user:{
       email: "edu@edu.edu",
-      username: "Eduardico",
+      username: "ediaz",
       info: "info"
     }
   }
-  
-  goToSettings = () => {this.props.navigation.navigate("Settings")}
+
   render(){
     return(
       <View style={styles.container}>
         <ScrollView style={styles.screen}>
-          <View style={styles.header}>
-            <ImageBackground style={styles.avatar}
-                  source={{uri: 'https://picsum.photos/200/300'}}
-            >
-              <Text style={styles.headerName}>{this.state.user.username} </Text>
-              <Text style={styles.userInfo}>eduardico@mail.com </Text>
-              <Ionicons name="md-settings" size={40} color="white" onPress={this.goToSettings} style={{position:'absolute', right: 10, bottom: 10}}></Ionicons>
-            </ImageBackground>
-            
+            <View style={{alignItems: 'center'}}>
+                <Text style={[styles.text, {fontSize: 24,fontWeight: '600', marginTop: 10}]}>Select an element to delete</Text>
+                <Ionicons name='ios-information-circle' color='white'></Ionicons>
+            </View>
+
+          {/* Contenedor de info y imagen */}
+          <View style={{flexDirection : 'row', height: 200, marginTop: 10, marginLeft: 10, marginRight: 10}}>
+            <View style={styles.info}>
+              <View style={{marginLeft: 5}}>
+                <Text style={[styles.text, {fontSize: 20,fontWeight: '600', }]}>Username</Text>
+                <Text style={[styles.text, {fontSize: 24,fontWeight: '600',}]}>{this.state.user.username}</Text>
+                <Text style={[styles.text, {fontSize: 24,fontWeight: '600',}]}>Info {"\n"}{this.state.user.info}</Text>
+              </View>
+            </View>
           </View>
+          
 
           <View style={styles.container}>
             <Text style={styles.title}>
@@ -83,12 +87,18 @@ export default class Profile extends Component{
       
     );
   }
-}
+  }
+
 
   const styles = StyleSheet.create({
     info: {
       flex: 1,
       flexDirection : 'row'
+    },
+
+    profileImage: {
+      flex: 1,
+
     },
 
     container: {
@@ -98,13 +108,20 @@ export default class Profile extends Component{
     },
 
     screen: {
-      marginTop: 0,
+      marginTop: 70,
       backgroundColor: '#000',   
       resizeMode: "cover", 
+      
     },
     
     text: {
       color : 'white'
+    },
+
+    container: {
+      flex:1,
+      backgroundColor: '#000',
+      paddingTop: 20
     },
 
     title:{
@@ -114,37 +131,6 @@ export default class Profile extends Component{
       paddingHorizontal: 20
     },
 
-    header:{
-      height: 250,
-    },
-    headerContent:{
-      height: 150,
-      width: 150,
-      padding:30,
-      alignItems: 'center',
-    },
-    avatar: {
-      flex: 1,
-      borderWidth: 4,
-      borderColor: "white",
-      marginBottom:10,
-    },
-    headerName:{
-      marginTop: 170, 
-      marginLeft: 10,
-      fontSize:24,
-      color:"white",
-      fontWeight:'600',
-    },
-    userInfo:{
-      marginLeft: 10,
-      fontSize:16,
-      color:"#778899",
-      fontWeight:'600',
-    },
-    icon:{
-      width:30,
-      height:30,
-      marginTop:20,
-    }
   });
+  
+  

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ToastAndroid, TextInput, Button, Alert, ScrollView, Image, ImageBackground, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Alert, ScrollView, Image, ImageBackground, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
@@ -34,6 +34,7 @@ export default class Profile extends Component{
           </View>
 
           <View style={styles.container}>
+            <TouchableOpacity name="long" onLongPress={Alert.alert("Lomng press")}></TouchableOpacity>
             <Text style={styles.title}>
               Your songs 
             </Text>

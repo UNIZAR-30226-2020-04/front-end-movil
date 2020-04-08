@@ -34,6 +34,9 @@ export default class Profile extends Component{
           </View>
 
           <View style={styles.container}>
+          <TouchableOpacity style={styles.loginBtn} onPress={this.register} onLongPress={Alert.alert(ToastAndroid.show('Button pressed', ToastAndroid.SHORT))}>
+              <Text style={{color: 'white'}}>Free register</Text>
+            </TouchableOpacity>
             <Text style={styles.title}>
               Your songs 
             </Text>
