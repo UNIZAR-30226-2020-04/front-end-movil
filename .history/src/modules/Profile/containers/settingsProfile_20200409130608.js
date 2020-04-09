@@ -71,7 +71,7 @@ export default class Main extends Component{
                       </MenuTrigger>
                       <MenuOptions>
                         <ScrollView style={{ maxHeight: 200 }}>
-                          <MenuOption value={"getSongName()"} text={"Delete ${value}"} onSelect={type => alert(`Deleted song: ${type}`)} style={{color: 'white'}}/>
+                          <MenuOption value={song} text={"Delete ${value}"} onSelect={type => alert(`Selected number: ${type}`)} style={{color: 'white'}}/>
                         </ScrollView>
                       </MenuOptions>
                     </Menu>     

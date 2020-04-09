@@ -4,20 +4,15 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { Ionicons } from '@expo/vector-icons';
 import Element from '../../DashBoard/containers/element'
-import { 
-  MenuProvider, 
-  Menu,
-  MenuOptions,
-  MenuOption,
-  MenuTrigger, } from 'react-native-popup-menu';
 
+const Tabs = createBottomTabNavigator();
+const Menu = createStackNavigator();
 export default class Main extends Component{
   state={
     user:{
       email: "edu@edu.edu",
       username: "ediaz",
-      info: "info",
-      typeSelected: ""
+      info: "info"
     }
   }
 
@@ -28,8 +23,6 @@ export default class Main extends Component{
             <View style={{alignItems: 'center'}}>
                 <Text style={[styles.text, {fontSize: 24,fontWeight: '600', marginTop: 10}]}>Select an element to edit</Text>
             </View>
-            
-            
 
           {/* Contenedor de info y imagen */}
           <View style={{height: 200, marginTop: 10, marginLeft: 10, marginRight: 10}}>
@@ -60,23 +53,6 @@ export default class Main extends Component{
             <Text style={styles.title}>
               Your songs 
             </Text>
-            
-            <MenuProvider>
-                  <Text style={{color: 'white'}}>Hello world!</Text>
-                  
-                    <Menu >
-                      <MenuTrigger>
-                      <Element type={'song'} image={{uri: 'http://metaltrip.com/wp-content/uploads/2015/05/Bullet-For-My-Valentine-400x400.jpg'}} album_name="Venom" song_name="cualquiera"></Element>
-
-                      </MenuTrigger>
-                      <MenuOptions>
-                        <ScrollView style={{ maxHeight: 200 }}>
-                          <MenuOption value={"getSongName()"} text={"Delete ${value}"} onSelect={type => alert(`Deleted song: ${type}`)} style={{color: 'white'}}/>
-                        </ScrollView>
-                      </MenuOptions>
-                    </Menu>     
-              </MenuProvider>
-
             <View style={{height: 200, marginTop: 20}}>
               <ScrollView
                 horizontal={true}
@@ -87,6 +63,7 @@ export default class Main extends Component{
               </ScrollView>
             </View>
           </View>
+
 
           <View style={styles.container}>
             <Text style={styles.title}>
@@ -117,7 +94,6 @@ export default class Main extends Component{
               </ScrollView>
             </View>
           </View>
-          
         </ScrollView>
       </View>
       

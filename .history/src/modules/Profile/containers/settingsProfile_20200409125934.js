@@ -16,8 +16,7 @@ export default class Main extends Component{
     user:{
       email: "edu@edu.edu",
       username: "ediaz",
-      info: "info",
-      typeSelected: ""
+      info: "info"
     }
   }
 
@@ -60,18 +59,17 @@ export default class Main extends Component{
             <Text style={styles.title}>
               Your songs 
             </Text>
-            
             <MenuProvider>
                   <Text style={{color: 'white'}}>Hello world!</Text>
                   
-                    <Menu >
+                    <Menu onSelect={type => alert(`Selected number: ${type}`)} style={{color: 'white'}}>
                       <MenuTrigger>
-                      <Element type={'song'} image={{uri: 'http://metaltrip.com/wp-content/uploads/2015/05/Bullet-For-My-Valentine-400x400.jpg'}} album_name="Venom" song_name="cualquiera"></Element>
+                      <Element type='song' image={{uri: 'http://metaltrip.com/wp-content/uploads/2015/05/Bullet-For-My-Valentine-400x400.jpg'}} album_name="Venom" song_name="cualquiera"></Element>
 
                       </MenuTrigger>
                       <MenuOptions>
                         <ScrollView style={{ maxHeight: 200 }}>
-                          <MenuOption value={"getSongName()"} text={"Delete ${value}"} onSelect={type => alert(`Deleted song: ${type}`)} style={{color: 'white'}}/>
+                          <MenuOption value={1} text="Delete ${type}" />
                         </ScrollView>
                       </MenuOptions>
                     </Menu>     
