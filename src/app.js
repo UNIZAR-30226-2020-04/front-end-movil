@@ -15,6 +15,7 @@ import Search from "./modules/Search/containers/search";
 import Library from "./modules/Library/containers/library";
 import Profile from "./modules/Profile/containers/profile";
 import Own from "./modules/Own/containers/own";
+import subirAlbum from "./modules/Own/containers/subirAlbum";
 
 
 
@@ -108,6 +109,7 @@ const OwnStack = createStackNavigator();
         },
       }}>
         <OwnStack.Screen name="Own" component={Own} />
+        <OwnStack.Screen name="subirAlbum" component={subirAlbum} />
       </OwnStack.Navigator>
     );
   }

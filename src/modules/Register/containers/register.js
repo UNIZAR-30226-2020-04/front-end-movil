@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Alert, ScrollView, Image, ImageBackground, TouchableOpacity } from 'react-native';
 import DatePicker from 'react-native-datepicker'
+import NetworkService from '../../../networks/NetworkService'
 
 export default class App extends Component{
   state={
@@ -14,7 +15,8 @@ export default class App extends Component{
   }
 
   login = () =>  {Alert.alert('Registrando usuario...')}
-  goLogin = () => {this.props.navigation.navigate('Login')}
+  goLogin = () => {NetworkService.registerUser(this.state);
+  					this.props.navigation.navigate('Login')}
     render(){
       return (
         
@@ -41,7 +43,7 @@ export default class App extends Component{
                 style={styles.inputText}
                 placeholder="Email" 
                 placeholderTextColor="#FFFFFF"
-                onChangeText={text => this.setState({username:text})}/>
+                onChangeText={text => this.setState({email:text})}/>
             </View>
 
             <View style={styles.inputView} >
@@ -49,7 +51,7 @@ export default class App extends Component{
                 style={styles.inputText}
                 placeholder="Username" 
                 placeholderTextColor="#FFFFFF"
-                onChangeText={text => this.setState({email:text})}/>
+                onChangeText={text => this.setState({username:text})}/>
             </View>
 
             <View style={styles.inputView} >
@@ -57,7 +59,7 @@ export default class App extends Component{
                 style={styles.inputText}
                 placeholder="Date of birth" 
                 placeholderTextColor="#FFFFFF"
-                onChangeText={text => this.setState({password:text})}/>
+                onChangeText={text => this.setState({dateOfBirth:text})}/>
             </View>
             
             <View style={styles.inputView} >

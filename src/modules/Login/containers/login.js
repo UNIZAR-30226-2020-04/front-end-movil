@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
 //import IndexLogin from '../../../indexLogin';
+import NetworkService from '../../../networks/NetworkService'
 
 export default class App extends Component{
   state={
@@ -10,6 +11,7 @@ export default class App extends Component{
 
   // main = () =>  {this.props.navigation.navigate('Main')}
   goToRecoverPassword = () => {this.props.navigation.navigate('RecoverPassword');}
+  login = () => { NetworkService.loginUser(this.state);}
   goToMain = () => { this.props.navigation.navigate('MainLogged', { screen: 'DashBoard' });}
   register = () => {this.props.navigation.navigate('Register')}
     render(){
@@ -34,7 +36,7 @@ export default class App extends Component{
                 onChangeText={text => this.setState({password:text})}/>
             </View>
           
-            <TouchableOpacity style={styles.loginBtn} onPress={this.goToMain}>
+            <TouchableOpacity style={styles.loginBtn} onPress={this.login}>
               <Text style={styles.loginText}>Iniciar Sesion</Text>
             </TouchableOpacity>
 
