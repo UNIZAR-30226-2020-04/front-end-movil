@@ -8,7 +8,7 @@
     "eject": "expo eject"
   },
 
-  "proxy": "http://localhost:8080",
+  "proxy": "http://192.168.56.1:8080",
 
   "dependencies": {
     "@react-native-community/masked-view": "0.1.5",

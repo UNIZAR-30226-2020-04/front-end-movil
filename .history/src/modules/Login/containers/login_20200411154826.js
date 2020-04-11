@@ -24,7 +24,7 @@ export default class App extends Component{
   loginDB = async () => { //console.log("DEVULVE:",NetworkService.loginUser(this.state));
     console.log("username:",this.state.email);
     console.log("password:",this.state.password)
-    await NetworkService.loginUser(this.state).then( res => {this.user = res});
+    NetworkService.loginUser(this.state).then( res => {this.user = res});
     this.setState(this.user);
     console.log("STATE:",this.state);
     console.log("USER:",this.user);

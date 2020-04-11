@@ -7,6 +7,8 @@ export default class App extends Component{
   state={
     email:"",
     password:"",
+    email2:"",
+    password2:"",
     username:"",
   }
 
@@ -27,11 +29,18 @@ export default class App extends Component{
     await NetworkService.loginUser(this.state).then( res => {this.user = res});
     this.setState(this.user);
     console.log("STATE:",this.state);
-    console.log("USER:",this.user);
     //Si el login OK, ya tenemos el usuario
+    
+    console.log("EMAILL:",this.state.email);
+    console.log("EMAILL:",this.state.username);
+    console.log("EMAILL:",this.state.password)
+    console.log("EMAILL:",this.state.email2);
+    console.log("EMAILL:",this.state.password2)
+
+    console.log("USER:",this.user);
 
     if(this.checkLoginOK){
-      //this.goToMain()
+      this.goToMain()
     } else {
       ToastAndroid.show('Login failed', ToastAndroid.SHORT);
     }

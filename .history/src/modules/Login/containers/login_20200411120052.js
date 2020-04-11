@@ -1,54 +1,19 @@
 import React, { Component, Console } from 'react';
-import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity, ToastAndroid } from 'react-native';
+import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
 //import IndexLogin from '../../../indexLogin';
 import NetworkService from '../../../networks/NetworkService'
 
 export default class App extends Component{
   state={
     email:"",
-    password:"",
-    username:"",
-  }
-
-  user={
-    correo:"",
-    fnacimiento:"",
-    foto:"",
-    nick:"",
-    nombre:"",
-    pass:"",
+    password:""
   }
 
   // main = () =>  {this.props.navigation.navigate('Main')}
   goToRecoverPassword = () => {this.props.navigation.navigate('RecoverPassword');}
-  loginDB = async () => { //console.log("DEVULVE:",NetworkService.loginUser(this.state));
-    console.log("username:",this.state.email);
-    console.log("password:",this.state.password)
-    await NetworkService.loginUser(this.state).then( res => {this.user = res});
-    this.setState(this.user);
-    console.log("STATE:",this.state);
-    console.log("USER:",this.user);
-    //Si el login OK, ya tenemos el usuario
-
-    if(this.checkLoginOK){
-      //this.goToMain()
-    } else {
-      ToastAndroid.show('Login failed', ToastAndroid.SHORT);
-    }
-  }
-
-  //Return if login has been ok
-  checkLoginOK(){
-    if(this.state.email != "" && this.state.password != ""){
-      return true;
-    }else{
-      return false;
-    }
-  }
-  goToMain(){ 
-    this.props.navigation.navigate('MainLogged', { screen: 'DashBoard' });
-  }
-
+  login = () => { NetworkService.loginUser(this.state);
+  console.log("EMAILL:",this.state.email)}
+  goToMain = () => { this.props.navigation.navigate('MainLogged', { screen: 'DashBoard' });}
   register = () => {this.props.navigation.navigate('Register')}
     render(){
       return (
@@ -60,7 +25,7 @@ export default class App extends Component{
                 style={styles.inputText}
                 placeholder="Email..." 
                 placeholderTextColor="#FFFFFF"
-                onChangeText={text => this.setState({email:text})}/>
+                onChangeText={text => this.setState({email:"e@e.com"})}/>
             </View>
             
             <View style={styles.inputView} >
@@ -72,7 +37,7 @@ export default class App extends Component{
                 onChangeText={text => this.setState({password:text})}/>
             </View>
           
-            <TouchableOpacity style={styles.loginBtn} onPress={this.loginDB}>
+            <TouchableOpacity style={styles.loginBtn} onPress={this.login}>
               <Text style={styles.loginText}>Iniciar Sesion</Text>
             </TouchableOpacity>
 

@@ -7,6 +7,8 @@ export default class App extends Component{
   state={
     email:"",
     password:"",
+    email2:"",
+    password2:"",
     username:"",
   }
 
@@ -21,17 +23,21 @@ export default class App extends Component{
 
   // main = () =>  {this.props.navigation.navigate('Main')}
   goToRecoverPassword = () => {this.props.navigation.navigate('RecoverPassword');}
-  loginDB = async () => { //console.log("DEVULVE:",NetworkService.loginUser(this.state));
-    console.log("username:",this.state.email);
-    console.log("password:",this.state.password)
-    await NetworkService.loginUser(this.state).then( res => {this.user = res});
-    this.setState(this.user);
-    console.log("STATE:",this.state);
-    console.log("USER:",this.user);
+  loginDB = () => { //console.log("DEVULVE:",NetworkService.loginUser(this.state));
+    this.user = NetworkService.loginUser(this.state);
     //Si el login OK, ya tenemos el usuario
+    
+    console.log("EMAILL:",this.state.email);
+    console.log("EMAILL:",this.state.username);
+    console.log("EMAILL:",this.state.password)
+    console.log("EMAILL:",this.state.email2);
+    console.log("EMAILL:",this.state.password2)
+
+    console.log("USER:",this.user.correo);
+    console.log("USER:",this.user.pass);
 
     if(this.checkLoginOK){
-      //this.goToMain()
+      this.goToMain()
     } else {
       ToastAndroid.show('Login failed', ToastAndroid.SHORT);
     }
@@ -60,7 +66,7 @@ export default class App extends Component{
                 style={styles.inputText}
                 placeholder="Email..." 
                 placeholderTextColor="#FFFFFF"
-                onChangeText={text => this.setState({email:text})}/>
+                onChangeText={text => this.setState({email:"e@e.com"})}/>
             </View>
             
             <View style={styles.inputView} >
