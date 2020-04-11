@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { Alert, StyleSheet, Text, View, Button, ToastAndroid } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
@@ -13,9 +13,14 @@ import RecoverPassword from "./modules/RecoverPassword/containers/recoverPasswor
 import DashBoard from "./modules/DashBoard/containers/dashboard"; //Main screen after login
 import Search from "./modules/Search/containers/search";
 import Library from "./modules/Library/containers/library";
-import Profile from "./modules/Profile/containers/profile";
+
 import Own from "./modules/Own/containers/own";
 import subirAlbum from "./modules/Own/containers/subirAlbum";
+
+import Profile from "./modules/Profile/containers/profile";
+import SettingsProfile from "./modules/Profile/containers/settingsProfile.js";
+
+//ToastAndroid.show('Button pressed', ToastAndroid.SHORT)
 
 
 
@@ -91,8 +96,15 @@ const OwnStack = createStackNavigator();
           fontWeight: '600',
           paddingHorizontal: 20
         },
-      }}>
+
+        headerRight: ({ navigation, screenProps }) => (
+          <Button title="SETTINGS" ></Button>
+          //<Ionicons name='settings-outline' onPress={Alert.alert("HOLA")}></Ionicons>
+        ),
+      }}
+      >
         <ProfileStack.Screen name="Profile" component={Profile} />
+        <ProfileStack.Screen name="Settings" component={SettingsProfile} />
       </ProfileStack.Navigator>
     );
   }
@@ -100,6 +112,7 @@ const OwnStack = createStackNavigator();
   function OwnStackScreen() {
     return (
       <OwnStack.Navigator screenOptions = {{
+         
         headerTransparent: true,
         headerTintColor:'white',
         headerTitleStyle:{
@@ -120,8 +133,6 @@ function menuLogged(){
   return (
     <MenuLoged.Navigator
       screenOptions={({ route }) => ({
-        
-
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           //Si estoy en dashboard muestra este icono
