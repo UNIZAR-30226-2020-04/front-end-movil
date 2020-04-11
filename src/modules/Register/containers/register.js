@@ -30,14 +30,7 @@ export default class App extends Component{
                 placeholderTextColor="#FFFFFF"
                 onChangeText={text => this.setState({name:text})}/>
             </View>
-
-            <View style={styles.inputView} >
-              <TextInput  
-                style={styles.inputText}
-                placeholder="Surname" 
-                placeholderTextColor="#FFFFFF"
-                onChangeText={text => this.setState({surname:text})}/>
-            </View>
+            
             <View style={styles.inputView} >
               <TextInput  
                 style={styles.inputText}

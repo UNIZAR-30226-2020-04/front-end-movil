@@ -1,18 +1,64 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
+import React, { Component, Console } from 'react';
+import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity, ToastAndroid } from 'react-native';
 //import IndexLogin from '../../../indexLogin';
 import NetworkService from '../../../networks/NetworkService'
+import AsyncStorage from 'react-native';
 
 export default class App extends Component{
   state={
     email:"",
-    password:""
+    password:"",
+    username:"",
   }
+
+  user={
+    correo:"",
+    fnacimiento:"",
+    foto:"",
+    nick:"",
+    nombre:"",
+    pass:"",
+  }
+
+  _storeData = async () => {
+    try {
+      await AsyncStorage.setItem('User', this.user);
+      console.log("Guardando this.user...")
+    } catch (error) {
+        console.log("Fallo al guardar..")
+      // Error saving data
+    }
+  };
 
   // main = () =>  {this.props.navigation.navigate('Main')}
   goToRecoverPassword = () => {this.props.navigation.navigate('RecoverPassword');}
-  login = () => { NetworkService.loginUser(this.state);}
-  goToMain = () => { this.props.navigation.navigate('MainLogged', { screen: 'DashBoard' });}
+  loginDB = async () => { //console.log("DEVULVE:",NetworkService.loginUser(this.state));
+    await NetworkService.loginUser(this.state).then( res => {this.user = res});
+    //this.setState(this.user);
+    console.log("STATE:",this.state);
+    console.log("USER:",this.user);
+    //Si el login OK, ya tenemos el usuario
+
+    if(this.checkLoginOK){
+      await this._storeData
+      this.goToMain()
+    } else {
+      ToastAndroid.show('Login failed', ToastAndroid.SHORT);
+    }
+  }
+
+  //Return if login has been ok
+  checkLoginOK(){
+    if(this.user.correo != "" && this.user.pass != ""){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  goToMain(){ 
+    this.props.navigation.navigate('MainLogged', { screen: 'DashBoard' } );
+  }
+
   register = () => {this.props.navigation.navigate('Register')}
     render(){
       return (
@@ -36,7 +82,7 @@ export default class App extends Component{
                 onChangeText={text => this.setState({password:text})}/>
             </View>
           
-            <TouchableOpacity style={styles.loginBtn} onPress={this.login}>
+            <TouchableOpacity style={styles.loginBtn} onPress={this.loginDB}>
               <Text style={styles.loginText}>Iniciar Sesion</Text>
             </TouchableOpacity>
 
@@ -119,4 +165,4 @@ export default class App extends Component{
 
   });
   
-  
+ 
