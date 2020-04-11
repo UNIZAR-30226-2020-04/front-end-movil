@@ -29,7 +29,7 @@ class RequestService {
       console.log(object);
       //NO espera el return *************************
       let aux3;
-      let data = await (fetch(url, {
+      let data=await (fetch(url, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -42,11 +42,11 @@ class RequestService {
           let aux = res.json();
           let aux2;
           console.log("DENTRO",aux);
-          return aux.then(function(value) {
+          aux.then(function(value) {
             aux2 = value;
             aux3 = value;
             console.log("VALUE:",aux2);
-            return aux2;
+            return data=aux2;
           })
           //Devulve:
           // VALUE: Object {
@@ -67,7 +67,7 @@ class RequestService {
       ));
       //data=1;
       console.log("DATA:", data);
-      return data;
+      return aux3;
     }
 
     

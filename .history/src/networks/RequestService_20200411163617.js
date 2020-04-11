@@ -67,7 +67,7 @@ class RequestService {
       ));
       //data=1;
       console.log("DATA:", data);
-      return data;
+      return aux3;
     }
 
     

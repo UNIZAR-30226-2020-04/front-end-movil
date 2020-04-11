@@ -2,7 +2,7 @@ import React, { Component, Console } from 'react';
 import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity, ToastAndroid } from 'react-native';
 //import IndexLogin from '../../../indexLogin';
 import NetworkService from '../../../networks/NetworkService'
-import AsyncStorage from 'react-native';
+import {AsyncStorage} from 'react-native';
 
 export default class App extends Component{
   state={
@@ -25,7 +25,6 @@ export default class App extends Component{
       await AsyncStorage.setItem('User', this.user);
       console.log("Guardando this.user...")
     } catch (error) {
-        console.log("Fallo al guardar..")
       // Error saving data
     }
   };

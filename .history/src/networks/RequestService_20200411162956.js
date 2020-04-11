@@ -29,7 +29,7 @@ class RequestService {
       console.log(object);
       //NO espera el return *************************
       let aux3;
-      let data = await (fetch(url, {
+      let data=await (fetch(url, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -38,11 +38,11 @@ class RequestService {
         body: JSON.stringify(object),
       })
       .then(
-        res =>{
+        res=>{
           let aux = res.json();
           let aux2;
           console.log("DENTRO",aux);
-          return aux.then(function(value) {
+          aux.then(function(value) {
             aux2 = value;
             aux3 = value;
             console.log("VALUE:",aux2);
@@ -65,7 +65,7 @@ class RequestService {
           console.log("Error in postRequest",err);
         }
       ));
-      //data=1;
+      data=1;
       console.log("DATA:", data);
       return data;
     }

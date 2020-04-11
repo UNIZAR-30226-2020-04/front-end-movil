@@ -30,7 +30,7 @@ export default class Dashboard extends Component{
       const value = await AsyncStorage.getItem('User');
       if (value !== null) {
         // We have data!!
-        console.log("DashBoardValue: ", value);
+        console.log(value);
         return value;
       }
     } catch (error) {
@@ -46,11 +46,11 @@ export default class Dashboard extends Component{
     nombre:"",
     pass:"",
   }
-  async componentDidMount(){
-    this.user = await this._retrieveData
-  }
+
   
+
   render(){
+    this.user = this._retrieveData
       return(
         <ScrollView
           scrollEventThrottle={16}

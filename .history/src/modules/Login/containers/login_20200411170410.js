@@ -2,7 +2,7 @@ import React, { Component, Console } from 'react';
 import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity, ToastAndroid } from 'react-native';
 //import IndexLogin from '../../../indexLogin';
 import NetworkService from '../../../networks/NetworkService'
-import AsyncStorage from 'react-native';
+import {AsyncStorage} from 'react-native';
 
 export default class App extends Component{
   state={
@@ -25,7 +25,6 @@ export default class App extends Component{
       await AsyncStorage.setItem('User', this.user);
       console.log("Guardando this.user...")
     } catch (error) {
-        console.log("Fallo al guardar..")
       // Error saving data
     }
   };
@@ -33,6 +32,8 @@ export default class App extends Component{
   // main = () =>  {this.props.navigation.navigate('Main')}
   goToRecoverPassword = () => {this.props.navigation.navigate('RecoverPassword');}
   loginDB = async () => { //console.log("DEVULVE:",NetworkService.loginUser(this.state));
+    console.log("username:",this.state.email);
+    console.log("password:",this.state.password)
     await NetworkService.loginUser(this.state).then( res => {this.user = res});
     //this.setState(this.user);
     console.log("STATE:",this.state);

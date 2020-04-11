@@ -23,43 +23,17 @@ const listSong = [
 ]
 
 
-
 export default class Dashboard extends Component{
-  _retrieveData = async () => {
-    try {
-      const value = await AsyncStorage.getItem('User');
-      if (value !== null) {
-        // We have data!!
-        console.log("DashBoardValue: ", value);
-        return value;
-      }
-    } catch (error) {
-      // Error retrieving data
-    }
-  };
+  state={
+    
+  }
 
-  user={
-    correo:"",
-    fnacimiento:"",
-    foto:"",
-    nick:"",
-    nombre:"",
-    pass:"",
-  }
-  async componentDidMount(){
-    this.user = await this._retrieveData
-  }
-  
   render(){
       return(
         <ScrollView
           scrollEventThrottle={16}
         >
           <View style={styles.container}>
-            <Text style={styles.title}>
-              Hi {this.user.correo} !
-            </Text>
-
             <Text style={styles.title}>
               Songs recently listened
             </Text>

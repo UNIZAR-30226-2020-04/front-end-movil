@@ -2,7 +2,7 @@ import React, { Component, Console } from 'react';
 import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity, ToastAndroid } from 'react-native';
 //import IndexLogin from '../../../indexLogin';
 import NetworkService from '../../../networks/NetworkService'
-import AsyncStorage from 'react-native';
+import {AsyncStorage} from 'react-native';
 
 export default class App extends Component{
   state={

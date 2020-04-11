@@ -47,7 +47,7 @@ export default class Dashboard extends Component{
     pass:"",
   }
   async componentDidMount(){
-    this.user = await this._retrieveData
+    user = await this._retrieveData
   }
   
   render(){

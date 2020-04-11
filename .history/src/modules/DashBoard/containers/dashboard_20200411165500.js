@@ -30,7 +30,7 @@ export default class Dashboard extends Component{
       const value = await AsyncStorage.getItem('User');
       if (value !== null) {
         // We have data!!
-        console.log("DashBoardValue: ", value);
+        console.log(value);
         return value;
       }
     } catch (error) {
@@ -38,18 +38,8 @@ export default class Dashboard extends Component{
     }
   };
 
-  user={
-    correo:"",
-    fnacimiento:"",
-    foto:"",
-    nick:"",
-    nombre:"",
-    pass:"",
-  }
-  async componentDidMount(){
-    this.user = await this._retrieveData
-  }
-  
+  user = this._retrieveData
+
   render(){
       return(
         <ScrollView
@@ -57,7 +47,7 @@ export default class Dashboard extends Component{
         >
           <View style={styles.container}>
             <Text style={styles.title}>
-              Hi {this.user.correo} !
+              Hi {this.user.correo}
             </Text>
 
             <Text style={styles.title}>

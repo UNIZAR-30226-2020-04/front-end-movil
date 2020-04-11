@@ -18,7 +18,7 @@ class NetworkService {
     var url=`${BASE_URL}/loginUser`
     console.log('URLLLLLL', url);
     //Async devulve un objeto promise hay q convertirlo
-    return await RequestService.postRequest(url,data);
+    return RequestService.postRequest(url,data);
   }
 
   registerUser(data){

@@ -42,7 +42,7 @@ class RequestService {
           let aux = res.json();
           let aux2;
           console.log("DENTRO",aux);
-          return aux.then(function(value) {
+          aux.then(function(value) {
             aux2 = value;
             aux3 = value;
             console.log("VALUE:",aux2);
@@ -67,7 +67,7 @@ class RequestService {
       ));
       //data=1;
       console.log("DATA:", data);
-      return data;
+      return aux3;
     }
 
     
