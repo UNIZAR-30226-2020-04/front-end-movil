@@ -18,7 +18,7 @@ export default class App extends Component{
     pass:"",
   }
 
-  storeData = async () => {
+  _storeData = async () => {
     try {
       await AsyncStorage.setItem('User', JSON.stringify(this.user));
       console.log("Guardando this.user...")
@@ -42,7 +42,7 @@ export default class App extends Component{
       if(cond == true){
         console.log("antes storeData")
         AsyncStorage.clear()
-        this.storeData()
+        this._storeData()
         this.goToMain()
       } else {
         console.log("incorrect credentials")

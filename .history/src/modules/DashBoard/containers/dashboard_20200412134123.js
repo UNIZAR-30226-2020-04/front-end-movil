@@ -22,60 +22,40 @@ const listSong = [
   },
 ]
 
-class User extends Component{
-  state={
-    correo:"correoUser",
-    fnacimiento:"",
-    foto:"",
-    nick:"",
-    nombre:"",
-    pass:"",
-  }
-}
+
 
 export default class Dashboard extends Component{
   retrieveData = async () => {
     try {
-      const retrieveItem = await AsyncStorage.getItem('User');
-      if (retrieveItem !== null) {
+      const value = await AsyncStorage.getItem('User');
+      if (value !== null) {
         // We have data!!
-        console.log("DashBoardValue: ", retrieveItem);
-        const item = JSON.parse(retrieveItem)
-        console.log("Item: ", item);
-        return item;
+        console.log("DashBoardValue: ", value);
+        return value;
       }
     } catch (error) {
       // Error retrieving data
       console.log("Error al obtener datos")
     }
   };
-  
-  state={
-    user: new User(),
-    otrosStates : "valor que sea"
-  }
+    
+  user={}
 
   async componentDidMount(){
-     const data = await this.retrieveData()
-     //Asigna a state los campos de user
-     this.state.user.setState(data)
+    data = await this.retrieveData()
+    user = JSON.parse(data)
+    console.log("Usuario obtenido:", JSON.parse(this.user))
 
-     //Asigno al objeto user dentro de state los campos de user
-     //Object.assign(this.state.user,data)
-     this.state.user.setState(data)
-     console.log("state completo:",this.state)
   }
   
-  
   render(){
-    console.log("user:", this.state)
       return(
         <ScrollView
           scrollEventThrottle={16}
         >
-          <View style={[styles.container]}>
-            <Text style={[styles.title, {marginTop: 70}]}>
-              Hi {this.state.user.state.correo} !
+          <View style={styles.container}>
+            <Text style={styles.title}>
+              Hi {this.user.nick} !
             </Text>
 
             <Text style={styles.title}>

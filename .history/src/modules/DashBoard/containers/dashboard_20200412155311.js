@@ -51,8 +51,7 @@ export default class Dashboard extends Component{
   };
   
   state={
-    user: new User(),
-    otrosStates : "valor que sea"
+    user: new User()
   }
 
   async componentDidMount(){
@@ -61,9 +60,8 @@ export default class Dashboard extends Component{
      this.state.user.setState(data)
 
      //Asigno al objeto user dentro de state los campos de user
-     //Object.assign(this.state.user,data)
-     this.state.user.setState(data)
-     console.log("state completo:",this.state)
+     Object.assign(this.state.user,data)
+     console.log("state completo:",this.state.user.state.correo)
   }
   
   

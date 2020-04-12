@@ -1,12 +1,13 @@
 import React, { Component, Console } from 'react';
-import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity, ToastAndroid, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity, ToastAndroid } from 'react-native';
 //import IndexLogin from '../../../indexLogin';
 import NetworkService from '../../../networks/NetworkService'
+import AsyncStorage from 'react-native';
 
 export default class App extends Component{
   state={
-    email:"e@e.com",
-    password:"1",
+    email:"",
+    password:"",
   }
 
   user={
@@ -18,9 +19,9 @@ export default class App extends Component{
     pass:"",
   }
 
-  storeData = async () => {
+  _storeData = async () => {
     try {
-      await AsyncStorage.setItem('User', JSON.stringify(this.user));
+      await AsyncStorage.setItem('User', this.user);
       console.log("Guardando this.user...")
     } catch (error) {
         console.log("Fallo al guardar..")
@@ -36,17 +37,24 @@ export default class App extends Component{
       //this.setState(this.user);
       console.log("STATE:",this.state);
       console.log("USER:",this.user);
+
+      x=0
+      if(x==1){
+        console.log("vale 1")
+      }else{
+        console.log("vale 0")
+      }
+
+
       //Si el login OK, ya tenemos el usuario
-      let cond=this.checkLoginOK()
-      console.log("cond", cond)
-      if(cond == true){
+
+      if(this.checkLoginOK==1){
         console.log("antes storeData")
-        AsyncStorage.clear()
-        this.storeData()
-        this.goToMain()
+        this._storeData
+        //this.goToMain()
       } else {
-        console.log("incorrect credentials")
-        ToastAndroid.show('Login failed', ToastAndroid.SHORT);
+        console.log("error login")
+        //ToastAndroid.show('Login failed', ToastAndroid.SHORT);
       }
     }else{
       console.log("Fill in all the fields")
@@ -56,10 +64,11 @@ export default class App extends Component{
 
   //Return if login has been ok
   checkLoginOK(){
-    if(typeof this.user === 'undefined'){
-      return false;
+    console.log("User checklogin:", this.user)
+    if(this.user == undefined){
+      return 0;
     }else{
-      return true;
+      return 1;
     }
   }
   goToMain(){ 

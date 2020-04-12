@@ -24,7 +24,7 @@ const listSong = [
 
 class User extends Component{
   state={
-    correo:"correoUser",
+    correo:"",
     fnacimiento:"",
     foto:"",
     nick:"",
@@ -51,19 +51,14 @@ export default class Dashboard extends Component{
   };
   
   state={
-    user: new User(),
-    otrosStates : "valor que sea"
+    user: new User()
   }
 
   async componentDidMount(){
      const data = await this.retrieveData()
-     //Asigna a state los campos de user
      this.state.user.setState(data)
-
-     //Asigno al objeto user dentro de state los campos de user
-     //Object.assign(this.state.user,data)
-     this.state.user.setState(data)
-     console.log("state completo:",this.state)
+    //  this.state.user.assign(
+    //   data)
   }
   
   
@@ -75,7 +70,7 @@ export default class Dashboard extends Component{
         >
           <View style={[styles.container]}>
             <Text style={[styles.title, {marginTop: 70}]}>
-              Hi {this.state.user.state.correo} !
+              Hi {this.state.user.correo} !
             </Text>
 
             <Text style={styles.title}>

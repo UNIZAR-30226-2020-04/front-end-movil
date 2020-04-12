@@ -51,8 +51,7 @@ export default class Dashboard extends Component{
   };
   
   state={
-    user: new User(),
-    otrosStates : "valor que sea"
+    user: new User()
   }
 
   async componentDidMount(){

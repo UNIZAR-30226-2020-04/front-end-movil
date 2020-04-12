@@ -1,12 +1,14 @@
 import React, { Component, Console } from 'react';
-import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity, ToastAndroid, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity, ToastAndroid } from 'react-native';
 //import IndexLogin from '../../../indexLogin';
 import NetworkService from '../../../networks/NetworkService'
+import AsyncStorage from 'react-native';
 
 export default class App extends Component{
   state={
-    email:"e@e.com",
-    password:"1",
+    email:"",
+    password:"",
+    username:"",
   }
 
   user={
@@ -18,9 +20,9 @@ export default class App extends Component{
     pass:"",
   }
 
-  storeData = async () => {
+  _storeData = async () => {
     try {
-      await AsyncStorage.setItem('User', JSON.stringify(this.user));
+      await AsyncStorage.setItem('User', this.user);
       console.log("Guardando this.user...")
     } catch (error) {
         console.log("Fallo al guardar..")
@@ -31,35 +33,27 @@ export default class App extends Component{
   // main = () =>  {this.props.navigation.navigate('Main')}
   goToRecoverPassword = () => {this.props.navigation.navigate('RecoverPassword');}
   loginDB = async () => { //console.log("DEVULVE:",NetworkService.loginUser(this.state));
-    if(this.state.email!="" && this.state.password!=""){
-      await NetworkService.loginUser(this.state).then( res => {console.log("res=",res);this.user = res});
-      //this.setState(this.user);
-      console.log("STATE:",this.state);
-      console.log("USER:",this.user);
-      //Si el login OK, ya tenemos el usuario
-      let cond=this.checkLoginOK()
-      console.log("cond", cond)
-      if(cond == true){
-        console.log("antes storeData")
-        AsyncStorage.clear()
-        this.storeData()
-        this.goToMain()
-      } else {
-        console.log("incorrect credentials")
-        ToastAndroid.show('Login failed', ToastAndroid.SHORT);
-      }
-    }else{
-      console.log("Fill in all the fields")
+    await NetworkService.loginUser(this.state).then( res => {this.user = res});
+    //this.setState(this.user);
+    console.log("STATE:",this.state);
+    console.log("USER:",this.user);
+    //Si el login OK, ya tenemos el usuario
+
+    if(this.checkLoginOK){
+      console.log("antes storeData")
+      this._storeData
+      this.goToMain()
+    } else {
+      ToastAndroid.show('Login failed', ToastAndroid.SHORT);
     }
-    
   }
 
   //Return if login has been ok
   checkLoginOK(){
-    if(typeof this.user === 'undefined'){
-      return false;
-    }else{
+    if(this.user.correo === undefined && this.user.pass === undefined){
       return true;
+    }else{
+      return false;
     }
   }
   goToMain(){ 

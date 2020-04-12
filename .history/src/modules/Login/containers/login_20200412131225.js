@@ -1,7 +1,8 @@
 import React, { Component, Console } from 'react';
-import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity, ToastAndroid, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity, ToastAndroid } from 'react-native';
 //import IndexLogin from '../../../indexLogin';
 import NetworkService from '../../../networks/NetworkService'
+import AsyncStorage from 'react-native';
 
 export default class App extends Component{
   state={
@@ -18,9 +19,9 @@ export default class App extends Component{
     pass:"",
   }
 
-  storeData = async () => {
+  _storeData = async () => {
     try {
-      await AsyncStorage.setItem('User', JSON.stringify(this.user));
+      await AsyncStorage.setItem('User', "hola");
       console.log("Guardando this.user...")
     } catch (error) {
         console.log("Fallo al guardar..")
@@ -36,14 +37,15 @@ export default class App extends Component{
       //this.setState(this.user);
       console.log("STATE:",this.state);
       console.log("USER:",this.user);
+     
+
       //Si el login OK, ya tenemos el usuario
       let cond=this.checkLoginOK()
       console.log("cond", cond)
       if(cond == true){
         console.log("antes storeData")
-        AsyncStorage.clear()
-        this.storeData()
-        this.goToMain()
+        this._storeData()
+        //this.goToMain()
       } else {
         console.log("incorrect credentials")
         ToastAndroid.show('Login failed', ToastAndroid.SHORT);
@@ -56,6 +58,7 @@ export default class App extends Component{
 
   //Return if login has been ok
   checkLoginOK(){
+    console.log("User checklogin:", this.user)
     if(typeof this.user === 'undefined'){
       return false;
     }else{
