@@ -61,6 +61,7 @@ export default class Profile extends Component{
               <Text style={styles.userInfo}>{this.state.user.correo} </Text>
               <Ionicons name="md-settings" size={40} color="white" onPress={this.goToSettings} style={{position:'absolute', right: 10, bottom: 10}}></Ionicons>
             </ImageBackground>
+            
           </View>
 
           <View style={styles.container}>

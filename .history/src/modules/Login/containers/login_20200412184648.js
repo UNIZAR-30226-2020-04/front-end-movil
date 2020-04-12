@@ -21,7 +21,7 @@ export default class App extends Component{
 
   storeData = async () => {
     try {
-      await AsyncStorage.setItem('UserState', JSON.stringify(this.state.user.state));
+      await AsyncStorage.setItem('User', JSON.stringify(this.state.user.state));
       console.log("Guardando this.user...")
     } catch (error) {
         console.log("Fallo al guardar..")
@@ -35,6 +35,7 @@ export default class App extends Component{
     if(this.state.email!="" && this.state.password!=""){
       await NetworkService.loginUser(this.state).then( res => {console.log("res=",res);this.state.user.state = res});
       //this.setState(this.user);
+      console.log("STATE:",this.state.user);
       console.log("STATE_USER_STATE:",this.state.user.state);
       //Si el login OK, ya tenemos el usuario
       let cond=this.checkLoginOK()

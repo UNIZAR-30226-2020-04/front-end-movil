@@ -10,18 +10,9 @@ export default class App extends Component{
     user: new User()
   }
 
-  // user={
-  //   correo:"",
-  //   fnacimiento:"",
-  //   foto:"",
-  //   nick:"",
-  //   nombre:"",
-  //   pass:"",
-  // }
-
   storeData = async () => {
     try {
-      await AsyncStorage.setItem('UserState', JSON.stringify(this.state.user.state));
+      await AsyncStorage.setItem('User', JSON.stringify(this.user));
       console.log("Guardando this.user...")
     } catch (error) {
         console.log("Fallo al guardar..")
@@ -33,9 +24,10 @@ export default class App extends Component{
   goToRecoverPassword = () => {this.props.navigation.navigate('RecoverPassword');}
   loginDB = async () => { //console.log("DEVULVE:",NetworkService.loginUser(this.state));
     if(this.state.email!="" && this.state.password!=""){
-      await NetworkService.loginUser(this.state).then( res => {console.log("res=",res);this.state.user.state = res});
+      await NetworkService.loginUser(this.state).then( res => {console.log("res=",res);this.state.user = res});
       //this.setState(this.user);
-      console.log("STATE_USER_STATE:",this.state.user.state);
+      console.log("STATE:",this.state);
+      console.log("USER:",this.state.user);
       //Si el login OK, ya tenemos el usuario
       let cond=this.checkLoginOK()
       console.log("cond", cond)
@@ -56,7 +48,7 @@ export default class App extends Component{
 
   //Return if login has been ok
   checkLoginOK(){
-    if(typeof this.state.user === 'undefined'){
+    if(typeof this.user === 'undefined'){
       return false;
     }else{
       return true;

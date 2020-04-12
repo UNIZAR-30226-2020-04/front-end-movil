@@ -1,17 +1,34 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ToastAndroid, TextInput, Button, Alert, ScrollView, Image, ImageBackground, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Alert, ScrollView, AsyncStorage } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import { Ionicons, AntDesign } from '@expo/vector-icons';
-import Element from '../../DashBoard/containers/element'
-import User from '../../DashBoard/containers/user'
+import { Card, ListItem,   } from 'react-native-elements'
+import Element from './element'
+import User from './user'
 
-export default class Profile extends Component{
+
+
+//Leer de BD asignar a esta lista y
+const listSong = [
+  {
+    song_name: 'Album1',
+    image_album_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+    album_name: 'Song1'
+  },
+  {
+    song_name: 'Album2',
+    image_album_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    album_name: 'Song2'
+  },
+]
+
+
+export default class Dashboard extends Component{
   constructor(props) {
     super(props);
     this.state={
-      user: new User(),//async () => await this.retrieveData(),
+      user: new User(),
       otrosStates : "valor que sea"
     }
   }
@@ -21,7 +38,7 @@ export default class Profile extends Component{
       const retrieveItem = await AsyncStorage.getItem('UserState');
       if (retrieveItem !== null) {
         // We have data!!
-        console.log("Profile: ", retrieveItem);
+        console.log("DashBoardValue: ", retrieveItem);
         const item = JSON.parse(retrieveItem)
         console.log("Item: ", item);
         return item;
@@ -31,46 +48,48 @@ export default class Profile extends Component{
       console.log("Error al obtener datos")
     }
   };
+  
+  
 
   async componentDidMount(){
     //recuperar datos del usuario
     const user_state = await this.retrieveData()
-    console.log("user_state Perfil", user_state)
+     console.log("user_state", user_state)
     //Asigna a state los campos de user
      //this.state.user.setState(user_state)
    
      // Correcto
-    // this.state.user.setState(
-    //   user_state
-    //Instead, assign to `this.state` directly or define a `state = {};
-    this.setState({user: user_state})
-    console.log("User prfile:", this.state.user)
-    //this.setState( {otrosStates: "PUta mierda"})
+    this.state.setState(
+      user_state
+      
+      ,function () {
+      console.log(this.state.user.state);
+      });
+
+     //Asigno al objeto user dentro de state los campos de user
+     //Object.assign(this.state.user,data)
+     //this.state.user.setState(data)
+     console.log("state completo:",this.state.user.state)
   }
-
-  goToSettings = () => {this.props.navigation.navigate("Settings")}
+  
+  
   render(){
-    return(
-      <View style={styles.container}>
-        <ScrollView style={styles.screen}>
-          <View style={styles.header}>
-            <ImageBackground style={styles.avatar}
-                  source={{uri: 'https://picsum.photos/200/300'}}
-            >
-              <Text style={styles.headerName}>{this.state.user.nick} </Text>
-              <Text style={styles.userInfo}>{this.state.user.correo} </Text>
-              <Ionicons name="md-settings" size={40} color="white" onPress={this.goToSettings} style={{position:'absolute', right: 10, bottom: 10}}></Ionicons>
-            </ImageBackground>
-          </View>
+    
+      return(
+        <ScrollView
+          scrollEventThrottle={16}
+        >
+          <View style={[styles.container]}>
+            <Text style={[styles.title, {marginTop: 70}]}>
+              Hi {this.state.user.nick} !
+            </Text>
 
-          <View style={styles.container}>
             <Text style={styles.title}>
-              Your songs 
+              Songs recently listened
             </Text>
             <View style={{height: 200, marginTop: 20}}>
               <ScrollView
-                horizontal={true}
-              >
+                horizontal={true}>
                 <Element type='song' image={{uri: 'http://metaltrip.com/wp-content/uploads/2015/05/Bullet-For-My-Valentine-400x400.jpg'}} album_name="Venom" song_name="cualquiera"></Element>
                 <Element type='song' image={{uri: 'http://metaltrip.com/wp-content/uploads/2015/05/Bullet-For-My-Valentine-400x400.jpg'}} album_name="Venom" song_name="cualquiera"></Element>
                 <Element type='song' image={{uri: 'http://metaltrip.com/wp-content/uploads/2015/05/Bullet-For-My-Valentine-400x400.jpg'}} album_name="Venom" song_name="cualquiera"></Element>
@@ -81,12 +100,11 @@ export default class Profile extends Component{
 
           <View style={styles.container}>
             <Text style={styles.title}>
-              Your playlists
+              Playlist recently listened
             </Text>
             <View style={{height: 200, marginTop: 20}}>
               <ScrollView
-                horizontal={true}
-              >
+                horizontal={true}>
                 <Element type='song' image={{uri: 'https://bucket3.glanacion.com/anexos/fotos/79/2667179h1080.jpg'}} album_name="Redención" song_name="cualquiera"></Element>
                 <Element type='song' image={{uri: 'https://bucket3.glanacion.com/anexos/fotos/79/2667179h1080.jpg'}} album_name="Redención" song_name="cualquiera"></Element>
                 <Element type='song' image={{uri: 'https://bucket3.glanacion.com/anexos/fotos/79/2667179h1080.jpg'}} album_name="Redención" song_name="cualquiera"></Element>
@@ -96,12 +114,11 @@ export default class Profile extends Component{
 
           <View style={styles.container}>
             <Text style={styles.title}>
-              Your podcasts
+              Podcast recently listened
             </Text>
             <View style={{height: 200, marginTop: 20}}>
               <ScrollView
-                horizontal={true}
-              >
+                horizontal={true}>
                 <Element type='song' image={{uri: 'https://www.federico-toledo.com/wp-content/uploads/2017/07/podcast-image.jpg'}} album_name="Redención" song_name="cualquiera"></Element>
                 <Element type='song' image={{uri: 'https://www.federico-toledo.com/wp-content/uploads/2017/07/podcast-image.jpg'}} album_name="Redención" song_name="cualquiera"></Element>
                 <Element type='song' image={{uri: 'https://www.federico-toledo.com/wp-content/uploads/2017/07/podcast-image.jpg'}} album_name="Redención" song_name="cualquiera"></Element>
@@ -109,32 +126,18 @@ export default class Profile extends Component{
             </View>
           </View>
         </ScrollView>
-      </View>
-      
-    );
-  }
+      );
+  } 
+
 }
 
-  const styles = StyleSheet.create({
-    info: {
-      flex: 1,
-      flexDirection : 'row'
-    },
 
+
+  const styles = StyleSheet.create({
     container: {
       flex:1,
       backgroundColor: '#000',
-      paddingTop: 20,
-    },
-
-    screen: {
-      marginTop: 0,
-      backgroundColor: '#000',   
-      resizeMode: "cover", 
-    },
-    
-    text: {
-      color : 'white'
+      paddingTop: 20
     },
 
     title:{
@@ -144,37 +147,10 @@ export default class Profile extends Component{
       paddingHorizontal: 20
     },
 
-    header:{
-      height: 250,
-    },
-    headerContent:{
-      height: 150,
-      width: 150,
-      padding:30,
-      alignItems: 'center',
-    },
-    avatar: {
-      flex: 1,
-      borderWidth: 4,
-      borderColor: "white",
-      marginBottom:10,
-    },
-    headerName:{
-      marginTop: 170, 
-      marginLeft: 10,
-      fontSize:24,
-      color:"white",
-      fontWeight:'600',
-    },
-    userInfo:{
-      marginLeft: 10,
-      fontSize:16,
-      color:"#778899",
-      fontWeight:'600',
-    },
-    icon:{
-      width:30,
-      height:30,
-      marginTop:20,
+    text:{
+      color:'white',
+      paddingHorizontal: 20
     }
   });
+  
+  

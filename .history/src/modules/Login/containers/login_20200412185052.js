@@ -21,7 +21,7 @@ export default class App extends Component{
 
   storeData = async () => {
     try {
-      await AsyncStorage.setItem('UserState', JSON.stringify(this.state.user.state));
+      await AsyncStorage.setItem('UserState', JSON.stringify(this.state.user));
       console.log("Guardando this.user...")
     } catch (error) {
         console.log("Fallo al guardar..")

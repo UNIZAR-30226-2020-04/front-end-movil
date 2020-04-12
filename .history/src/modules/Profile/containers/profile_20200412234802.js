@@ -58,9 +58,10 @@ export default class Profile extends Component{
                   source={{uri: 'https://picsum.photos/200/300'}}
             >
               <Text style={styles.headerName}>{this.state.user.nick} </Text>
-              <Text style={styles.userInfo}>{this.state.user.correo} </Text>
+              <Text style={styles.userInfo}>eduardico@mail.com </Text>
               <Ionicons name="md-settings" size={40} color="white" onPress={this.goToSettings} style={{position:'absolute', right: 10, bottom: 10}}></Ionicons>
             </ImageBackground>
+            
           </View>
 
           <View style={styles.container}>

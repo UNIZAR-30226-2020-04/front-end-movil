@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ToastAndroid, TextInput, Button, Alert, ScrollView, Image, ImageBackground, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, ToastAndroid, TextInput, Button, Alert, ScrollView, Image, ImageBackground, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
@@ -7,6 +7,8 @@ import { Ionicons, AntDesign } from '@expo/vector-icons';
 import Element from '../../DashBoard/containers/element'
 import User from '../../DashBoard/containers/user'
 
+const Tabs = createBottomTabNavigator();
+const Menu = createStackNavigator();
 export default class Profile extends Component{
   constructor(props) {
     super(props);
@@ -58,9 +60,10 @@ export default class Profile extends Component{
                   source={{uri: 'https://picsum.photos/200/300'}}
             >
               <Text style={styles.headerName}>{this.state.user.nick} </Text>
-              <Text style={styles.userInfo}>{this.state.user.correo} </Text>
+              <Text style={styles.userInfo}>eduardico@mail.com </Text>
               <Ionicons name="md-settings" size={40} color="white" onPress={this.goToSettings} style={{position:'absolute', right: 10, bottom: 10}}></Ionicons>
             </ImageBackground>
+            
           </View>
 
           <View style={styles.container}>

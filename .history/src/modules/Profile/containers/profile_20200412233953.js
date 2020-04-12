@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ToastAndroid, TextInput, Button, Alert, ScrollView, Image, ImageBackground, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, ToastAndroid, TextInput, Button, Alert, ScrollView, Image, ImageBackground, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 import Element from '../../DashBoard/containers/element'
-import User from '../../DashBoard/containers/user'
 
+const Tabs = createBottomTabNavigator();
+const Menu = createStackNavigator();
 export default class Profile extends Component{
-  constructor(props) {
-    super(props);
-    this.state={
-      user: new User(),//async () => await this.retrieveData(),
-      otrosStates : "valor que sea"
+  state={
+    user:{
+      email: "edu@edu.edu",
+      username: "Eduardico",
+      info: "info"
     }
   }
 
@@ -21,7 +22,7 @@ export default class Profile extends Component{
       const retrieveItem = await AsyncStorage.getItem('UserState');
       if (retrieveItem !== null) {
         // We have data!!
-        console.log("Profile: ", retrieveItem);
+        console.log("DashBoardValue: ", retrieveItem);
         const item = JSON.parse(retrieveItem)
         console.log("Item: ", item);
         return item;
@@ -44,7 +45,6 @@ export default class Profile extends Component{
     //   user_state
     //Instead, assign to `this.state` directly or define a `state = {};
     this.setState({user: user_state})
-    console.log("User prfile:", this.state.user)
     //this.setState( {otrosStates: "PUta mierda"})
   }
 
@@ -57,10 +57,11 @@ export default class Profile extends Component{
             <ImageBackground style={styles.avatar}
                   source={{uri: 'https://picsum.photos/200/300'}}
             >
-              <Text style={styles.headerName}>{this.state.user.nick} </Text>
-              <Text style={styles.userInfo}>{this.state.user.correo} </Text>
+              <Text style={styles.headerName}>asdas </Text>
+              <Text style={styles.userInfo}>eduardico@mail.com </Text>
               <Ionicons name="md-settings" size={40} color="white" onPress={this.goToSettings} style={{position:'absolute', right: 10, bottom: 10}}></Ionicons>
             </ImageBackground>
+            
           </View>
 
           <View style={styles.container}>
