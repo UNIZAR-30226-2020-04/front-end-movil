@@ -19,7 +19,7 @@ export default class App extends React.Component {
       //console.log("response:", response)
       //const data = result.RNFetchBlob.wrap(RNFetchBlob.fs.asset(result.uri))
       //const blob = await response.blob();
-      let body = new FormData();
+      var body = new FormData();
       body.append('file',response);
       //console.log("Blob???:", blob)
       await NetworkService.uploadSong(body);

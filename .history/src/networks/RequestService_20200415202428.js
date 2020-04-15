@@ -73,9 +73,9 @@ class RequestService {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type' : 'multipart/form-data'
+        //'Content-Type' : 'multipart/form-data'
       },
-      body: object,
+      body: JSON.stringify(object),
     })
     .then(
       res =>{

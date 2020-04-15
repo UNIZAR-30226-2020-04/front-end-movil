@@ -65,38 +65,46 @@ class RequestService {
     ** 
     */
    async postRequestUploadSong(url,object){
-    console.log(url);
-    //console.log(object);
-    //NO espera el return *************************
-    let aux3;
-    let data = await (fetch(url, {
-      method: 'POST',
+    // console.log(url);
+    // //console.log(object);
+    // //NO espera el return *************************
+    // let aux3;
+    // let data = await (fetch(url, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type' : 'multipart/form-data'
+    //   },
+    //   body: object,
+    // })
+    // .then(
+    //   res =>{
+    //     let aux = res.json();
+    //     let aux2;
+    //     console.log("DENTRO",aux);
+    //     return aux.then(function(value) {
+    //       aux2 = value;
+    //       aux3 = value;
+    //       console.log("VALUE:",aux2);
+    //       return aux2;
+    //     })
+    //   }
+    // )
+    // .catch(
+    //   err=>{
+    //     console.log("Error in postRequest",err);
+    //   }
+    // ));
+    // //console.log("RESULTADO:", data);
+    // return data;
+    return request({
+      method: 'post', 
+      url: url,
       headers: {
-        'Accept': 'application/json',
-        'Content-Type' : 'multipart/form-data'
+        'Content-Type': 'multipart/form-data'
       },
-      body: object,
+      data: formDataPayload
     })
-    .then(
-      res =>{
-        let aux = res.json();
-        let aux2;
-        console.log("DENTRO",aux);
-        return aux.then(function(value) {
-          aux2 = value;
-          aux3 = value;
-          console.log("VALUE:",aux2);
-          return aux2;
-        })
-      }
-    )
-    .catch(
-      err=>{
-        console.log("Error in postRequest",err);
-      }
-    ));
-    //console.log("RESULTADO:", data);
-    return data;
   }
 }
   

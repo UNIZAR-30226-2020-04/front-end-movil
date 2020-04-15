@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Button, Image,} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Button, Image, FormData} from 'react-native';
 import NetworkService from '../../../networks/NetworkService'
 import * as DocumentPicker from 'expo-document-picker';
 //import RNFetchBlob from 'rn-fetch-blob'
@@ -16,11 +16,10 @@ export default class App extends React.Component {
       
 
       const response = await fetch(result.uri)
-      //console.log("response:", response)
-      //const data = result.RNFetchBlob.wrap(RNFetchBlob.fs.asset(result.uri))
-      //const blob = await response.blob();
-      let body = new FormData();
-      body.append('file',response);
+      //const blob = result.RNFetchBlob.wrap(RNFetchBlob.fs.asset(result.uri))
+      const blob = await response.blob();
+      const body = new FormData();
+      body.append('file',blob);
       //console.log("Blob???:", blob)
       await NetworkService.uploadSong(body);
 

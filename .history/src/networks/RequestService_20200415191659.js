@@ -58,24 +58,25 @@ class RequestService {
       console.log("RESULTADO:", data);
       return data;
     }
+  }
 
 
-    /*
+  /*
     This function to call rest api post methods
     ** 
     */
    async postRequestUploadSong(url,object){
     console.log(url);
-    //console.log(object);
+    console.log(object);
     //NO espera el return *************************
     let aux3;
     let data = await (fetch(url, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type' : 'multipart/form-data'
+        'Content-Type': 'multipart/form-data',
       },
-      body: object,
+      body: JSON.stringify(object),
     })
     .then(
       res =>{
@@ -95,10 +96,9 @@ class RequestService {
         console.log("Error in postRequest",err);
       }
     ));
-    //console.log("RESULTADO:", data);
+    console.log("RESULTADO:", data);
     return data;
   }
 }
-  
     
     export default new RequestService();

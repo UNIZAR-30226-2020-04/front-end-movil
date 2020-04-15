@@ -16,12 +16,12 @@ export default class App extends React.Component {
       
 
       const response = await fetch(result.uri)
-      //console.log("response:", response)
+      console.log("response:", response)
       //const data = result.RNFetchBlob.wrap(RNFetchBlob.fs.asset(result.uri))
-      //const blob = await response.blob();
-      let body = new FormData();
-      body.append('file',response);
-      //console.log("Blob???:", blob)
+      const blob = await response.blob();
+      var body = new FormData();
+      body.append('file',result);
+      console.log("Blob???:", blob)
       await NetworkService.uploadSong(body);
 
      ///Eduuuuu faltaria enviar el result a la base de datos con lode fetch 

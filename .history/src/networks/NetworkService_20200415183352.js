@@ -28,11 +28,11 @@ class NetworkService {
     return RequestService.postRequest(url,data);
   }
 
-  uploadSong(data){
-    //console.log('Dataaaa:', data);
+  registerUser(data){
+    console.log('Dataaaa:', data);
     var url=`${BASE_URL}/uploadSong`
     console.log('URLLLLLL', url);
-    return RequestService.postRequestUploadSong(url,data);
+    return RequestService.postRequest(url,data);
   }
 
 }

@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Button, Image,} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Button, Image} from 'react-native';
 import NetworkService from '../../../networks/NetworkService'
 import * as DocumentPicker from 'expo-document-picker';
-//import RNFetchBlob from 'rn-fetch-blob'
+import RNFetchBlob from 'rn-fetch-blob'
 
 export default class App extends React.Component {
     state = {
@@ -13,16 +13,8 @@ export default class App extends React.Component {
 		  alert(result.uri);
       console.log(result);
       //Traemos el archivo dada una URL
-      
-
-      const response = await fetch(result.uri)
-      //console.log("response:", response)
-      //const data = result.RNFetchBlob.wrap(RNFetchBlob.fs.asset(result.uri))
-      //const blob = await response.blob();
-      let body = new FormData();
-      body.append('file',response);
-      //console.log("Blob???:", blob)
-      await NetworkService.uploadSong(body);
+      const blob = result.RNFetchBlob.wrap(RNFetchBlob.fs.asset(result.uri))
+      await NetworkService.uploadSong(blob);
 
      ///Eduuuuu faltaria enviar el result a la base de datos con lode fetch 
      //nose muy bien si haria falta tocar algo del formato o con lo que se coge valdria.

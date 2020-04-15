@@ -66,16 +66,16 @@ class RequestService {
     */
    async postRequestUploadSong(url,object){
     console.log(url);
-    //console.log(object);
+    console.log(object);
     //NO espera el return *************************
     let aux3;
     let data = await (fetch(url, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type' : 'multipart/form-data'
+        //'Content-Type' : 'multipart/form-data'
       },
-      body: object,
+      body: JSON.stringify(object),
     })
     .then(
       res =>{

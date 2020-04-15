@@ -29,10 +29,10 @@ class NetworkService {
   }
 
   uploadSong(data){
-    //console.log('Dataaaa:', data);
+    console.log('Dataaaa:', data);
     var url=`${BASE_URL}/uploadSong`
     console.log('URLLLLLL', url);
-    return RequestService.postRequestUploadSong(url,data);
+    return RequestService.postRequest(url,data);
   }
 
 }
