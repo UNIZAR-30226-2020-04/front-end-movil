@@ -15,7 +15,11 @@ export default class App extends React.Component {
 
 _pickDocument = async () => {
   let result = await DocumentPicker.getDocumentAsync({});
-  await NetworkService.uploadSong(result.uri)
+  await this.uploadAudioAsync(result.uri);
+  
+
+  ///Eduuuuu faltaria enviar el result a la base de datos con lode fetch 
+  //nose muy bien si haria falta tocar algo del formato o con lo que se coge valdria.
 }
     
 

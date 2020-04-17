@@ -66,6 +66,7 @@ class RequestService {
     */
    uploadAudioAsync= async(apiUrl,uri)  => {
     console.log("Uploading " + uri);
+    //let apiUrl = 'http://localhost:8080/uploadSong';
     let uriParts = uri.split('.');
     let fileType = uriParts[uriParts.length - 1];
   

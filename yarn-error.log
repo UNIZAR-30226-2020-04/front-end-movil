@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add expo-linear-gradient@~8.0.0
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add expo-file-system@~8.0.0
 
 PATH: 
   C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\MATLAB\R2019b\bin;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Eduardo\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Eduardo\AppData\Local\Android\Sdk\platform-tools;C:\Users\Eduardo\AppData\Roaming\npm;C:\Users\Eduardo\AppData\Local\Microsoft\WindowsApps;C:\Users\Eduardo\AppData\Local\Yarn\bin
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'C:\Users\Eduardo\Desktop\Universidad 29-07-2019\6Cuatrimestre\Proyecto Software\front-end-movil\node_modules\@babel\generator\node_modules\.bin'
+  Error: EPERM: operation not permitted, unlink 'C:\Users\Eduardo\Desktop\Universidad 29-07-2019\6Cuatrimestre\Proyecto Software\front-end-movil\node_modules\@babel\compat-data\node_modules\.bin'
 
 npm manifest: 
   {
@@ -35,6 +35,7 @@ npm manifest:
       "babel-preset-react-native": "^5.0.2",
       "expo": "~36.0.0",
       "expo-av": "~8.0.0",
+      "expo-document-picker": "~8.0.0",
       "expo-font": "~8.0.0",
       "react": "~16.9.0",
       "react-dom": "~16.9.0",
@@ -49,7 +50,8 @@ npm manifest:
       "react-native-screens": "2.0.0-alpha.12",
       "react-native-track-player": "^1.2.2",
       "react-native-web": "~0.11.7",
-      "react-navigation": "^4.3.5"
+      "react-navigation": "^4.3.5",
+      "rn-fetch-blob": "^0.12.0"
     },
     "devDependencies": {
       "@babel/core": "^7.0.0",
@@ -2933,6 +2935,13 @@ Lockfile:
     integrity sha512-NGRwSWfhwNFA9WVLXwqnSDPJJ4DdXTqEkl9Fr9PcyW5VCoFgz7uke256E1YZsYhOE0Ph365lu/5jjZs+MRmRog==
     dependencies:
       ua-parser-js "^0.7.19"
+  
+  expo-document-picker@~8.0.0:
+    version "8.0.0"
+    resolved "https://registry.yarnpkg.com/expo-document-picker/-/expo-document-picker-8.0.0.tgz#112a3e518398af4c793b7de08e26857838df6871"
+    integrity sha512-lr1ZChMh33qI8o7627D2BvbDKqMOdDu4WxfXNpMGI8iyKNVvUH78Aa+/3FVFK8L8EuRLMcgUmj0aP6nALaIznA==
+    dependencies:
+      uuid "^3.3.2"
   
   expo-error-recovery@~1.0.0:
     version "1.0.0"

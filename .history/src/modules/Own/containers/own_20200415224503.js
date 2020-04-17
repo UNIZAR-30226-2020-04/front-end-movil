@@ -8,17 +8,27 @@ export default class App extends React.Component {
     state = {
       image: null,
     };
+  _pickDocument = async () => {
+	    let result = await DocumentPicker.getDocumentAsync({});
+		  alert(result.uri);
+      console.log(result);
+      //Traemos el archivo dada una URL
+      
 
+      const response = await fetch(result.uri)
+      //console.log("response:", response)
+      //const data = result.RNFetchBlob.wrap(RNFetchBlob.fs.asset(result.uri))
+      //const blob = await response.blob();
+      let body = new FormData();
+      body.append('file',result);
+      //console.log("Blob???:", blob)
+      await NetworkService.uploadSong(body);
 
-
-
-
-_pickDocument = async () => {
-  let result = await DocumentPicker.getDocumentAsync({});
-  await NetworkService.uploadSong(result.uri)
-}
+     ///Eduuuuu faltaria enviar el result a la base de datos con lode fetch 
+     //nose muy bien si haria falta tocar algo del formato o con lo que se coge valdria.
+    }
     
-
+    
 
   render() {
          let { image } = this.state;

@@ -64,8 +64,9 @@ class RequestService {
     This function to call rest api post methods
     ** 
     */
-   uploadAudioAsync= async(apiUrl,uri)  => {
+   uploadAudioAsync= async(uri)  => {
     console.log("Uploading " + uri);
+    let apiUrl = 'http://localhost:8080/uploadSong';
     let uriParts = uri.split('.');
     let fileType = uriParts[uriParts.length - 1];
   

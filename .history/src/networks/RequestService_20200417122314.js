@@ -64,29 +64,49 @@ class RequestService {
     This function to call rest api post methods
     ** 
     */
-   uploadAudioAsync= async(apiUrl,uri)  => {
-    console.log("Uploading " + uri);
-    let uriParts = uri.split('.');
-    let fileType = uriParts[uriParts.length - 1];
-  
-    let formData = new FormData();
-    formData.append('file', {
-      uri,
-      name: `recording.${fileType}`,
-      type: `audio/x-${fileType}`,
-    });
-  
+   async postRequestUploadSong(url,object){
+    console.log(url);
+    //console.log(object);
+    //NO espera el return *************************
+    let aux3;
+    // let formData = new FormData();
+    // formData.append('file',object)
+    //url = url+'?file='+object
+     //formData.append('file', {uri: object.uri, type: object.type , name: object.name});
+     
+    // formData.append('description', String(data.description));
     let options = {
       method: 'POST',
-      body: formData,
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'multipart/form-data',
+        //'Content-Type' : 'multipart/form-data'
       },
-    };
-  
-    console.log("POSTing " + uri + " to " + apiUrl);
-    return fetch(apiUrl, options);
+    }
+    options.body = new FormData();
+    for (let key in data) {
+      options.body.append(key, data[key]);
+    }
+    return await (fetch(url, options,
+      body: new FormData().append('file', object)
+    })
+    .then(
+      res =>{
+        let aux = res.json();
+        let aux2;
+        console.log("DENTRO",aux);
+        return aux.then(function(value) {
+          aux2 = value;
+          aux3 = value;
+          console.log("VALUE:",aux2);
+          return aux2;
+        })
+      }
+    )
+    .catch(
+      err=>{
+        console.log("Error in postRequest",err);
+      }
+    ));
   }
 }
   
