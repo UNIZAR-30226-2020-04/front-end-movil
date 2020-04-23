@@ -52,6 +52,7 @@ export default class Dashboard extends Component{
   };
   
   
+
   async componentDidMount(){
     //recuperar datos del usuario
     const user_state = await this.retrieveData()

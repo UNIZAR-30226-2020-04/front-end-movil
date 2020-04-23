@@ -37,11 +37,8 @@ export default class App extends Component{
       //this.setState(this.user);
       //console.log("STATE_USER_STATE:",this.state.user.state);
       //Si el login OK, ya tenemos el usuario
-      console.log("this.state.user.state",this.state.user.state)
-      console.log("this.state.user",this.state.user)
       let cond=this.checkLoginOK()
       console.log("cond", cond)
-      
       if(cond == true){
         console.log("antes storeData")
         AsyncStorage.clear()
@@ -59,7 +56,7 @@ export default class App extends Component{
 
   //Return if login has been ok
   checkLoginOK(){
-    if(typeof this.state.user.state === 'undefined'){
+    if(typeof this.state.user === 'undefined'){
       return false;
     }else{
       return true;

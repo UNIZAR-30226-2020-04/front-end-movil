@@ -59,7 +59,7 @@ export default class App extends Component{
 
   //Return if login has been ok
   checkLoginOK(){
-    if(typeof this.state.user.state === 'undefined'){
+    if(typeof this.state.user === 'undefined'){
       return false;
     }else{
       return true;
