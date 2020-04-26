@@ -18,6 +18,7 @@ import Own from "./modules/Own/containers/own";
 
 import Profile from "./modules/Profile/containers/profile";
 import SettingsProfile from "./modules/Profile/containers/settingsProfile.js";
+import addAlbum from "./modules/Own/containers/addAlbum";
 
 //ToastAndroid.show('Button pressed', ToastAndroid.SHORT)
 
@@ -121,6 +122,7 @@ const OwnStack = createStackNavigator();
         },
       }}>
         <OwnStack.Screen name="Own" component={Own} />
+        <OwnStack.Screen name="addAlbum" component={addAlbum} />
       </OwnStack.Navigator>
     );
   }

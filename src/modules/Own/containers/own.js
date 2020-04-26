@@ -1,34 +1,51 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Button, Image,} from 'react-native';
-import NetworkService from '../../../networks/NetworkService'
-import * as DocumentPicker from 'expo-document-picker';
-//import RNFetchBlob from 'rn-fetch-blob'
+import { StyleSheet, Text, View, TouchableOpacity, Button,ImageBackground,} from 'react-native';
 
 export default class App extends React.Component {
-    state = {
-      image: null,
-    };
+  
+            goToaddAlbum= () =>{ 
+              this.props.navigation.navigate('addAlbum');
+            };
 
+            goToaddPodcast= () =>{ 
+              this.props.navigation.navigate('MainLogged', { screen: 'DashBoard' } );
+            };
 
+            goToRemoveAlbum= () =>{ 
+              this.props.navigation.navigate('MainLogged', { screen: 'DashBoard' } );
+            };
 
-
-
-_pickDocument = async () => {
-  let result = await DocumentPicker.getDocumentAsync({});
-  await NetworkService.uploadSong(result.uri)
-}
-    
+            goToRemovePodcast= () =>{ 
+              this.props.navigation.navigate('MainLogged', { screen: 'DashBoard' } );
+            };
 
 
   render() {
-         let { image } = this.state;
+
+  
+        
     return (
-      <View style={styles.container}>
-        <Button
-          title="Selecciona documento"
-          onPress={this._pickDocument}
-        />
-      </View>
+
+      
+    
+      <ImageBackground source={require('../../../Wallpapers/fondo.jpg')} style={styles.container}>
+      <TouchableOpacity style={styles.button}  onPress={this.goToaddAlbum}>
+          <Text style={styles.text}>Subir Album</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button}  onPress={this.goToaddAlbum}>
+          <Text style={styles.text}>Subir Podcast</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button}  onPress={this.goToaddAlbum}>
+          <Text style={styles.text}>Borrar Album</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button}  onPress={this.goToaddAlbum}>
+          <Text style={styles.text}>Borrar Podcast</Text>
+      </TouchableOpacity>
+      </ImageBackground>
+     
     );
   }
 }
@@ -40,4 +57,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  button: {
+    alignItems: "center",
+    marginTop: 30,
+    backgroundColor: 'black',
+    padding: 25,
+  },
+  text: {
+    color:'white',//'#64EE85',
+    fontSize: 24,
+    fontWeight: '600',
+    paddingHorizontal: 10
+    
+   
+  },
+  
+
+
+
 });
