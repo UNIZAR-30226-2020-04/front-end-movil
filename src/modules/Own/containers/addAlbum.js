@@ -27,10 +27,17 @@ export default class App extends React.Component {
     console.log("DEVULVE URI:",this.state.uriCancionAdd);
 
     if (this.state.nombreCancionAdd != "" && this.state.uriCancionAdd != ""){
-        //modificar nombre cancion manualemnte de momento solo almaceno URI
-        this.state.CancionesAlbum.push({nombre:this.state.nombreCancionAdd,URI:this.state.uriCancionAdd});
-        this.state.uriCancionAdd="";
-        this.state.nombreCancionAdd="";
+
+      this.setState(state => {
+          const CancionesAlbum=state.CancionesAlbum.concat({nombre:this.state.nombreCancionAdd,URI:this.state.uriCancionAdd});
+          return {
+            CancionesAlbum,
+            nombreCancionAdd:"",
+            uriCancionAdd:""
+          };
+
+          });
+
     }
     else if (this.state.nombreCancionAdd == "" ) {
      Alert.alert('Introduzca nombre de la cancion');
