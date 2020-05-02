@@ -12,12 +12,45 @@ export default class App extends React.Component {
   }
   
 
+<<<<<<< Updated upstream
   render() {
     goToaddAlbum= () =>{ 
       this.props.navigation.navigate( 'addAlbum' );
     };
 
 
+=======
+  addSong = () => {
+    console.log("Cancion a añadir:");
+    console.log("DEVULVE NOMBRE:",this.state.nombreCancionAdd);
+    console.log("DEVULVE URI:",this.state.uriCancionAdd);
+
+    if (this.state.nombreCancionAdd != "" && this.state.uriCancionAdd != ""){
+      this.setState(state => {
+        const CancionesAlbum = state.CancionesAlbum.concat({nombre:this.state.nombreCancionAdd,URI:this.state.uriCancionAdd});
+   
+        return {
+          CancionesAlbum,
+          nombreCancionAdd: "",
+          uriCancionAdd:""
+        };
+      });
+      console.log("¿Esta vacio nombreCancion?");
+      console.log(this.state.nombreCancionAdd)
+      console.log("--------------------Canciones añadidas----------------------");
+      this.state.CancionesAlbum.forEach(element => console.log(element.URI))
+
+
+    }
+    else if (this.state.nombreCancionAdd == "" ) {
+     Alert.alert('Introduzca nombre de la cancion');
+
+    }
+    else {
+      Alert.alert('Introduzca la cancion');
+    }
+  }
+>>>>>>> Stashed changes
   
   
         
