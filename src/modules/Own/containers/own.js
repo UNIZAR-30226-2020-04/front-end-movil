@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Button, Image,} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Button, Image,ImageBackground } from 'react-native';
 
 
 export default class App extends React.Component {
@@ -30,21 +30,23 @@ export default class App extends React.Component {
       
     
       <ImageBackground source={require('../../../Wallpapers/fondo.jpg')} style={styles.container}>
-      <TouchableOpacity style={styles.button}  onPress={this.goToaddAlbum}>
-          <Text style={styles.text}>Subir Album</Text>
-      </TouchableOpacity>
+      <View style={styles.inputView} >
+          <TouchableOpacity style={styles.button}  onPress={this.goToaddAlbum}>
+              <Text style={styles.text}>Subir Album</Text>
+          </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button}  onPress={this.goToaddAlbum}>
-          <Text style={styles.text}>Subir Podcast</Text>
-      </TouchableOpacity>
+          <TouchableOpacity style={styles.button}  onPress={this.goToaddAlbum}>
+              <Text style={styles.text}>Subir Podcast</Text>
+          </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button}  onPress={this.goToaddAlbum}>
-          <Text style={styles.text}>Borrar Album</Text>
-      </TouchableOpacity>
+          <TouchableOpacity style={styles.button}  onPress={this.goToaddAlbum}>
+              <Text style={styles.text}>Borrar Album</Text>
+          </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button}  onPress={this.goToaddAlbum}>
-          <Text style={styles.text}>Borrar Podcast</Text>
-      </TouchableOpacity>
+          <TouchableOpacity style={styles.button}  onPress={this.goToaddAlbum}>
+              <Text style={styles.text}>Borrar Podcast</Text>
+          </TouchableOpacity>
+      </View> 
       </ImageBackground>
      
     );
@@ -60,7 +62,8 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    marginTop: 30,
+    marginTop: 25,
+    marginBottom: 10,
     backgroundColor: 'black',
     padding: 25,
   },
@@ -71,6 +74,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10
     
    
+  },
+  inputView:{
+    width:"80%",
+    borderRadius:25,
+    height: 50,
+    marginBottom:20,
+    marginTop:20,
+    justifyContent:"center",
+    padding:5
   },
   
 
