@@ -47,8 +47,23 @@ export default class App extends React.Component {
       Alert.alert('Introduzca la cancion');
     }
     console.log("--------------------Canciones añadidas----------------------");
-    this.state.CancionesAlbum.forEach(element => console.log(element.nombre))
+    this.state.CancionesAlbum.forEach(element => console.log(element.nombre));
   }
+
+
+  crearAlbum = async () => {
+
+    if (this.state.nombreAlbum != ""){
+    console.log("Creando Album.....:  ",this.state.nombreAlbum);
+    console.log("-------------Canciones-----------------------");
+    this.state.CancionesAlbum.forEach(element => console.log(element.nombre));
+    }
+    else {  Alert.alert('Introduzca nombre del Album');}
+  }
+
+
+
+
   
   render() {
 
@@ -84,6 +99,9 @@ export default class App extends React.Component {
                     <Text style={styles.text}>"Introducir Cancion"</Text>
                 </TouchableOpacity>
                 {this.state.CancionesAlbum.map(cancion =><Text style={styles.text}>  {cancion.nombre} </Text> )}
+                <TouchableOpacity style={styles.button}  onPress={this.crearAlbum}>
+                    <Text style={styles.text}>"Crear Album"</Text>
+                </TouchableOpacity>
         
             </View>
         </ImageBackground>
