@@ -60,6 +60,40 @@ class RequestService {
     }
 
 
+    addSongRequest= async(url,nombreC,uri,idalbum,correo) => {
+      console.log("ADDSONG REQUEST id del album: ", idalbum);
+      let uriParts = uri.split('.');
+      let fileType = uriParts[uriParts.length - 1];
+      let formData = new FormData();
+
+    formData.append('file', {
+      uri,
+      name: `recording.${fileType}`,
+      type: `audio/x-${fileType}`,
+    });
+    formData.append('idalbum',idalbum);
+		formData.append('user',correo);
+		formData.append('nombreC',nombreC);
+  
+    let options = {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'multipart/form-data',
+      },
+    };
+  
+    return fetch(url, options);
+  }
+
+
+
+
+
+
+
+
     /*
     This function to call rest api post methods
     ** 

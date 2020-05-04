@@ -5,12 +5,17 @@ import * as DocumentPicker from 'expo-document-picker';
 
 export default class App extends React.Component {
   state={
+    email:"a@a.com",
     nombreAlbum:"",
     imagenAlbum:"",
     nombreCancionAdd: "",
     uriCancionAdd: "",
-    CancionesAlbum:[]
+    CancionesAlbum:[],
+    result:"",
+    name:"",
+    idalbum:"",
   }
+
   goToaddAlbum= () =>{ 
     this.props.navigation.navigate( 'addAlbum' );
   };
@@ -51,12 +56,43 @@ export default class App extends React.Component {
   }
 
 
-  crearAlbum = async () => {
 
+ async bucleAddSong(element) {
+    this.state.nombreC=element.nombre
+    console.log("ELEMENT . NOMBRE:  ",element.nombre);
+
+  
+    await NetworkService.addCancionAlbum(element.nombre,element.URI,this.state.idalbum,this.state.email)
+          .then( res => {this.state.result = res});
+    //console.log("Resultadoooo añadir cancion",this.state.result)
+  }
+
+
+
+
+  crearAlbum = async () => {
+    
     if (this.state.nombreAlbum != ""){
     console.log("Creando Album.....:  ",this.state.nombreAlbum);
+    this.state.name=this.state.nombreAlbum
     console.log("-------------Canciones-----------------------");
     this.state.CancionesAlbum.forEach(element => console.log(element.nombre));
+    
+    await NetworkService.createAlbum(this.state).then( res => {this.state.result = res});
+    console.log("ID del album",this.state.result.l_id);
+    this.state.idalbum=this.state.result.l_id;
+    this.state.user=this.state.email
+
+    //Bucle creacion canciones 
+    console.log("-------------Bucle Creacion Canciones-------------------");
+    this.state.CancionesAlbum.forEach(element => this.bucleAddSong(element) );
+
+
+
+
+
+
+
     }
     else {  Alert.alert('Introduzca nombre del Album');}
   }

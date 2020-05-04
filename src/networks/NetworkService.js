@@ -64,6 +64,21 @@ class NetworkService {
     return this.updateUserName(data) && this.updateUserNick(data) && this.updateUserPass(data) //&& RequestService.updateUserNick(data) 
       //&& RequestService.updateUserPass(data)
   }
+  createAlbum(data){
+    console.log('Servicio Crear Album', data);
+    var url=`${BASE_URL}/createAlbum`
+    console.log('URLLLLLL', url);
+    return RequestService.postRequest(url,data);
+  }
+
+  addCancionAlbum(nombreC,uri,idalbum,correo){
+    //console.log('Servicio Subir Cancion Album', data);
+    var url=`${BASE_URL}/subirCancion`
+    return RequestService.addSongRequest(url,nombreC,uri,idalbum,correo);
+  }
+
+
+
 
 }
 
