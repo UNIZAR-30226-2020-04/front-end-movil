@@ -16,7 +16,7 @@ export default class Profile extends Component{
     }
   }
 
-  retrieveUser = async () => {
+  retrieveData = async () => {
     try {
       const retrieveItem = await AsyncStorage.getItem('UserState');
       if (retrieveItem !== null) {
