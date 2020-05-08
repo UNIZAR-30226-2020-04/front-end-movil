@@ -69,11 +69,9 @@ export default class Dashboard extends Component{
           let user_state;
           //Traes datos de usuario del AsyncStorage
           this.retrieveUser().then( res => {this.setState({user: res, loaded:true});  return { user: user_state } }).catch(err => console.log("Error",err));
-          //Traes data del usuario
-          //¿Hacerlo todo junto?
-
+          //Traes albumes del usuario
       });
-    }, 5000);
+    }, 999999);
     //recuperar datos del usuario
     //recuperar datos del usuario
     // console.log("Antes retrieve data")

@@ -73,7 +73,7 @@ export default class Dashboard extends Component{
           //¿Hacerlo todo junto?
 
       });
-    }, 5000);
+    }, 999999);
     //recuperar datos del usuario
     //recuperar datos del usuario
     // console.log("Antes retrieve data")

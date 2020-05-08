@@ -15,14 +15,13 @@ import Search from "./modules/Search/containers/search";
 import Library from "./modules/Library/containers/library";
 
 import Own from "./modules/Own/containers/own";
-import MusicPlayer from "./modules/MusicPlayer/miniMusicPlayer";
+import MusicPlayer from "./modules/MusicPlayer/MusicPlayer";
 
 import Profile from "./modules/Profile/containers/profile";
 import SettingsProfile from "./modules/Profile/containers/settingsProfile.js";
 
 import addAlbum from "./modules/Own/containers/addAlbum";
 import addPodcast from "./modules/Own/containers/addPodcast";
-import addPlaylist from "./modules/Own/containers/addPlaylist";
 
 
 //ToastAndroid.show('Button pressed', ToastAndroid.SHORT)
@@ -130,7 +129,6 @@ const OwnStack = createStackNavigator();
         <OwnStack.Screen name="Own" component={Own} />
         <OwnStack.Screen name="addAlbum" component={addAlbum} />
         <OwnStack.Screen name="addPodcast" component={addPodcast} />
-        <OwnStack.Screen name="addPlaylist" component={addPlaylist} />
       </OwnStack.Navigator>
     );
   }

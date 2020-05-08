@@ -98,7 +98,6 @@ class NetworkService {
     return RequestService.postRequest(url,data);
   }
 
-  //Crea la palylist
   createPlaylist(data){
     console.log('Servicio Crear Playlist', data);
     var url=`${BASE_URL}/createPlaylist`
@@ -107,22 +106,6 @@ class NetworkService {
     data.user = data.user.correo
     data.playlist = data.nombrePlaylist
     console.log("CORREO", data.correo)
-    return RequestService.postRequest(url,data);
-  }
-
-  //añade cancion to playlist
-  addToPlaylist(data){
-    console.log('Servicio addToPlaylist', data);
-    var url=`${BASE_URL}/addToPlaylist`
-    console.log('URLLLLLL', url);
-
-    //Parametros para llamar a addToPlaylit
-    data.user = data.user.correo
-    data.nombre = data.nombrePlaylist
-    data.usercancion = data.addCancionPlaylist
-    console.log("CORREO", data.user)
-    console.log("nombre", data.nombre)
-    console.log("usercancion", data.usercancion)
     return RequestService.postRequest(url,data);
   }
 

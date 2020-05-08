@@ -12,8 +12,12 @@ export default class App extends React.Component {
               this.props.navigation.navigate('addPodcast');
             };
 
-            goToaddCreatePlaylist= () =>{ 
-              this.props.navigation.navigate('addPlaylist');
+            goToRemoveAlbum= () =>{ 
+              this.props.navigation.navigate('MainLogged', { screen: 'DashBoard' } );
+            };
+
+            goToRemovePodcast= () =>{ 
+              this.props.navigation.navigate('MainLogged', { screen: 'DashBoard' } );
             };
 
 
@@ -29,7 +33,7 @@ export default class App extends React.Component {
               <Text style={styles.text}>Subir Podcast</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button}  onPress={this.goToaddCreatePlaylist}>
+          <TouchableOpacity style={styles.button}  onPress={this.goToaddPodcast}>
               <Text style={styles.text}>Crear Playlist</Text>
           </TouchableOpacity>
         </View> 

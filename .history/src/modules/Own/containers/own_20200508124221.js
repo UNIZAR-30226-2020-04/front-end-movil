@@ -12,15 +12,25 @@ export default class App extends React.Component {
               this.props.navigation.navigate('addPodcast');
             };
 
-            goToaddCreatePlaylist= () =>{ 
-              this.props.navigation.navigate('addPlaylist');
+            goToRemoveAlbum= () =>{ 
+              this.props.navigation.navigate('MainLogged', { screen: 'DashBoard' } );
+            };
+
+            goToRemovePodcast= () =>{ 
+              this.props.navigation.navigate('MainLogged', { screen: 'DashBoard' } );
             };
 
 
   render() {
+
+  
+        
     return (
+
+      
+    
       <ImageBackground source={require('../../../Wallpapers/fondo.jpg')} style={styles.container}>
-        <View style={styles.inputView} >
+      <View style={styles.inputView} >
           <TouchableOpacity style={styles.button}  onPress={this.goToaddAlbum}>
               <Text style={styles.text}>Subir Album</Text>
           </TouchableOpacity>
@@ -29,10 +39,14 @@ export default class App extends React.Component {
               <Text style={styles.text}>Subir Podcast</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button}  onPress={this.goToaddCreatePlaylist}>
-              <Text style={styles.text}>Crear Playlist</Text>
+          <TouchableOpacity style={styles.button}  onPress={this.goToaddAlbum}>
+              <Text style={styles.text}>Borrar Album</Text>
           </TouchableOpacity>
-        </View> 
+
+          <TouchableOpacity style={styles.button}  onPress={this.goToaddAlbum}>
+              <Text style={styles.text}>Borrar Podcast</Text>
+          </TouchableOpacity>
+      </View> 
       </ImageBackground>
      
     );

@@ -81,51 +81,6 @@ class NetworkService {
     return RequestService.addSongRequest(url,nombreC,uri,idalbum,correo);
   }
 
-  addCapituloPodcast(nombreC,uri,idalbum,correo){
-    //console.log('Servicio Subir Cancion Album', data);
-    //var url=`${BASE_URL}/subirCancion`
-    //return RequestService.addSongRequest(url,nombreC,uri,idalbum,correo);
-  }
-
-  createPodcast(data){
-    console.log('Servicio Crear Album', data);
-    var url=`${BASE_URL}/createAlbum`
-    console.log('URLLLLLL', url);
-
-    data.user = data.user.correo
-    data.nombre = data.nombrePodcast
-    console.log("CORREO", data.correo)
-    return RequestService.postRequest(url,data);
-  }
-
-  //Crea la palylist
-  createPlaylist(data){
-    console.log('Servicio Crear Playlist', data);
-    var url=`${BASE_URL}/createPlaylist`
-    console.log('URLLLLLL', url);
-
-    data.user = data.user.correo
-    data.playlist = data.nombrePlaylist
-    console.log("CORREO", data.correo)
-    return RequestService.postRequest(url,data);
-  }
-
-  //añade cancion to playlist
-  addToPlaylist(data){
-    console.log('Servicio addToPlaylist', data);
-    var url=`${BASE_URL}/addToPlaylist`
-    console.log('URLLLLLL', url);
-
-    //Parametros para llamar a addToPlaylit
-    data.user = data.user.correo
-    data.nombre = data.nombrePlaylist
-    data.usercancion = data.addCancionPlaylist
-    console.log("CORREO", data.user)
-    console.log("nombre", data.nombre)
-    console.log("usercancion", data.usercancion)
-    return RequestService.postRequest(url,data);
-  }
-
   //idalbum,user,idcancion
   getURLsong(data){
     console.log('Get URL Cancion');

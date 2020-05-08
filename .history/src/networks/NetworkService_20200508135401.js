@@ -97,8 +97,7 @@ class NetworkService {
     console.log("CORREO", data.correo)
     return RequestService.postRequest(url,data);
   }
-
-  //Crea la palylist
+  
   createPlaylist(data){
     console.log('Servicio Crear Playlist', data);
     var url=`${BASE_URL}/createPlaylist`
@@ -120,9 +119,7 @@ class NetworkService {
     data.user = data.user.correo
     data.nombre = data.nombrePlaylist
     data.usercancion = data.addCancionPlaylist
-    console.log("CORREO", data.user)
-    console.log("nombre", data.nombre)
-    console.log("usercancion", data.usercancion)
+    console.log("CORREO", data.correo)
     return RequestService.postRequest(url,data);
   }
 
