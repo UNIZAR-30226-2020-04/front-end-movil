@@ -29,33 +29,12 @@ export default class Element extends Component{
                     </View>
 
                     <View style={{paddingLeft: 10, paddingTop: 10, paddingBottom: 10}}>
-                        <Text style={styles.text}>{this.props.name}</Text>
+                        <Text style={styles.text}>{this.props.album_name}</Text>
                         <Text style={styles.text}>{this.props.artist}</Text>
                     </View>
                 </View>
             );
-        }else if(this.props.type==='playlist'){
-            return(
-                <View style={{ height:200, width:150, marginLeft: 20, 
-                    borderBottomColor: 'transparent'}}
-                    onStartShouldSetResponder={() => this.props.props.navigation.navigate('viewPlaylist', this.props)}//<ViewAlbum props={this.props}></ViewAlbum>}//this.props.props.navigation.navigate("viewAlbum", this.props)}    
-                    
-                >
-                    <View style={{ flex: 5 }}>
-                        <Image source={this.props.image} 
-                            style={{flex:1,width:null, height: null,
-                                resizeMode: 'cover'}}
-                        />
-                    </View>
-
-                    <View style={{paddingLeft: 10, paddingTop: 10, paddingBottom: 10}}>
-                        <Text style={styles.text}>{this.props.name}</Text>
-                        <Text style={styles.text}>{this.props.artist}</Text>
-                    </View>
-                </View>
-            );
-        }else
-        {
+        }else{
             return(
                 <Text>ELSE</Text>
             );

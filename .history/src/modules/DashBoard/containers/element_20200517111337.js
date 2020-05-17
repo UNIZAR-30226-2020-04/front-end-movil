@@ -29,7 +29,7 @@ export default class Element extends Component{
                     </View>
 
                     <View style={{paddingLeft: 10, paddingTop: 10, paddingBottom: 10}}>
-                        <Text style={styles.text}>{this.props.name}</Text>
+                        <Text style={styles.text}>{this.props.album_name}</Text>
                         <Text style={styles.text}>{this.props.artist}</Text>
                     </View>
                 </View>
@@ -49,7 +49,7 @@ export default class Element extends Component{
                     </View>
 
                     <View style={{paddingLeft: 10, paddingTop: 10, paddingBottom: 10}}>
-                        <Text style={styles.text}>{this.props.name}</Text>
+                        <Text style={styles.text}>{this.props.playlist_name}</Text>
                         <Text style={styles.text}>{this.props.artist}</Text>
                     </View>
                 </View>

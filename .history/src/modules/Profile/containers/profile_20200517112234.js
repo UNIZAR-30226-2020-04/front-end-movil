@@ -19,7 +19,7 @@ export default class Profile extends Component{
   state={
     user: new User(),//async () => await this.retrieveData(),
     albums: "",
-    playlists: "",
+    playlists:[],
     otrosStates : "valor que sea",
     loadedUser: false,
     loadedAlbums: false,
@@ -57,10 +57,10 @@ export default class Profile extends Component{
     }
   };
 
-  getPlaylistsDB = async () => {
+  getPlaylistDB = async () => {
     try {
       console.log("STATE.USER",this.state.user)
-      await NetworkService.fetchPlaylists(this.state.user).then(res => {this.setState({playlists: res, loadedPlaylists:true});console.log("GETPLAYLIST RES:", res);console.log("GETPLAYLIST PLAYLIST:", this.state.playlists)});
+      await NetworkService.fetchPlaylists(this.state.user).then(res => {this.setState({albums: res, loadedPlaylists:true});console.log("GETPLAYLIST RES:", res);console.log("GETPLAYLIST PLAYLIST:", this.state.playlists)});
     } catch (error) {
       console.log("Error al obtener Playlists")
     }
@@ -83,9 +83,8 @@ export default class Profile extends Component{
           let user_state;
           //Traes datos de usuario del AsyncStorage
           this.retrieveUser().then( res => {this.setState({user: res, loadedUser:true}) 
-            this.getAlbumsDB().then( res => {console.log("HA IDO", res)
-              this.getPlaylistsDB().then( res => {console.log("HA IDO", res)}).catch(err => console.log("Error",err));
-            }).catch(err => console.log("Error",err));
+            this.getAlbumsDB().then( res => {console.log("HA IDO", res)}).catch(err => console.log("Error",err));
+
           }).catch(err => console.log("Error",err));
           //Traes data del usuario
           //¿Hacerlo todo junto?
@@ -137,12 +136,7 @@ export default class Profile extends Component{
             </Text>
             <View style={{height: 200, marginTop: 20}}>
               <ScrollView horizontal={true}>
-              {console.log("this.state.playlists: ", this.state.playlists)}
-                {this.state.playlists.map(
-                  element => 
-                    <Element type='playlist' paramId={element.idRep.l_id} image = {{ uri: element.foto==null ? DEFAULT_URI : element.foto }} name={element.nombre} artist={element.idRep.u} props={this.props}></Element>
-                  )
-                }
+                <Element type='playlist' image={{uri: 'https://bucket3.glanacion.com/anexos/fotos/79/2667179h1080.jpg'}} name="Redención" artist="cualquiera" props={this.props}></Element>
               </ScrollView>
             </View>
           </View>
@@ -167,11 +161,12 @@ export default class Profile extends Component{
     //OPcion 1
     console.log("---------------------------NUEVA------------------------------------------")
    // console.log("this.state.loaded = ",this.state.loaded)
-    if (this.state.loadedUser && this.state.loadedAlbums && this.state.loadedPlaylists){
+    if (this.state.loadedUser && this.state.loadedAlbums){
       console.log("---------------------------1------------------------------------------")
       console.log("this.state = ",this.state)
       console.log("user = ",this.state.user)
       console.log("RENDERLOADED")
+      //this.getAlbumsDB().then( res => {this.setState({albums: res}); console.log("GETALBUMS RES:", res);console.log("GETALBUMS ALBUMS:", this.state.albums)}).catch(err => console.log("Error",err));
       return this.renderLoaded()
     }else{
       console.log("---------------------------2------------------------------------------")

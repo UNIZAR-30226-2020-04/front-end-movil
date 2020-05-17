@@ -25,17 +25,6 @@ class NetworkService {
     return RequestService.postRequest(url,data.correo);
   }
 
-  
-
-  fetchPlaylists(data){
-    console.log('Fetch palylists');
-    var url=`${BASE_URL}/getPlaylistByUser`
-    console.log('EMAIL', data);
-    console.log('URLLLLLL', url);
-    console.log("data.correo ", data.correo)
-    return RequestService.postRequest(url,data.correo);
-  }
-
   listSongsAlbum(data){
     console.log('Fetch songs album');
     var url=`${BASE_URL}/listSongsAlbum`

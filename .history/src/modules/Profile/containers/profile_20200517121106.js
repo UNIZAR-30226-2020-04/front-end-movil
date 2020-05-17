@@ -138,9 +138,9 @@ export default class Profile extends Component{
             <View style={{height: 200, marginTop: 20}}>
               <ScrollView horizontal={true}>
               {console.log("this.state.playlists: ", this.state.playlists)}
-                {this.state.playlists.map(
+                {this.state.palylists.map(
                   element => 
-                    <Element type='playlist' paramId={element.idRep.l_id} image = {{ uri: element.foto==null ? DEFAULT_URI : element.foto }} name={element.nombre} artist={element.idRep.u} props={this.props}></Element>
+                    <Element type='playlist' paramId={element.isRep.l_id} image = {{ uri: element.foto==null ? DEFAULT_URI : element.foto }} name={element.nombre} artist={element.idAlbum.u} props={this.props}></Element>
                   )
                 }
               </ScrollView>

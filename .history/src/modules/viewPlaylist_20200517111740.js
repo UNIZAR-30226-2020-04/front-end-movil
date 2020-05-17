@@ -8,7 +8,7 @@ import NetworkService from '../networks/NetworkService'
 import { ListItem } from 'react-native-elements'
 import { Icon } from 'react-native-elements'
 
-export default class viewAlbum extends Component{
+export default class viewPlaylist extends Component{
   constructor(props) {
     super(props);
     
@@ -26,15 +26,15 @@ export default class viewAlbum extends Component{
     //HAcer consulta de songs
     data={}
     data.user=this.props.route.params.artist
-    data.idalbum = this.props.route.params.paramId
-    data.idalbum = data.idalbum.toString()
+    data.idPlaylist= this.props.route.params.paramId
+    data.idPlaylist= data.idplaylist.toString()
 
     NetworkService.listSongsAlbum(data).then(res => {this.setState({songs: res, loadedSongs:true});console.log("Songs RES:", res)})//this.props.route.params.artist, this.props.route.params.paramId
     //Me devuelve una lista de canciones
   }
 
-  //Devuelve el id de album a mostrar que se ha guardado en................................
-  retrieveAlbum = async (albumID) => {
+  //Devuelve el id de Playlista mostrar que se ha guardado en................................
+  retrievePlaylist= async (albumID) => {
     try {
       const retrieveItem = await AsyncStorage.getItem(albumID);
       if (retrieveItem !== null) {
@@ -48,7 +48,7 @@ export default class viewAlbum extends Component{
       // Error retrieving data
       console.log("Error al obtener datos")
     }
-  };
+  }
 
   render(){
     //OPcion 1
@@ -66,8 +66,8 @@ export default class viewAlbum extends Component{
       console.log("ELSEthis.state.loadedSongs = ",this.state.loadedSongs)
       return(<View><Text>Loading...</Text></View>)
     }
-  
   }
+
   mostrarOpciones(){
     return(
       <ListItem
@@ -93,11 +93,11 @@ export default class viewAlbum extends Component{
       <ImageBackground source={require('../Wallpapers/fondo.jpg')} style={styles.container}>
           <View style={styles.container}>
             <Text style={styles.title}>
-              Album name:
+              Playlistname:
               {this.props.route.params.name}
             </Text>
             <Text style={styles.title}>
-              Album id: {this.props.route.params.paramId}
+              Playlistid: {this.props.route.params.paramId}
             </Text>
             <Text style={styles.title}>
               Artist: {this.props.route.params.artist}

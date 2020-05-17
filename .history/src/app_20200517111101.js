@@ -25,7 +25,7 @@ import addPodcast from "./modules/Own/containers/addPodcast";
 import addPlaylist from "./modules/Own/containers/addPlaylist";
 
 import ViewAlbum from './modules/viewAlbum'
-import ViewPlaylist from './modules/viewPlaylist'
+import ViewAlbum from './modules/viewPlaylist'
 
 
 //ToastAndroid.show('Button pressed', ToastAndroid.SHORT)

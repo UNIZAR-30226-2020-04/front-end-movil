@@ -9,10 +9,6 @@ function updateText(text) {
 }
 
 export default class App extends React.Component {
-  constructor(props){
-    super(props)
-    updateText = updateText.bind(this)
-  }
   state={
     user: new User(),
     //email:"a@a.com",
