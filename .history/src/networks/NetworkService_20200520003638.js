@@ -141,7 +141,6 @@ class NetworkService {
     console.log('Servicio borrar Album');
     var url=`${BASE_URL}/deleteAlbum`
     console.log('URLLLLLL', url);
-    data={}
     data.user = correo
     data.idalbum = idalbum
     console.log("CORREO", data)
@@ -152,7 +151,6 @@ class NetworkService {
     console.log('Servicio borrar playlist');
     var url=`${BASE_URL}/deletePlaylist`
     console.log('URLLLLLL', url);
-    data={}
     data.user = correo
     data.idplaylist = idplaylist
     console.log("CORREO", data)
@@ -163,7 +161,6 @@ class NetworkService {
     console.log('Servicio borrar podcast');
     var url=`${BASE_URL}/deletePodcast`
     console.log('URLLLLLL', url);
-    data={}
     data.user = correo
     data.idpodcast = idpodcast
     console.log("CORREO", data)

@@ -71,7 +71,7 @@ export default class Profile extends Component{
   getPodcastsDB = async () => {
     try {
       console.log("STATE.USER",this.state.user)
-      await NetworkService.fetchPodcasts(this.state.user).then(res => {this.setState({podcasts: res, loadedPodcasts:true});console.log("GETPodcasts RES:", res);console.log("GETPodcasts Podcasts:", this.state.podcasts)});
+      await NetworkService.fetchPodcasts(this.state.user).then(res => {this.setState({podcasts: res, loadedPodcasts:true});console.log("GETPodcasts RES:", res);console.log("GETPodcasts Podcasts:", this.state.podasts)});
     } catch (error) {
       console.log("Error al obtener Podcasts")
     }
@@ -109,7 +109,7 @@ export default class Profile extends Component{
     console.log("state completo:",this.state)
   }
 
-  goToSettings = () => {this.props.navigation.navigate("Settings", {props: this.state})}
+  goToSettings = () => {this.props.navigation.navigate("Settings")}
   renderLoaded(){
     return(
       <ImageBackground source={require('../../../Wallpapers/fondo.jpg')} style={styles.container}>

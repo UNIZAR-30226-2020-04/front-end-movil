@@ -71,7 +71,7 @@ export default class Profile extends Component{
   getPodcastsDB = async () => {
     try {
       console.log("STATE.USER",this.state.user)
-      await NetworkService.fetchPodcasts(this.state.user).then(res => {this.setState({podcasts: res, loadedPodcasts:true});console.log("GETPodcasts RES:", res);console.log("GETPodcasts Podcasts:", this.state.podcasts)});
+      await NetworkService.fetchPodcasts(this.state.user).then(res => {this.setState({podcasts: res, loadedPodcasts:true});console.log("GETPodcasts RES:", res);console.log("GETPodcasts Podcasts:", this.state.podasts)});
     } catch (error) {
       console.log("Error al obtener Podcasts")
     }
@@ -109,7 +109,7 @@ export default class Profile extends Component{
     console.log("state completo:",this.state)
   }
 
-  goToSettings = () => {this.props.navigation.navigate("Settings", {props: this.state})}
+  goToSettings = () => {this.props.navigation.navigate("Settings")}
   renderLoaded(){
     return(
       <ImageBackground source={require('../../../Wallpapers/fondo.jpg')} style={styles.container}>
@@ -168,8 +168,8 @@ export default class Profile extends Component{
             </Text>
             <View style={{height: 200, marginTop: 20}}>
               <ScrollView horizontal={true}>
-              {console.log("this.state.podcasts: ", this.state.user.podcasts)}
-                {this.state.user.podcasts.map(
+              {console.log("this.state.podcasts: ", this.state.podcasts)}
+                {this.state.podcasts.map(
                   element => 
                     <Element type='podcast' paramId={element.idPodcast.l_id} image = {{ uri: element.foto==null ? DEFAULT_URI : element.foto }} name={element.nombre} artist={element.idPodcast.u} props={this.props}></Element>
                   )

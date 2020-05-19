@@ -29,7 +29,7 @@ const PLAYLIST = [
 	),
 	new PlaylistItem(
 		'Mildred Bailey – “All Of Me”',
-		'http://pruebaslistenit.herokuapp.com/Cancion?idsong=11a@a.mp3',
+		'https://ia800304.us.archive.org/34/items/PaulWhitemanwithMildredBailey/PaulWhitemanwithMildredBailey-AllofMe.mp3',
 		'https://picsum.photos/250/300'
 	),
 	new PlaylistItem(

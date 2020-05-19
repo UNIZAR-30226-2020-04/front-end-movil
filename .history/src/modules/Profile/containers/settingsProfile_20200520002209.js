@@ -178,7 +178,9 @@ export default class Main extends Component{
               Your albums 
             </Text>
             <View style={{height: 200, marginTop: 20}}>
-                  <ScrollView horizontal={true}>
+              
+
+              
                     {/* //Mostrar cada album */}
                     {/* Recorrer array de albumes y crear Element */}
                     {console.log("this.state.albums: ", this.state.albums)}
@@ -187,16 +189,18 @@ export default class Main extends Component{
                       <MenuProvider>
                       <Menu >
                         <MenuTrigger>
-                          <Element delete='true' type='playlist' paramId={element.idAlbum.l_id} image = {{ uri: element.foto==null ? DEFAULT_URI : element.foto }} name={element.nombre} artist={element.idAlbum.u} props={this.props}></Element>
+                          <Element delete='true' type='playlist' paramId={element.idRep.l_id} image = {{ uri: element.foto==null ? DEFAULT_URI : element.foto }} name={element.nombre} artist={element.idRep.u} props={this.props}></Element>
                           </MenuTrigger>
                         <MenuOptions>
-                            <MenuOption value={element.nombre} text={"Delete"} onSelect={type => {NetworkService.deleteAlbum(this.state.user.correo,element.idAlbum.l_id.toString()); alert(`Deleted ${type}`)}} style={{color: 'white'}}/>
+                            <MenuOption value={element.nombre} text={"Delete"} onSelect={type => {NetworkService.deleteAlbum(this.state.user.correo,idalbum); alert(`Deleted ${type}`)}} style={{color: 'white'}}/>
                         </MenuOptions>
                       </Menu>
                     </MenuProvider>
                       )
                     }
-                  </ScrollView>
+                    
+                
+              
             </View>
           </View>
 
@@ -217,7 +221,7 @@ export default class Main extends Component{
                               <Element delete='true' type='playlist' paramId={element.idRep.l_id} image = {{ uri: element.foto==null ? DEFAULT_URI : element.foto }} name={element.nombre} artist={element.idRep.u} props={this.props}></Element>
                               </MenuTrigger>
                             <MenuOptions>
-                                <MenuOption value={element.nombre} text={"Delete"} onSelect={type => {NetworkService.deletePlaylist(this.state.user.correo,element.idRep.l_id.toString()); alert(`Deleted ${type}`)}} style={{color: 'white'}}/>
+                                <MenuOption value={element.nombre} text={"Delete"} onSelect={type => {NetworkService.deleteAlbum(this.state.user.correo,idalbum); alert(`Deleted ${type}`)}} style={{color: 'white'}}/>
                             </MenuOptions>
                           </Menu>
                         </MenuProvider>

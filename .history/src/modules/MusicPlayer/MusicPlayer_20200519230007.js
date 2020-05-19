@@ -24,12 +24,12 @@ class PlaylistItem {
 const PLAYLIST = [
 	new PlaylistItem(
 		'Comfort Fit - “Sorry”',
-		'https://s3.amazonaws.com/exp-us-standard/audio/playlist-example/Comfort_Fit_-_03_-_Sorry.mp3',
+		'http://pruebaslistenit.herokuapp.com/Cancion?idsong=11a@a.mp3',
 		'https://picsum.photos/250/300'
 	),
 	new PlaylistItem(
 		'Mildred Bailey – “All Of Me”',
-		'http://pruebaslistenit.herokuapp.com/Cancion?idsong=11a@a.mp3',
+		'https://ia800304.us.archive.org/34/items/PaulWhitemanwithMildredBailey/PaulWhitemanwithMildredBailey-AllofMe.mp3',
 		'https://picsum.photos/250/300'
 	),
 	new PlaylistItem(

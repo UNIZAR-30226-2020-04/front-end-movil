@@ -25,7 +25,6 @@ export default class Profile extends Component{
     loadedUser: false,
     loadedAlbums: false,
     loadedPlaylists: false,
-    loadedPodcasts: false,
   }
 
   
@@ -68,23 +67,12 @@ export default class Profile extends Component{
     }
   };
 
-  getPodcastsDB = async () => {
-    try {
-      console.log("STATE.USER",this.state.user)
-      await NetworkService.fetchPodcasts(this.state.user).then(res => {this.setState({podcasts: res, loadedPodcasts:true});console.log("GETPodcasts RES:", res);console.log("GETPodcasts Podcasts:", this.state.podcasts)});
-    } catch (error) {
-      console.log("Error al obtener Podcasts")
-    }
-  };
-
   componentDidMount(){
     this.retrieveUser().then( res => {
       this.setState({user: res, loadedUser:true}) 
       
       this.getAlbumsDB().then( res => {console.log("HA IDO", res)
-        this.getPlaylistsDB().then( res => {console.log("HA IDO", res)
-          this.getPodcastsDB().then( res => {console.log("HA IDO", res)}).catch(err => console.log("Error",err));
-        }).catch(err => console.log("Error",err));
+        this.getPlaylistsDB().then( res => {console.log("HA IDO", res)}).catch(err => console.log("Error",err));
       }).catch(err => console.log("Error",err));
     }).catch(err => console.log("Error",err));
     
@@ -97,9 +85,7 @@ export default class Profile extends Component{
           //Traes datos de usuario del AsyncStorage
           this.retrieveUser().then( res => {this.setState({user: res, loadedUser:true}) 
             this.getAlbumsDB().then( res => {console.log("HA IDO", res)
-              this.getPlaylistsDB().then( res => {console.log("HA IDO", res)
-                this.getPodcastsDB().then( res => {console.log("HA IDO", res)}).catch(err => console.log("Error",err));
-              }).catch(err => console.log("Error",err));
+              this.getPlaylistsDB().then( res => {console.log("HA IDO", res)}).catch(err => console.log("Error",err));
             }).catch(err => console.log("Error",err));
           }).catch(err => console.log("Error",err));
           //Traes data del usuario
@@ -109,7 +95,7 @@ export default class Profile extends Component{
     console.log("state completo:",this.state)
   }
 
-  goToSettings = () => {this.props.navigation.navigate("Settings", {props: this.state})}
+  goToSettings = () => {this.props.navigation.navigate("Settings")}
   renderLoaded(){
     return(
       <ImageBackground source={require('../../../Wallpapers/fondo.jpg')} style={styles.container}>
@@ -168,12 +154,7 @@ export default class Profile extends Component{
             </Text>
             <View style={{height: 200, marginTop: 20}}>
               <ScrollView horizontal={true}>
-              {console.log("this.state.podcasts: ", this.state.user.podcasts)}
-                {this.state.user.podcasts.map(
-                  element => 
-                    <Element type='podcast' paramId={element.idPodcast.l_id} image = {{ uri: element.foto==null ? DEFAULT_URI : element.foto }} name={element.nombre} artist={element.idPodcast.u} props={this.props}></Element>
-                  )
-                }   
+                <Element type='album' image={{uri: 'https://www.federico-toledo.com/wp-content/uploads/2017/07/podcast-image.jpg'}} album_name="Redención" artist="cualquiera" ></Element>   
               </ScrollView>
             </View>
           </View>
@@ -187,7 +168,7 @@ export default class Profile extends Component{
     //OPcion 1
     console.log("---------------------------NUEVA------------------------------------------")
    // console.log("this.state.loaded = ",this.state.loaded)
-    if (this.state.loadedUser && this.state.loadedAlbums && this.state.loadedPlaylists && this.state.loadedPodcasts){
+    if (this.state.loadedUser && this.state.loadedAlbums && this.state.loadedPlaylists){
       console.log("---------------------------1------------------------------------------")
       console.log("this.state = ",this.state)
       console.log("user = ",this.state.user)

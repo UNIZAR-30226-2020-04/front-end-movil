@@ -109,7 +109,7 @@ export default class Profile extends Component{
     console.log("state completo:",this.state)
   }
 
-  goToSettings = () => {this.props.navigation.navigate("Settings", {props: this.state})}
+  goToSettings = () => {this.props.navigation.navigate("Settings", this.state)}
   renderLoaded(){
     return(
       <ImageBackground source={require('../../../Wallpapers/fondo.jpg')} style={styles.container}>

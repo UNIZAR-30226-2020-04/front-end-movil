@@ -178,74 +178,12 @@ export default class Main extends Component{
               Your albums 
             </Text>
             <View style={{height: 200, marginTop: 20}}>
-                  <ScrollView horizontal={true}>
-                    {/* //Mostrar cada album */}
-                    {/* Recorrer array de albumes y crear Element */}
-                    {console.log("this.state.albums: ", this.state.albums)}
-                    {this.props.route.params.props.albums.map(
-                      element => 
-                      <MenuProvider>
-                      <Menu >
-                        <MenuTrigger>
-                          <Element delete='true' type='playlist' paramId={element.idAlbum.l_id} image = {{ uri: element.foto==null ? DEFAULT_URI : element.foto }} name={element.nombre} artist={element.idAlbum.u} props={this.props}></Element>
-                          </MenuTrigger>
-                        <MenuOptions>
-                            <MenuOption value={element.nombre} text={"Delete"} onSelect={type => {NetworkService.deleteAlbum(this.state.user.correo,element.idAlbum.l_id.toString()); alert(`Deleted ${type}`)}} style={{color: 'white'}}/>
-                        </MenuOptions>
-                      </Menu>
-                    </MenuProvider>
-                      )
-                    }
-                  </ScrollView>
-            </View>
-          </View>
+              <ScrollView horizontal={true}>
 
-          <View style={styles.container}>
-            <Text style={styles.title}>
-              Your playlists
-            </Text>
-            <View style={{height: 200, marginTop: 20}}>
-
-            
-                  <ScrollView horizontal={true}>
-                    {console.log("this.state.playlists: ", this.state.playlists)}
-                    {this.props.route.params.props.playlists.map(
-                      element => 
-                        <MenuProvider>
-                          <Menu >
-                            <MenuTrigger>
-                              <Element delete='true' type='playlist' paramId={element.idRep.l_id} image = {{ uri: element.foto==null ? DEFAULT_URI : element.foto }} name={element.nombre} artist={element.idRep.u} props={this.props}></Element>
-                              </MenuTrigger>
-                            <MenuOptions>
-                                <MenuOption value={element.nombre} text={"Delete"} onSelect={type => {NetworkService.deletePlaylist(this.state.user.correo,element.idRep.l_id.toString()); alert(`Deleted ${type}`)}} style={{color: 'white'}}/>
-                            </MenuOptions>
-                          </Menu>
-                        </MenuProvider>
-                      )
-                    }
-                  </ScrollView>
-                       
-           
-              
-            </View>
-          </View>
-
-          <View style={styles.container}>
-            <Text style={styles.title}>
-              Your podcasts
-            </Text>
-            <View style={{height: 200, marginTop: 20}}>
-            <MenuProvider>
+              <MenuProvider>
                 <Menu >
                   <MenuTrigger>
-                  <ScrollView horizontal={true}>
-                    {console.log("this.state.podcasts: ", this.state.user.podcasts)}
-                    {this.props.route.params.props.podcasts.map(
-                      element => 
-                        <Element delete='true' type='podcast' paramId={element.idPodcast.l_id} image = {{ uri: element.foto==null ? DEFAULT_URI : element.foto }} name={element.nombre} artist={element.idPodcast.u} props={this.props}></Element>
-                      )
-                    }   
-                  </ScrollView>
+                  <Element type='album' image={{uri: 'http://metaltrip.com/wp-content/uploads/2015/05/Bullet-For-My-Valentine-400x400.jpg'}} album_name="Venom" artist="cualquiera"></Element>
                   </MenuTrigger>
                   <MenuOptions>
                     <ScrollView style={{ maxHeight: 200 }}>
@@ -254,7 +192,40 @@ export default class Main extends Component{
                   </MenuOptions>
                 </Menu>     
             </MenuProvider>
-              
+                
+              </ScrollView>
+            </View>
+          </View>
+
+          <View style={styles.container}>
+            <Text style={styles.title}>
+              Your playlists
+            </Text>
+            <View style={{height: 200, marginTop: 20}}>
+              <ScrollView horizontal={true}>
+              {console.log("this.state.playlists: ", this.state.playlists)}
+                {this.props.route.params.props.playlists.map(
+                  element => 
+                    <Element type='playlist' paramId={element.idRep.l_id} image = {{ uri: element.foto==null ? DEFAULT_URI : element.foto }} name={element.nombre} artist={element.idRep.u} props={this.props}></Element>
+                  )
+                }
+              </ScrollView>
+            </View>
+          </View>
+
+          <View style={styles.container}>
+            <Text style={styles.title}>
+              Your podcasts
+            </Text>
+            <View style={{height: 200, marginTop: 20}}>
+              <ScrollView horizontal={true}>
+              {console.log("this.state.podcasts: ", this.state.user.podcasts)}
+                {this.props.route.params.props.podcasts.map(
+                  element => 
+                    <Element type='podcast' paramId={element.idPodcast.l_id} image = {{ uri: element.foto==null ? DEFAULT_URI : element.foto }} name={element.nombre} artist={element.idPodcast.u} props={this.props}></Element>
+                  )
+                }   
+              </ScrollView>
             </View>
           </View>
             

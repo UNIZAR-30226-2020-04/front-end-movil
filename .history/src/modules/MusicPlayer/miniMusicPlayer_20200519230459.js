@@ -29,7 +29,7 @@ const PLAYLIST = [
 	),
 	new PlaylistItem(
 		'Mildred Bailey – “All Of Me”',
-		'http://pruebaslistenit.herokuapp.com/Cancion?idsong=11a@a.mp3',
+		'https://ia800304.us.archive.org/34/items/PaulWhitemanwithMildredBailey/PaulWhitemanwithMildredBailey-AllofMe.mp3',
 		'https://picsum.photos/250/300'
 	),
 	new PlaylistItem(
@@ -284,11 +284,11 @@ export default class App extends Component {
 		) : (
 			<View style={styles.container}>
 				<View style={styles.portraitContainer}>
-					<Image style={styles.portrait}
+					{/* <Image style={styles.portrait}
 						source={{uri: this.state.portrait}}
-					/>
+					/> */}
 				</View>
-				<View style={styles.detailsContainer}>
+				{/* <View style={styles.detailsContainer}>
 					<Text>
 						{this.state.playbackInstanceName}
 					</Text>
@@ -299,11 +299,8 @@ export default class App extends Component {
 							this._getTimestamp()
 						)}
 					</Text>
-				</View>
-				<View
-					style={[
-						styles.buttonsContainerBase,
-						styles.buttonsContainerTopRow,
+				</View> */}
+				<View style={[ styles.buttonsContainerBase,styles.buttonsContainerTopRow,
 						{
 							opacity: this.state.isLoading
 								? DISABLED_OPACITY
@@ -402,7 +399,8 @@ export default class App extends Component {
 						styles.buttonsContainerMiddleRow,
 					]}
 				>
-					<View style={styles.volumeContainer}>
+                    {/* //style={styles.volumeContainer}> */}
+					<View>
 						<View>
 							<MaterialIcons
 								name="volume-down"
@@ -426,7 +424,9 @@ export default class App extends Component {
 						</View>
 					</View>
 				</View>
-				<View
+                
+                {/* Barra cambio velocidad */}
+                    <View
 					style={[
 						styles.buttonsContainerBase,
 						styles.buttonsContainerBottomRow,
@@ -461,12 +461,18 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		flexDirection: 'column',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-		alignSelf: 'stretch',
-		backgroundColor: BACKGROUND_COLOR,
+        //flex: 1,
+        position: 'absolute',
+        //paddingTop: 500,
+        top: 600,
+        left:0,
+        height:100,
+        width:400,
+		//flexDirection: 'column',
+		//justifyContent: 'space-around',
+		//alignItems: 'center',
+		//alignSelf: 'stretch',
+		backgroundColor: 'red',//BACKGROUND_COLOR,
 	},
 	portraitContainer: {
         marginTop: 80,

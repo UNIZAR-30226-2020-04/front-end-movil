@@ -68,7 +68,7 @@ class NetworkService {
 
   listSongsPodcast(data){
     console.log('Fetch songs podcast');
-    var url=`${BASE_URL}/listPodcast`
+    var url=`${BASE_URL}/listSongsPodcast`
     console.log('PodcastID', data.idpodcast);
     console.log('User', data.user);
     console.log('URLLLLLL', url);
@@ -134,39 +134,6 @@ class NetworkService {
     data.email = data.user.correo
     data.name = data.nombreAlbum
     console.log("CORREO", data.correo)
-    return RequestService.postRequest(url,data);
-  }
-
-  deleteAlbum(correo,idalbum){
-    console.log('Servicio borrar Album');
-    var url=`${BASE_URL}/deleteAlbum`
-    console.log('URLLLLLL', url);
-    data={}
-    data.user = correo
-    data.idalbum = idalbum
-    console.log("CORREO", data)
-    return RequestService.postRequest(url,data);
-  }
-
-  deletePlaylist(correo,idplaylist){
-    console.log('Servicio borrar playlist');
-    var url=`${BASE_URL}/deletePlaylist`
-    console.log('URLLLLLL', url);
-    data={}
-    data.user = correo
-    data.idplaylist = idplaylist
-    console.log("CORREO", data)
-    return RequestService.postRequest(url,data);
-  }
-
-  deletePodcast(correo,idpodcast){
-    console.log('Servicio borrar podcast');
-    var url=`${BASE_URL}/deletePodcast`
-    console.log('URLLLLLL', url);
-    data={}
-    data.user = correo
-    data.idpodcast = idpodcast
-    console.log("CORREO", data)
     return RequestService.postRequest(url,data);
   }
 

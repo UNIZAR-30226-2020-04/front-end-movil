@@ -15,7 +15,7 @@ import Search from "./modules/Search/containers/search";
 import Library from "./modules/Library/containers/library";
 
 import Own from "./modules/Own/containers/own";
-import MusicPlayer from "./modules/MusicPlayer/MusicPlayer";
+import MusicPlayer from "./modules/MusicPlayer/miniMusicPlayer";
 
 import Profile from "./modules/Profile/containers/profile";
 import SettingsProfile from "./modules/Profile/containers/settingsProfile.js";
