@@ -1,66 +1,187 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert, ScrollView, Image, ImageBackground, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Alert, ScrollView,FlatList, Image, ImageBackground, TouchableOpacity } from 'react-native';
 import { SearchBar, ButtonGroup } from 'react-native-elements';
+import { ListItem } from 'react-native-elements'
+import NetworkService from '../../../networks/NetworkService'
 
 
-export default class Main extends Component{
-  
+export default class Search extends Component{
+
   constructor () {
     super()
     this.state = {
       textSearch: "",
       selectedIndex: 2,
-      nResults: 0
+      resultados : []
+
     }
 
     this.arrayData=[]
     this.updateIndex = this.updateIndex.bind(this)
   }
 
-  //Al montar el componente hacer consulta??
-  // componentDidMount() {
-  //   return fetch('https://jsonplaceholder.typicode.com/posts')
-  //     .then(response => response.json())
-  //     .then(responseJson => {
-  //       this.setState(
-  //         {
-  //           isLoading: false,
-  //           dataSource: responseJson,
-  //         },
-  //         function() {
-  //           this.arrayholder = responseJson;
-  //         }
-  //       );
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // }
+  async updateIndex (selectedIndex) {
+    this.state.selectedIndex=selectedIndex;
+    console.log("Como va el indexxx loco: ",this.state.selectedIndex)
+    let respuesta = "respuesta vacia"
+   
+    if(this.state.selectedIndex==0){
+    await NetworkService.searchArtistas(this.state.textSearch).then( res => {respuesta= res});
+    console.log("Resultado de la busqueda Artistas",respuesta)
+    }
+   else if(this.state.selectedIndex==1){
+      await NetworkService.searchAlbums(this.state.textSearch).then( res => {respuesta= res});
+      console.log("Resultado de la busqueda Albums",respuesta)
+    }
+    else if(this.state.selectedIndex==2){
+      await NetworkService.searchPlaylist(this.state.textSearch).then( res => {respuesta= res});
+      console.log("Resultado de la busqueda Playlist",respuesta)
+    }
+    else if(this.state.selectedIndex==3){
+      await NetworkService.searchPodcast(this.state.textSearch).then( res => {respuesta= res});
+      console.log("Resultado de la busqueda Podcast",respuesta)
+    }
+  
+    this.setState({
+      resultados: respuesta,
+      selectedIndex: selectedIndex
+    });
 
-  // SearchFilterFunction(text) {
-  //   //passing the inserted text in textinput
-  //   const newData = this.arrayholder.filter(function(item) {
-  //     //applying filter for the inserted text in search bar
-  //     const itemData = item.title ? item.title.toUpperCase() : ''.toUpperCase();
-  //     const textData = text.toUpperCase();
-  //     return itemData.indexOf(textData) > -1;
-  //   });
 
-  //   this.setState({
-  //     //setting the filtered newData on datasource
-  //     //After setting the data it will automatically re-render the view
-  //     dataSource: newData,
-  //     search: text,
-  //   });
-  // }
 
-  updateIndex (selectedIndex) {
-    this.setState({selectedIndex: selectedIndex})
   }
 
+  async SearchFilterFunction(text) {
+    let respuesta = "respuesta vacia"
+   
+    if(this.state.selectedIndex==0){
+    await NetworkService.searchArtistas(text).then( res => {respuesta= res});
+    console.log("Resultado de la busqueda Artistas",respuesta)
+    }
+   else if(this.state.selectedIndex==1){
+      await NetworkService.searchAlbums(text).then( res => {respuesta= res});
+      console.log("Resultado de la busqueda Albums",respuesta)
+    }
+    else if(this.state.selectedIndex==2){
+      await NetworkService.searchPlaylist(text).then( res => {respuesta= res});
+      console.log("Resultado de la busqueda Playlist",respuesta)
+    }
+    else if(this.state.selectedIndex==3){
+      await NetworkService.searchPodcast(text).then( res => {respuesta= res});
+      console.log("Resultado de la busqueda Podcast",respuesta)
+    }
+  
+    this.setState({
+      resultados: respuesta,
+      textSearch: text,
+    });
+  }
+
+
+
+
+
+
+
   render(){
-    const buttons = ['Artists', 'Albums', 'Playlist', 'Podcast', ]
+ 
     const { selectedIndex } = this.state
+    const buttons = ['Artists', 'Albums', 'Playlist', 'Podcast', ]
+
+    let mostrar;
+    let resultados;
+    if (selectedIndex==0) {
+      console.log("Mostrando Artistas",this.state.resultados)
+      if (this.state.resultados!=null){
+        <Text style={[styles.title,{marginTop: 10}]}>
+        Resultados {this.state.resultados.length} 
+      </Text>
+         resultados=  <Text style={[styles.title,{marginTop: 10}]}>
+                         Resultados: {this.state.resultados.length} 
+                      </Text>
+
+         mostrar =    this.state.resultados.map(user => 
+                          <TouchableOpacity  onPress={() => this.props.navigation.navigate('profileSearch', user)}>
+                          <Text  style={[styles.title,{marginTop: 10}]} > 
+                            { user.nombre }
+                          </Text> 
+                        </TouchableOpacity>
+
+                    )
+      }
+      else {   mostrar= <Text  style={[styles.title,{marginTop: 10}]}> Sin resultados  </Text> }
+                
+    }
+
+    ///Visualizacion Albums
+    else if(selectedIndex==1) {
+      if (this.state.resultados!=null){
+        <Text style={[styles.title,{marginTop: 10}]}>
+        Resultados {this.state.resultados.length} 
+      </Text>
+         resultados=  <Text style={[styles.title,{marginTop: 10}]}>
+                         Resultados: {this.state.resultados.length} 
+                      </Text>
+
+         mostrar =    this.state.resultados.map(album => 
+                            //////////////////////////////////////////////////////////////Cambiar que te lleve al album.
+                          <TouchableOpacity  onPress={() => this.props.navigation.navigate('profileSearch', user)}>
+                          <Text  style={[styles.title,{marginTop: 10}]} > 
+                            { album.nombre }
+                          </Text> 
+                        </TouchableOpacity>
+                    )
+      }
+      else {   mostrar= <Text  style={[styles.title,{marginTop: 10}]}> Sin resultados  </Text> }
+
+    }
+
+    ///Visualizacion Playlists
+    else if(selectedIndex==2) {
+      if (this.state.resultados!=null){
+        <Text style={[styles.title,{marginTop: 10}]}>
+        Resultados {this.state.resultados.length} 
+      </Text>
+         resultados=  <Text style={[styles.title,{marginTop: 10}]}>
+                         Resultados: {this.state.resultados.length} 
+                      </Text>
+
+         mostrar =    this.state.resultados.map(playlist=> 
+                            //////////////////////////////////////////////////////////////Cambiar que te lleve a playlist.
+                          <TouchableOpacity  onPress={() => this.props.navigation.navigate('profileSearch', user)}>
+                          <Text  style={[styles.title,{marginTop: 10}]} > 
+                            { playlist.nombre }
+                          </Text> 
+                        </TouchableOpacity>
+                    )
+      }
+      else {   mostrar= <Text  style={[styles.title,{marginTop: 10}]}> Sin resultados  </Text> }
+    }
+
+    //Visualizacion podcast
+    else if(selectedIndex==3) {
+      if (this.state.resultados!=null){
+        <Text style={[styles.title,{marginTop: 10}]}>
+        Resultados {this.state.resultados.length} 
+      </Text>
+         resultados=  <Text style={[styles.title,{marginTop: 10}]}>
+                         Resultados: {this.state.resultados.length} 
+                      </Text>
+
+         mostrar =    this.state.resultados.map(podcast=> 
+                            //////////////////////////////////////////////////////////////Cambiar que te lleve a podcast.
+                          <TouchableOpacity  onPress={() => this.props.navigation.navigate('profileSearch', user)}>
+                          <Text  style={[styles.title,{marginTop: 10}]} > 
+                            { podcast.nombre }
+                          </Text> 
+                        </TouchableOpacity>
+                    )
+      }
+      else {   mostrar= <Text  style={[styles.title,{marginTop: 10}]}> Sin resultados  </Text> }
+    }
+
+
+
     return(
       <View style={styles.container}>
           <ImageBackground source={require('../../../Wallpapers/fondo.jpg')} style={styles.backgroundImage}>
@@ -72,11 +193,11 @@ export default class Main extends Component{
                 borderTopColor: 'transparent' }}
                 
                 inputContainerStyle={{backgroundColor: '#fff'}}
-                // onChangeText={text => this.SearchFilterFunction(text)}
-                // onClear={text => this.SearchFilterFunction('')}
-                onChangeText={text => this.setState({textSearch: text})}
-                // onClear={text => this.SearchFilterFunction('')}
-                placeholder="Type Here..."
+              
+                onChangeText={text => this.SearchFilterFunction(text)}
+                onClear={text => this.SearchFilterFunction('')}
+                
+                placeholder="Busque aqui..."
                 value={this.state.textSearch}
               />
 
@@ -90,10 +211,8 @@ export default class Main extends Component{
                 selectedButtonStyle={{backgroundColor: '#64EE85'}}
                 selectedTextStyle={{color: 'white'}}
               />
-
-              <Text style={[styles.title,{marginTop: 10}]}>
-                Results {this.state.nResults} 
-              </Text>
+              {resultados}
+              {mostrar}
             </ScrollView>  
           </ImageBackground>
         

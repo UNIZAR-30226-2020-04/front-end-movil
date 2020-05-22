@@ -11,7 +11,11 @@ import Register from "./modules/Register/containers/register";
 import RecoverPassword from "./modules/RecoverPassword/containers/recoverPassword";
 
 import DashBoard from "./modules/DashBoard/containers/dashboard"; //Main screen after login
+
+
 import Search from "./modules/Search/containers/search";
+import ProfileSearch from "./modules/Search/containers/profileSearch"
+
 import Library from "./modules/Library/containers/library";
 
 import Own from "./modules/Own/containers/own";
@@ -23,7 +27,6 @@ import SettingsProfile from "./modules/Profile/containers/settingsProfile.js";
 import addAlbum from "./modules/Own/containers/addAlbum";
 import addPodcast from "./modules/Own/containers/addPodcast";
 import addPlaylist from "./modules/Own/containers/addPlaylist";
-
 
 //ToastAndroid.show('Button pressed', ToastAndroid.SHORT)
 
@@ -71,6 +74,7 @@ const OwnStack = createStackNavigator();
         },
       }}>
         <SearchStack.Screen name="Search" component={Search} />
+        <SearchStack.Screen name="profileSearch" component={ProfileSearch} />
       </SearchStack.Navigator>
     );
   }

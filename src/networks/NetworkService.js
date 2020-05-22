@@ -4,7 +4,7 @@ import {
   Platform
 } from 'react-native';
 
-const BASE_URL = "http://localhost:8080";
+const BASE_URL = "http://pruebaslistenit.herokuapp.com";
 //adb reverse tcp:8080 tcp:8080
 class NetworkService {
 
@@ -134,6 +134,37 @@ class NetworkService {
     //data.idalbum = data.
     return RequestService.postRequest(url,data);
   }
+
+  searchArtistas(data){
+    console.log('Buscando....',data);
+    var url=`${BASE_URL}/searchUser`
+    return RequestService.postRequest(url,data);
+  }
+
+  searchAlbums(data){
+    console.log('Buscando....',data);
+    var url=`${BASE_URL}/searchAlbum`
+    return RequestService.postRequest(url,data);
+  }
+  searchPlaylist(data){
+    console.log('Buscando....',data);
+    var url=`${BASE_URL}/searchPlaylist`
+    return RequestService.postRequest(url,data);
+  }
+
+  searchPlaylist(data){
+    console.log('Buscando....',data);
+    var url=`${BASE_URL}/searchPlaylist`
+    return RequestService.postRequest(url,data);
+  }
+
+  searchPodcast(data){
+    console.log('Buscando....',data);
+    var url=`${BASE_URL}/searchPodcast`
+    return RequestService.postRequest(url,data);
+  }
+
+
 }
 
 export default new NetworkService()
