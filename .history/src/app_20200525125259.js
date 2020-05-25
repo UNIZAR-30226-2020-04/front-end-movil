@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { Alert, StyleSheet, Text, View, Button, ToastAndroid } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
@@ -11,10 +11,29 @@ import Register from "./modules/Register/containers/register";
 import RecoverPassword from "./modules/RecoverPassword/containers/recoverPassword";
 
 import DashBoard from "./modules/DashBoard/containers/dashboard"; //Main screen after login
+
+
 import Search from "./modules/Search/containers/search";
+import ProfileSearch from "./modules/Search/containers/profileSearch"
+
 import Library from "./modules/Library/containers/library";
-import Profile from "./modules/Profile/containers/profile";
+
 import Own from "./modules/Own/containers/own";
+import MusicPlayer from "./modules/MusicPlayer/MusicPlayer";
+
+import Profile from "./modules/Profile/containers/profile";
+import SettingsProfile from "./modules/Profile/containers/settingsProfile.js";
+
+import addAlbum from "./modules/Own/containers/addAlbum";
+import addPodcast from "./modules/Own/containers/addPodcast";
+import addPlaylist from "./modules/Own/containers/addPlaylist";
+
+import ViewAlbum from './modules/viewAlbum'
+import ViewPlaylist from './modules/viewPlaylist'
+import ViewPodcast from './modules/viewPodcast'
+
+
+//ToastAndroid.show('Button pressed', ToastAndroid.SHORT)
 
 
 
@@ -42,6 +61,7 @@ const OwnStack = createStackNavigator();
         },
       }}>
         <DashboardStack.Screen name="Dashboard" component={DashBoard} />
+        <DashboardStack.Screen name="MusicPlayer" component={MusicPlayer} />
       </DashboardStack.Navigator>
     );
   }
@@ -59,6 +79,7 @@ const OwnStack = createStackNavigator();
         },
       }}>
         <SearchStack.Screen name="Search" component={Search} />
+        <SearchStack.Screen name="profileSearch" component={ProfileSearch} />
       </SearchStack.Navigator>
     );
   }
@@ -90,8 +111,18 @@ const OwnStack = createStackNavigator();
           fontWeight: '600',
           paddingHorizontal: 20
         },
-      }}>
+
+        headerRight: ({ navigation, screenProps }) => (
+          <Button title="SETTINGS" ></Button>
+          //<Ionicons name='settings-outline' onPress={Alert.alert("HOLA")}></Ionicons>
+        ),
+      }}
+      >
         <ProfileStack.Screen name="Profile" component={Profile} />
+        <ProfileStack.Screen name="Settings" component={SettingsProfile} />
+        <ProfileStack.Screen name="viewAlbum" component={ViewAlbum} />
+        <ProfileStack.Screen name="viewPlaylist" component={ViewPlaylist} />
+        <ProfileStack.Screen name="viewPodcast" component={ViewPodcast} />
       </ProfileStack.Navigator>
     );
   }
@@ -99,9 +130,7 @@ const OwnStack = createStackNavigator();
   function OwnStackScreen() {
     return (
       <OwnStack.Navigator screenOptions = {{
-        headerRight:{
-          title: "RIGHT"
-        },
+         
         headerTransparent: true,
         headerTintColor:'white',
         headerTitleStyle:{
@@ -111,6 +140,9 @@ const OwnStack = createStackNavigator();
         },
       }}>
         <OwnStack.Screen name="Own" component={Own} />
+        <OwnStack.Screen name="addAlbum" component={addAlbum} />
+        <OwnStack.Screen name="addPodcast" component={addPodcast} />
+        <OwnStack.Screen name="addPlaylist" component={addPlaylist} />
       </OwnStack.Navigator>
     );
   }
@@ -121,8 +153,6 @@ function menuLogged(){
   return (
     <MenuLoged.Navigator
       screenOptions={({ route }) => ({
-        
-
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           //Si estoy en dashboard muestra este icono
