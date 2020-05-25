@@ -102,9 +102,9 @@ export default class addPodcast extends React.Component {
 
   crearPodcast = async () => {
     if (this.state.nombrePodcast != ""){
-      console.log("Creando Podcast.....:  ",this.state.nombrePodcast);
+      console.log("Creando Album.....:  ",this.state.nombrePodcast);
       this.state.name=this.state.nombrePodcast
-      console.log("-------------PODCAST-----------------------");
+      console.log("-------------Canciones-----------------------");
       this.state.cancionesPodcast.forEach(element => console.log(element.nombre));
       console.log("USERRRRRRRRRRRRRRRRRRRRR:  ",this.state.user);
       await NetworkService.createPodcast(this.state).then( res => {this.state.result = res});

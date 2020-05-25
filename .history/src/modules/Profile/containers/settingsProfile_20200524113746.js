@@ -234,25 +234,26 @@ export default class Main extends Component{
               Your podcasts
             </Text>
             <View style={{height: 200, marginTop: 20}}>
-            <ScrollView horizontal={true}>
-            {console.log("this.state.podcasts: ", this.state.user.podcasts)}
+            <MenuProvider>
+                <Menu >
+                  <MenuTrigger>
+                  <ScrollView horizontal={true}>
+                    {console.log("this.state.podcasts: ", this.state.user.podcasts)}
                     {this.props.route.params.props.podcasts.map(
                       element => 
-                        <MenuProvider>
-                          <Menu >
-                            <MenuTrigger>
-                              <Element delete='true' type='podcast' paramId={element.idPodcast.l_id} image = {{ uri: element.foto==null ? DEFAULT_URI : element.foto }} name={element.nombre} artist={element.idPodcast.u} props={this.props}></Element>
-                            </MenuTrigger>
-                            <MenuOptions>
-                              <ScrollView style={{ maxHeight: 200 }}>
-                                <MenuOption value={"getAlbumName()"} text={"Delete"} onSelect={type => {NetworkService.deletePodcast(this.state.user.correo,element.idPodcast.l_id.toString()); alert(`Deleted ${type}`)}} style={{color: 'white'}}/>
-                              </ScrollView>                           
-                            </MenuOptions>
-                          </Menu>
-                        </MenuProvider>
+                        <Element delete='true' type='podcast' paramId={element.idPodcast.l_id} image = {{ uri: element.foto==null ? DEFAULT_URI : element.foto }} name={element.nombre} artist={element.idPodcast.u} props={this.props}></Element>
                       )
-                    }
+                    }   
                   </ScrollView>
+                  </MenuTrigger>
+                  <MenuOptions>
+                    <ScrollView style={{ maxHeight: 200 }}>
+                      <MenuOption value={"getAlbumName()"} text={"Delete"} onSelect={type => {NetworkService.deletePodcast(this.state.user.correo,element.idPodcast.l_id.toString()); alert(`Deleted ${type}`)}} style={{color: 'white'}}/>
+                    </ScrollView>
+                  </MenuOptions>
+                </Menu>     
+            </MenuProvider>
+              
             </View>
           </View>
             

@@ -169,7 +169,7 @@ export default class Profile extends Component{
             <View style={{height: 200, marginTop: 20}}>
               <ScrollView horizontal={true}>
               {console.log("this.state.podcasts: ", this.state.podcasts)}
-                {this.state.podcasts.map(
+                {this.state.user.podcasts.map(
                   element => 
                     <Element type='podcast' paramId={element.idPodcast.l_id} image = {{ uri: element.foto==null ? DEFAULT_URI : element.foto }} name={element.nombre} artist={element.idPodcast.u} props={this.props}></Element>
                   )

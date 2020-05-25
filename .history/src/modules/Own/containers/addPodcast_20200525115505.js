@@ -91,7 +91,6 @@ export default class addPodcast extends React.Component {
  async bucleAddSong(element) {
     this.state.nombreP=element.nombre
     console.log("ELEMENT . NOMBRE:  ",element.nombre);
-    console.log("ELEMENT URI",element);
     await NetworkService.addCapituloPodcast(element.nombre,element.URI,this.state.idpodcast, this.state.user.correo)//this.state.user.correo
           .then( res => {this.state.result = res});
     //console.log("Resultadoooo añadir cancion",this.state.result)
@@ -102,13 +101,13 @@ export default class addPodcast extends React.Component {
 
   crearPodcast = async () => {
     if (this.state.nombrePodcast != ""){
-      console.log("Creando Podcast.....:  ",this.state.nombrePodcast);
+      console.log("Creando Album.....:  ",this.state.nombrePodcast);
       this.state.name=this.state.nombrePodcast
-      console.log("-------------PODCAST-----------------------");
+      console.log("-------------Canciones-----------------------");
       this.state.cancionesPodcast.forEach(element => console.log(element.nombre));
       console.log("USERRRRRRRRRRRRRRRRRRRRR:  ",this.state.user);
       await NetworkService.createPodcast(this.state).then( res => {this.state.result = res});
-      console.log("ID del PODCAST",this.state.result.l_id);
+      console.log("ID del album",this.state.result.l_id);
       this.state.idpodcast = this.state.result.l_id;
       this.state.user.correo = this.state.user.correo
 

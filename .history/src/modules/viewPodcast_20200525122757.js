@@ -29,7 +29,7 @@ export default class viewPodcast extends Component{
     data.idpodcast = this.props.route.params.paramId
     data.idpodcast = data.idpodcast.toString()
     console.log("********************************")
-    console.log("DATA PODCAST",data)
+    console.log(" DATA PODCAST",data)
     NetworkService.listSongsPodcast(data).then(res => {this.setState({songs: res, loadedSongs:true});console.log("Songs RES:", res)})//this.props.route.params.artist, this.props.route.params.paramId
     //Me devuelve una lista de canciones
   }

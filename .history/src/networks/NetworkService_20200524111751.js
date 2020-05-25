@@ -197,21 +197,21 @@ class NetworkService {
     return RequestService.addSongRequest(url,nombreC,uri,idalbum,correo);
   }
 
-  addCapituloPodcast(nombreC,uri,idalbum,correo){
-    console.log('Servicio Subir cancion Podcast', {url,nombreC,uri,idalbum,correo});
+  addCapituloPodcast(nombreP,uri,idpodcast,correo){
+    console.log('Servicio Subir cancion Podcast', data);
     var url=`${BASE_URL}/subirCancion`
-    return RequestService.addSongRequest(url,nombreC,uri,idalbum,correo);
+    return RequestService.addSongRequest(url,nombreP,uri,idpodcast,correo);
   }
 
   createPodcast(data){
     console.log('Servicio Crear Podcast', data);
     var url=`${BASE_URL}/createPodcast`
     console.log('URLLLLLL', url);
-    update={}
-    update.user = data.user.correo
-    update.podcast = data.nombrePodcast
+
+    data.user = data.user.correo
+    data.podcast = data.nombrePodcast
     console.log("CORREO", data.correo)
-    return RequestService.postRequest(url,update);
+    return RequestService.postRequest(url,data);
   }
 
   //Crea la palylist

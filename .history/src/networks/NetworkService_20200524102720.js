@@ -83,7 +83,6 @@ class NetworkService {
     return RequestService.postRequest(url,data);
   }
 
-  
   uploadSong(uri){
     //console.log('Dataaaa:', data);
     var url=`${BASE_URL}/uploadSong`
@@ -91,34 +90,24 @@ class NetworkService {
     return RequestService.uploadAudioAsync(url,uri);
   }
   
-
-  //Funciona
   deleteUser(data){
     console.log('Delete User');
     var url=`${BASE_URL}/deleteUser`
-    update={}
-    update.user = data.correo
-    update.pass = data.pass
-    update.passCheck = data.passwordCheck
-
     console.log('URLLLLLL', url);
-    return RequestService.postRequest(url,update);
+    return RequestService.postRequest(url,data);
   }
 
 
   updateUserName(data){
     console.log('Update User NAme');
     var url=`${BASE_URL}/cambiarNombre`
-    update={}
-    update.user = data.correo
-    update.nick = data.nombre
-    update.newName = data.newName
+    data.user = data.correo
+    data.name = data.name
+    data.newName = data.newName
     console.log('URLLLLLL', url);
-    console.log('UPDATE: ', update);
-    return RequestService.postRequest(url,update);
+    return RequestService.postRequest(url,data);
   }
 
-  //Funciona
   updateUserNick(data){
     console.log('Update User Nick');
     var url=`${BASE_URL}/cambiarNick`
@@ -127,19 +116,14 @@ class NetworkService {
     update.nick = data.nick
     update.newNick = data.newNick
     console.log('URLLLLLL', url);
-    return RequestService.postRequest(url,update);
+    return RequestService.postRequest(url,data);
   }
 
   updateUserPass(data){
     console.log('Update User Pass');
     var url=`${BASE_URL}/cambiarPass`
     console.log('URLLLLLL', url);
-    update={}
-    update.user = data.correo
-    update.pass = data.pass
-    update.newPass = data.newPass
-    
-    return RequestService.postRequest(url,update);
+    return RequestService.postRequest(url,data);
   }
 
   // updateUserData(data){
@@ -198,20 +182,20 @@ class NetworkService {
   }
 
   addCapituloPodcast(nombreC,uri,idalbum,correo){
-    console.log('Servicio Subir cancion Podcast', {url,nombreC,uri,idalbum,correo});
-    var url=`${BASE_URL}/subirCancion`
-    return RequestService.addSongRequest(url,nombreC,uri,idalbum,correo);
+    //console.log('Servicio Subir Cancion Album', data);
+    //var url=`${BASE_URL}/subirCancion`
+    //return RequestService.addSongRequest(url,nombreC,uri,idalbum,correo);
   }
 
   createPodcast(data){
-    console.log('Servicio Crear Podcast', data);
-    var url=`${BASE_URL}/createPodcast`
+    console.log('Servicio Crear Album', data);
+    var url=`${BASE_URL}/createAlbum`
     console.log('URLLLLLL', url);
-    update={}
-    update.user = data.user.correo
-    update.podcast = data.nombrePodcast
+
+    data.user = data.user.correo
+    data.nombre = data.nombrePodcast
     console.log("CORREO", data.correo)
-    return RequestService.postRequest(url,update);
+    return RequestService.postRequest(url,data);
   }
 
   //Crea la palylist

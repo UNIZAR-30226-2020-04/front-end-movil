@@ -197,10 +197,10 @@ class NetworkService {
     return RequestService.addSongRequest(url,nombreC,uri,idalbum,correo);
   }
 
-  addCapituloPodcast(nombreC,uri,idalbum,correo){
-    console.log('Servicio Subir cancion Podcast', {url,nombreC,uri,idalbum,correo});
+  addCapituloPodcast(nombreP,uri,idpodcast,correo){
+    console.log('Servicio Subir cancion Podcast', {nombreP,uri,idpodcast,correo});
     var url=`${BASE_URL}/subirCancion`
-    return RequestService.addSongRequest(url,nombreC,uri,idalbum,correo);
+    return RequestService.addSongRequest(url,nombreP,uri,idpodcast,correo);
   }
 
   createPodcast(data){
