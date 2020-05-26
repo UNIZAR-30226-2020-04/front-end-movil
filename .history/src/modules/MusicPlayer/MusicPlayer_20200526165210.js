@@ -21,8 +21,6 @@ class PlaylistItem {
 	}
 }
 
-//const PLAYLIST = [];
-
 const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window');
 const BACKGROUND_COLOR = '#FFFFFF';
 const DISABLED_OPACITY = 0.5;
@@ -264,7 +262,7 @@ export default class App extends Component {
 	}
 
 	render() {
-		console.log("PLAYLIST:-------------------------------------------",this.props.route)
+		console.log("PLAYLIST:-------------------------------------------",this.props)
 		return !this.state.fontLoaded ? (
 			<View />
 		) : (

@@ -54,7 +54,7 @@ export default class App extends Component {
 	}
 
 	componentDidMount() {
-		
+		console.log("PLAYLIST:-------------------------------------------",this.props.route)
 		Audio.setAudioModeAsync({
 			allowsRecordingIOS: false,
 			interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
@@ -264,7 +264,7 @@ export default class App extends Component {
 	}
 
 	render() {
-		console.log("PLAYLIST:-------------------------------------------",this.props.route)
+		
 		return !this.state.fontLoaded ? (
 			<View />
 		) : (

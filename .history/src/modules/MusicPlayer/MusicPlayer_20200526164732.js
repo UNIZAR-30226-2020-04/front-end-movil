@@ -21,8 +21,6 @@ class PlaylistItem {
 	}
 }
 
-//const PLAYLIST = [];
-
 const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window');
 const BACKGROUND_COLOR = '#FFFFFF';
 const DISABLED_OPACITY = 0.5;
@@ -54,7 +52,7 @@ export default class App extends Component {
 	}
 
 	componentDidMount() {
-		
+		console.log("PLAYLIST:-------------------------------------------",this.props)
 		Audio.setAudioModeAsync({
 			allowsRecordingIOS: false,
 			interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
@@ -264,7 +262,6 @@ export default class App extends Component {
 	}
 
 	render() {
-		console.log("PLAYLIST:-------------------------------------------",this.props.route)
 		return !this.state.fontLoaded ? (
 			<View />
 		) : (

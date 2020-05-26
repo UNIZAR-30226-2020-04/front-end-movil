@@ -264,7 +264,7 @@ export default class App extends Component {
 	}
 
 	render() {
-		console.log("PLAYLIST:-------------------------------------------",this.props.route)
+		console.log("PLAYLIST:-------------------------------------------",this.props.route.params)
 		return !this.state.fontLoaded ? (
 			<View />
 		) : (
