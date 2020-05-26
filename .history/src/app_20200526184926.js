@@ -60,7 +60,7 @@ const OwnStack = createStackNavigator();
         },
       }}>
         <DashboardStack.Screen name="Dashboard" component={DashBoard} />
-        {/* <DashboardStack.Screen name="MusicPlayer" component={MusicPlayer} /> */}
+        <DashboardStack.Screen name="MusicPlayer" component={MusicPlayer} />
       </DashboardStack.Navigator>
     );
   }

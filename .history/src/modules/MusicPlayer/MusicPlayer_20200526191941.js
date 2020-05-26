@@ -75,9 +75,9 @@ export default class App extends Component {
 		console.log("PLAYLIST: ", this.props.route.params)
 		//console.log("PLAYLIST: ", this.props.route.params.PLAYLIST)
 		console.log("PLAYLIST: ", this.props)
-		// this.retrievePlaylist().then( res => {
-		// 		PLAYLIST = res;
-		// 		console.log("PLAYLIST", PLAYLIST)
+		this.retrievePlaylist().then( res => {
+				PLAYLIST = res;
+				console.log("PLAYLIST", PLAYLIST)
 				Audio.setAudioModeAsync({
 					allowsRecordingIOS: false,
 					interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
@@ -95,10 +95,10 @@ export default class App extends Component {
 		
 				this._loadNewPlaybackInstance(false);
 
-			//}
+			}
 			
 
-		//)
+		)
 
 		
 		

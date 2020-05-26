@@ -29,8 +29,6 @@ const LOADING_STRING = 'Loading...';
 const BUFFERING_STRING = 'Buffering...';
 const RATE_SCALE = 3.0;
 
-var PLAYLIST = [];
-
 export default class App extends Component {
 	constructor(props) {
 		super(props);
@@ -50,58 +48,27 @@ export default class App extends Component {
 			volume: 1.0,
 			rate: 1.0,
 			portrait: null,
-			
 		};
 	}
 
-	// retrievePlaylist = async () => {
-	// 	try {
-	// 	  const retrieveItem = await AsyncStorage.getItem('PlaylistNow');
-	// 	  if (retrieveItem !== null) {
-	// 		We have data!!
-	// 		console.log("AQUI BN")
-	// 		const item = JSON.parse(retrieveItem)
-	// 		console.log("Playlist item: ", item);
-	// 		return item;
-	// 	  }
-	// 	} catch (error) {
-	// 	  Error retrieving data
-	// 	  console.log("Error al obtener datos")
-	// 	}
-	//   };
-
 	componentDidMount() {
-		console.log("PLAYLIST: ", PLAYLIST)
-		console.log("PLAYLIST: ", this.props.route.params)
-		//console.log("PLAYLIST: ", this.props.route.params.PLAYLIST)
-		console.log("PLAYLIST: ", this.props)
-		// this.retrievePlaylist().then( res => {
-		// 		PLAYLIST = res;
-		// 		console.log("PLAYLIST", PLAYLIST)
-				Audio.setAudioModeAsync({
-					allowsRecordingIOS: false,
-					interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
-					playsInSilentModeIOS: true,
-					shouldDuckAndroid: true,
-					interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
-					playThroughEarpieceAndroid: true
-				});
-				// (async () => {
-				// 	await Font.loadAsync({
-				// 		roboto: require('./assets/fonts/Roboto.ttf'),
-				// 	});
-					 this.setState({ fontLoaded: true });
-				// })();
-		
-				this._loadNewPlaybackInstance(false);
+		console.log("PLAYLIST:-------------------------------------------",this.props.route.params.PLAYLIST)
+		Audio.setAudioModeAsync({
+			allowsRecordingIOS: false,
+			interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+			playsInSilentModeIOS: true,
+			shouldDuckAndroid: true,
+			interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+			playThroughEarpieceAndroid: true
+		});
+		// (async () => {
+		// 	await Font.loadAsync({
+		// 		roboto: require('./assets/fonts/Roboto.ttf'),
+		// 	});
+			 this.setState({ fontLoaded: true });
+		// })();
 
-			//}
-			
-
-		//)
-
-		
-		
+		this._loadNewPlaybackInstance(false);
 	}
 
 	async _loadNewPlaybackInstance(playing) {
@@ -326,7 +293,7 @@ export default class App extends Component {
 								: 1.0,
 						},
 					]}
-				>	
+				>
 					<TouchableHighlight
 						underlayColor={BACKGROUND_COLOR}
 						style={styles.wrapper}

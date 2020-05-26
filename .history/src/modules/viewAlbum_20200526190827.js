@@ -101,7 +101,7 @@ export default class viewAlbum extends Component{
   storePlaylist = async () => {
     try {
       await AsyncStorage.setItem('PlaylistNow', JSON.stringify(PLAYLIST));
-      console.log("Guardando playlist...")
+      console.log("Guardando this.user...")
     } catch (error) {
         console.log("Fallo al guardar..")
       // Error saving data
@@ -129,8 +129,7 @@ export default class viewAlbum extends Component{
     }
 
     console.log("Playlist en viewALBUM-------------------------", PLAYLIST)
-    ruta.props.navigation.navigate("MusicPlayer", PLAYLIST)
-    //this.storePlaylist().then(res => ruta.props.navigation.navigate("MusicPlayer"))
+    storePlaylist().then(res => ruta.props.navigation.navigate("MusicPlayer"))
     
   }
 

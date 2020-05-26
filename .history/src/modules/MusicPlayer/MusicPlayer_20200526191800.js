@@ -54,30 +54,30 @@ export default class App extends Component {
 		};
 	}
 
-	// retrievePlaylist = async () => {
-	// 	try {
-	// 	  const retrieveItem = await AsyncStorage.getItem('PlaylistNow');
-	// 	  if (retrieveItem !== null) {
-	// 		We have data!!
-	// 		console.log("AQUI BN")
-	// 		const item = JSON.parse(retrieveItem)
-	// 		console.log("Playlist item: ", item);
-	// 		return item;
-	// 	  }
-	// 	} catch (error) {
-	// 	  Error retrieving data
-	// 	  console.log("Error al obtener datos")
-	// 	}
-	//   };
+	retrievePlaylist = async () => {
+		try {
+		  const retrieveItem = await AsyncStorage.getItem('PlaylistNow');
+		  if (retrieveItem !== null) {
+			// We have data!!
+			console.log("AQUI BN")
+			const item = JSON.parse(retrieveItem)
+			console.log("Playlist item: ", item);
+			return item;
+		  }
+		} catch (error) {
+		  // Error retrieving data
+		  console.log("Error al obtener datos")
+		}
+	  };
 
 	componentDidMount() {
 		console.log("PLAYLIST: ", PLAYLIST)
 		console.log("PLAYLIST: ", this.props.route.params)
 		//console.log("PLAYLIST: ", this.props.route.params.PLAYLIST)
 		console.log("PLAYLIST: ", this.props)
-		// this.retrievePlaylist().then( res => {
-		// 		PLAYLIST = res;
-		// 		console.log("PLAYLIST", PLAYLIST)
+		this.retrievePlaylist().then( res => {
+				PLAYLIST = res;
+				console.log("PLAYLIST", PLAYLIST)
 				Audio.setAudioModeAsync({
 					allowsRecordingIOS: false,
 					interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
@@ -95,10 +95,10 @@ export default class App extends Component {
 		
 				this._loadNewPlaybackInstance(false);
 
-			//}
+			}
 			
 
-		//)
+		)
 
 		
 		

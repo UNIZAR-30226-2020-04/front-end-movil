@@ -129,8 +129,7 @@ export default class viewAlbum extends Component{
     }
 
     console.log("Playlist en viewALBUM-------------------------", PLAYLIST)
-    ruta.props.navigation.navigate("MusicPlayer", PLAYLIST)
-    //this.storePlaylist().then(res => ruta.props.navigation.navigate("MusicPlayer"))
+    storePlaylist().then(res => ruta.props.navigation.navigate("MusicPlayer"))
     
   }
 
