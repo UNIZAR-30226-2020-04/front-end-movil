@@ -84,7 +84,7 @@ export default class Element extends Component{
                 return(
                     <View style={{ height:200, width:150, marginLeft: 20, 
                         borderBottomColor: 'transparent'}}
-                        onStartShouldSetResponder={() => {console.log("this.props************Element*******", this.props);this.props.props.navigation.navigate('viewAlbum', this.props)}}//<ViewAlbum props={this.props}></ViewAlbum>}//this.props.props.navigation.navigate("viewAlbum", this.props)}    
+                        onStartShouldSetResponder={() => {console.log("this.props.props", this.props.props);this.props.props.navigation.navigate('viewAlbum', this.props)}}//<ViewAlbum props={this.props}></ViewAlbum>}//this.props.props.navigation.navigate("viewAlbum", this.props)}    
                     >
                         <View style={{ flex: 5 }}>
                             <Image source={this.props.image} 

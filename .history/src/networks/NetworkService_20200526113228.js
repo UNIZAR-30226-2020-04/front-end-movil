@@ -27,16 +27,12 @@ class NetworkService {
     return RequestService.postRequest(url,data.user);
   }
 
-  pedirURL(idCancion,idAlbum,correo){
+  pedirURL(data){
     console.log('Pedir URL cancion');
-    // var url=`${BASE_URL}/URLCancion`
-    // upload={}
-    // upload.idalbum = idAlbum
-    // upload.user = correo
-    // upload.idcancion = idCancion
-    // console.log('UPLOAD', upload);
-    //return RequestService.postRequestURL(url,upload);
-    return BASE_URL + "Cancion?idsong=" + idCancion + idAlbum + correo + ".mp3"
+    var url=`${BASE_URL}/getURLSong`
+    console.log('EMAIL', data);
+    data.user = data.correo;
+    return RequestService.postRequest(url,data.user);
   }
 
   fetchPlaylists(data){

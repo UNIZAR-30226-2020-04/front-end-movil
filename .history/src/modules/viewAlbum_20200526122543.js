@@ -16,8 +16,6 @@ class PlaylistItem {
 	}
 }
 
-const BASE_URL = "http://pruebaslistenit.herokuapp.com/";
-
 const PLAYLIST = [];
 
 export default class viewAlbum extends Component{
@@ -64,15 +62,17 @@ export default class viewAlbum extends Component{
 
   render(){
     //OPcion 1
-    console.log("---------------------------viewAlbum------------------------------------------")
+    console.log("---------------------------NUEVA------------------------------------------")
    // console.log("this.state.loaded = ",this.state.loaded)
     if (this.state.loadedSongs){
+      console.log("---------------------------1------------------------------------------")
       console.log("this.state = ",this.state)
       console.log("user = ",this.state.user)
       console.log("RENDERLOADED")
       //this.getAlbumsDB().then( res => {this.setState({albums: res}); console.log("GETALBUMS RES:", res);console.log("GETALBUMS ALBUMS:", this.state.albums)}).catch(err => console.log("Error",err));
       return this.renderLoaded()
     }else{
+      console.log("---------------------------2------------------------------------------")
       console.log("ELSEthis.state.loadedSongs = ",this.state.loadedSongs)
       return(<View><Text>Loading...</Text></View>)
     }
@@ -104,21 +104,22 @@ export default class viewAlbum extends Component{
     {
       this.state.songs.map((item, i) => (
         console.log("item: ", item),
-        
-       //NetworkService.pedirURL(idCancion.toString(),idAlbum.toString(),correo).then(
-          url = BASE_URL + "Cancion?idsong=" + idCancion + idAlbum + correo + ".mp3",
-           console.log("URL reproducir: ",url),
-           console.log("i ",i),
+       NetworkService.pedirURL(idCancion.toString(),idAlbum.toString(),correo).then(
+         url => {
+           console.log("URL reproducir: ",url)
           //nomrbe, url, foto
-          PLAYLIST[i] = new PlaylistItem(
+          PLAYLIST[this.i] = new PlaylistItem(
             item.nombre,
             url,
             this.props.route.params.image.uri,
-          )))
+          )
+          console.log("Playlist en viewALBUM-------------------------", PLAYLIST)
+          ruta.props.navigation.navigate("MusicPlayer", PLAYLIST)
+        },
+       ).catch(err => console.log("Error",err))))
     }
 
-    console.log("Playlist en viewALBUM-------------------------", PLAYLIST)
-    ruta.props.navigation.navigate("MusicPlayer", PLAYLIST)
+    
   }
 
   renderLoaded(){

@@ -127,10 +127,6 @@ export default class Main extends Component{
     }
   }
 
-  signOut = async () =>{
-    this.props.navigation.navigate('Home');
-  }
-
    deleteUser = async () =>{
     console.log("this.state",this.state.user)
     await NetworkService.deleteUser(this.state.user).then( res => {this.state.resul = res}).catch(
@@ -328,7 +324,7 @@ export default class Main extends Component{
                 <Text style={styles.loginText}>Delete account</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.deleteBtn} onPress={this.signOut}>
+            <TouchableOpacity style={styles.deleteBtn} onPress={this.deleteUser}>
                 <Text style={styles.loginText}>Sign out</Text>
             </TouchableOpacity>
           </View>

@@ -128,7 +128,7 @@ export default class Main extends Component{
   }
 
   signOut = async () =>{
-    this.props.navigation.navigate('Home');
+    this.props.navigation.navigate('HOME');
   }
 
    deleteUser = async () =>{

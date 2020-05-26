@@ -58,34 +58,34 @@ class RequestService {
       return data;
     }
 
-    // async postRequestURL(url,object){
-    //   console.log(url);
-    //   console.log("opbjecccctt:",object);
-    //   let aux3;
-    //   let data = await (fetch(url, {
-    //     method: 'POST',
-    //     headers: {
-    //       'Accept': 'application/json',
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify(object),
-    //   })
-    //   .then(
-    //     res =>{
-    //       let aux = res;
-    //       let aux2;
-    //       console.log("DENTRO",aux);
-    //       return aux
-    //     }
-    //   )
-    //   .catch(
-    //     err=>{
-    //       console.log("Error in postRequest",err);
-    //     }
-    //   ));
-    //   console.log("RESULTADO:", data);
-    //   return data;
-    // }
+    async postRequestURL(url,object){
+      console.log(url);
+      console.log("opbjecccctt:",object);
+      let aux3;
+      let data = await (fetch(url, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(object),
+      })
+      .then(
+        res =>{
+          let aux = res;
+          let aux2;
+          console.log("DENTRO",aux);
+          return aux;
+        }
+      )
+      .catch(
+        err=>{
+          console.log("Error in postRequest",err);
+        }
+      ));
+      console.log("RESULTADO:", data);
+      return data;
+    }
 
     //añadir cancion
     addSongRequest = async(url,nombreC,uri,idalbum,correo) => {

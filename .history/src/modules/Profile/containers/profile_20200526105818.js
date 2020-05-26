@@ -153,7 +153,7 @@ export default class Profile extends Component{
             <View style={{height: 200, marginTop: 20}}>
               <ScrollView horizontal={true}>
               {console.log("this.state.playlists: ", this.state.playlists)}
-              {console.log("this.PROPS perfil**************: ", this.props)}
+              {console.log("this.PROPS**************: ", this.props)}
                 {this.state.playlists.map(
                   element => 
                     <Element type='playlist' paramId={element.idRep.l_id} image = {{ uri: element.foto==null ? DEFAULT_URI : element.foto }} name={element.nombre} artist={element.idRep.u} props={this.props}></Element>
@@ -186,13 +186,16 @@ export default class Profile extends Component{
 
   render(){
     //OPcion 1
+    console.log("---------------------------NUEVA------------------------------------------")
    // console.log("this.state.loaded = ",this.state.loaded)
     if (this.state.loadedUser && this.state.loadedAlbums && this.state.loadedPlaylists && this.state.loadedPodcasts){
+      console.log("---------------------------1------------------------------------------")
       console.log("this.state = ",this.state)
       console.log("user = ",this.state.user)
       console.log("RENDERLOADED")
       return this.renderLoaded()
     }else{
+      console.log("---------------------------2------------------------------------------")
       console.log("ELSEthis.state.loaded = ",this.state.loadedUser)
       console.log("user = ",this.state.user)
       return(<View><Text>Loading...</Text></View>)

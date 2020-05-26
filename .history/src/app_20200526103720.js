@@ -16,9 +16,10 @@ import DashBoard from "./modules/DashBoard/containers/dashboard"; //Main screen 
 import Search from "./modules/Search/containers/search";
 import ProfileSearch from "./modules/Search/containers/profileSearch"
 
-import MusicPlayer from "./modules/MusicPlayer/MusicPlayer";
+import MusicPlayer from "./modules/MusicPlayer/containers/MusicPlayer";
 
 import Own from "./modules/Own/containers/own";
+import MusicPlayer from "./modules/MusicPlayer/MusicPlayer";
 
 import Profile from "./modules/Profile/containers/profile";
 import SettingsProfile from "./modules/Profile/containers/settingsProfile.js";
@@ -43,7 +44,7 @@ const MenuLoged = createBottomTabNavigator();
 //Pilas de pantallas de cada seccion
 const DashboardStack = createStackNavigator();
 const SearchStack = createStackNavigator();
-const MusicPlayerStack = createStackNavigator();
+const LibraryStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
 const OwnStack = createStackNavigator();
 

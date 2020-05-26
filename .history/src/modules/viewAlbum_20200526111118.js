@@ -8,18 +8,6 @@ import NetworkService from '../networks/NetworkService'
 import { ListItem } from 'react-native-elements'
 import { Icon } from 'react-native-elements'
 
-class PlaylistItem {
-	constructor(name, uri, image) {
-		this.name = name;
-		this.uri = uri;
-		this.image = image;
-	}
-}
-
-const BASE_URL = "http://pruebaslistenit.herokuapp.com/";
-
-const PLAYLIST = [];
-
 export default class viewAlbum extends Component{
   constructor(props) {
     super(props);
@@ -64,15 +52,17 @@ export default class viewAlbum extends Component{
 
   render(){
     //OPcion 1
-    console.log("---------------------------viewAlbum------------------------------------------")
+    console.log("---------------------------NUEVA------------------------------------------")
    // console.log("this.state.loaded = ",this.state.loaded)
     if (this.state.loadedSongs){
+      console.log("---------------------------1------------------------------------------")
       console.log("this.state = ",this.state)
       console.log("user = ",this.state.user)
       console.log("RENDERLOADED")
       //this.getAlbumsDB().then( res => {this.setState({albums: res}); console.log("GETALBUMS RES:", res);console.log("GETALBUMS ALBUMS:", this.state.albums)}).catch(err => console.log("Error",err));
       return this.renderLoaded()
     }else{
+      console.log("---------------------------2------------------------------------------")
       console.log("ELSEthis.state.loadedSongs = ",this.state.loadedSongs)
       return(<View><Text>Loading...</Text></View>)
     }
@@ -97,28 +87,9 @@ export default class viewAlbum extends Component{
     )
   }
 
-
-  reproducirCancion(ruta,idCancion,idAlbum,correo){
-    console.log("THIS.RUTAAAAAAAAAA", ruta)
-    //obtener URL de canciones
-    {
-      this.state.songs.map((item, i) => (
-        console.log("item: ", item),
-        
-       //NetworkService.pedirURL(idCancion.toString(),idAlbum.toString(),correo).then(
-          url = BASE_URL + "Cancion?idsong=" + idCancion + idAlbum + correo + ".mp3",
-           console.log("URL reproducir: ",url),
-           console.log("i ",i),
-          //nomrbe, url, foto
-          PLAYLIST[i] = new PlaylistItem(
-            item.nombre,
-            url,
-            this.props.route.params.image.uri,
-          )))
-    }
-
-    console.log("Playlist en viewALBUM-------------------------", PLAYLIST)
-    ruta.props.navigation.navigate("MusicPlayer", PLAYLIST)
+  reproducirCancion(){
+    //console.log("THIS.PROPS", this.props.route.params.paramId )
+    this.props.props.navigation.navigate("MusicPlayer")
   }
 
   renderLoaded(){
@@ -135,9 +106,6 @@ export default class viewAlbum extends Component{
             </Text>
             <Text style={styles.title}>
               Artist: {this.props.route.params.artist}
-            </Text>
-            <Text style={styles.title}>
-              image uri: {this.props.route.params.image.uri}
             </Text>
             <View>
               {
@@ -156,7 +124,7 @@ export default class viewAlbum extends Component{
                     }
                     title={item.nombre} //Song
                     subtitle={item.idCancion.l_id.u} //Artist
-                    onPress={ () => {this.reproducirCancion(this.props.route.params, item.idCancion.c_id, item.idCancion.l_id.l_id, item.idCancion.l_id.u)}}//this.reproducirCancion(this.props.route.params)
+                    onPress={this.reproducirCancion}
                     bottomDivider
                   />
                 ))

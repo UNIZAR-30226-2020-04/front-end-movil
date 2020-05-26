@@ -112,7 +112,7 @@ export default class viewAlbum extends Component{
           //nomrbe, url, foto
           PLAYLIST[i] = new PlaylistItem(
             item.nombre,
-            url,
+            BASE_URL + url,
             this.props.route.params.image.uri,
           )))
     }

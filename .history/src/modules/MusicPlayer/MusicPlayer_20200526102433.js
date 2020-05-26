@@ -21,6 +21,24 @@ class PlaylistItem {
 	}
 }
 
+const PLAYLIST = [
+	new PlaylistItem(
+		'Comfort Fit - “Sorry”',
+		'https://s3.amazonaws.com/exp-us-standard/audio/playlist-example/Comfort_Fit_-_03_-_Sorry.mp3',
+		'https://picsum.photos/250/300'
+	),
+	new PlaylistItem(
+		'Mildred Bailey – “All Of Me”',
+		'http://pruebaslistenit.herokuapp.com/Cancion?idsong=11b@b.com.mp3',
+		'https://picsum.photos/250/300'
+	),
+	new PlaylistItem(
+		'Podington Bear - “Rubber Robot”',
+		'https://s3.amazonaws.com/exp-us-standard/audio/playlist-example/Podington_Bear_-_Rubber_Robot.mp3',
+		'https://picsum.photos/250/300'
+	),
+];
+
 const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window');
 const BACKGROUND_COLOR = '#FFFFFF';
 const DISABLED_OPACITY = 0.5;
@@ -52,7 +70,6 @@ export default class App extends Component {
 	}
 
 	componentDidMount() {
-		console.log("PLAYLIST:-------------------------------------------",this.props.route.params.PLAYLIST)
 		Audio.setAudioModeAsync({
 			allowsRecordingIOS: false,
 			interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
@@ -65,7 +82,7 @@ export default class App extends Component {
 		// 	await Font.loadAsync({
 		// 		roboto: require('./assets/fonts/Roboto.ttf'),
 		// 	});
-			 this.setState({ fontLoaded: true });
+		 	this.setState({ fontLoaded: true });
 		// })();
 
 		this._loadNewPlaybackInstance(false);

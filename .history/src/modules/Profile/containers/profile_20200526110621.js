@@ -186,13 +186,16 @@ export default class Profile extends Component{
 
   render(){
     //OPcion 1
+    console.log("---------------------------NUEVA------------------------------------------")
    // console.log("this.state.loaded = ",this.state.loaded)
     if (this.state.loadedUser && this.state.loadedAlbums && this.state.loadedPlaylists && this.state.loadedPodcasts){
+      console.log("---------------------------1------------------------------------------")
       console.log("this.state = ",this.state)
       console.log("user = ",this.state.user)
       console.log("RENDERLOADED")
       return this.renderLoaded()
     }else{
+      console.log("---------------------------2------------------------------------------")
       console.log("ELSEthis.state.loaded = ",this.state.loadedUser)
       console.log("user = ",this.state.user)
       return(<View><Text>Loading...</Text></View>)

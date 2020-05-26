@@ -108,17 +108,16 @@ export default class viewAlbum extends Component{
        //NetworkService.pedirURL(idCancion.toString(),idAlbum.toString(),correo).then(
           url = BASE_URL + "Cancion?idsong=" + idCancion + idAlbum + correo + ".mp3",
            console.log("URL reproducir: ",url),
-           console.log("i ",i),
           //nomrbe, url, foto
-          PLAYLIST[i] = new PlaylistItem(
+          PLAYLIST[this.i] = new PlaylistItem(
             item.nombre,
-            url,
+            BASE_URL + url,
             this.props.route.params.image.uri,
-          )))
+          ),
+          console.log("Playlist en viewALBUM-------------------------", PLAYLIST),
+          ruta.props.navigation.navigate("MusicPlayer", PLAYLIST)))
+        
     }
-
-    console.log("Playlist en viewALBUM-------------------------", PLAYLIST)
-    ruta.props.navigation.navigate("MusicPlayer", PLAYLIST)
   }
 
   renderLoaded(){
