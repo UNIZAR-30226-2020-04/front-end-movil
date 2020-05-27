@@ -123,9 +123,9 @@ export default class App extends React.Component {
       console.log("-------------Bucle Creacion Canciones-------------------");
       this.state.CancionesAlbum.forEach(element => this.bucleAddSong(element) );
 
-      // for(element of this.state.CancionesAlbum){
-      //   await this.bucleAddSong(element)
-      // } 
+      for(element of this.state.CancionesAlbum){
+        await this.bucleAddSong(element)
+      } 
 
 
       //this.state.CancionesAlbum.forEach(async (element) => await this.bucleAddSong(element));

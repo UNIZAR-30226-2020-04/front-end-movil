@@ -105,6 +105,10 @@ export default class Dashboard extends Component{
               Nombre: {this.state.user.nombre} !
             </Text>
 
+            {/* <TouchableOpacity style={styles.loginBtn} onPress={this.goToMusicPlayer}>
+              <Text style={styles.loginText}>Music Player</Text>
+            </TouchableOpacity> */}
+
             <Text style={styles.title}>
               Songs recently listened
             </Text>

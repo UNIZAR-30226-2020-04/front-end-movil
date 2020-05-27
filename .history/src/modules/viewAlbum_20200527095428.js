@@ -109,7 +109,7 @@ export default class viewAlbum extends Component{
   };
 
 
-  reproducirCancion(ruta){
+  reproducirCancion(ruta,idCancion,idAlbum,correo){
     console.log("THIS.RUTAAAAAAAAAA", ruta)
     //obtener URL de canciones
     {
@@ -117,7 +117,7 @@ export default class viewAlbum extends Component{
       this.state.songs.map((item, i) => (
         console.log("item: ", item),
        //NetworkService.pedirURL(idCancion.toString(),idAlbum.toString(),correo).then(
-           url = BASE_URL + "Cancion?idsong=" + item.idCancion.c_id + item.idCancion.l_id.l_id + item.idCancion.l_id.u + ".mp3",
+           url = BASE_URL + "Cancion?idsong=" + idCancion + idAlbum + correo + ".mp3",
            console.log("URL reproducir: ",url),
            console.log("i ",i),
           //nomrbe, url, foto
@@ -129,8 +129,8 @@ export default class viewAlbum extends Component{
     }
 
     console.log("Playlist en viewALBUM-------------------------", PLAYLIST)
-    //ruta.props.navigation.navigate("MusicPlayer", {playlist: PLAYLIST})
-    this.storePlaylist().then(res => { console.log("GUARDADO! res:",res);ruta.props.navigation.navigate("MusicPlayer");})
+    ruta.props.navigation.navigate("MusicPlayer", {playlist: PLAYLIST})
+    this.storePlaylist().then(res => {ruta.props.navigation.navigate("MusicPlayer"); console.log("res:",res)})
     
   }
 
@@ -169,7 +169,7 @@ export default class viewAlbum extends Component{
                     }
                     title={item.nombre} //Song
                     subtitle={item.idCancion.l_id.u} //Artist
-                    onPress={ () => {this.reproducirCancion(this.props.route.params)}}//this.reproducirCancion(this.props.route.params)
+                    onPress={ () => {this.reproducirCancion(this.props.route.params, item.idCancion.c_id, item.idCancion.l_id.l_id, item.idCancion.l_id.u)}}//this.reproducirCancion(this.props.route.params)
                     bottomDivider
                   />
                 ))

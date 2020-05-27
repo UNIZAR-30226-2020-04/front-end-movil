@@ -101,42 +101,44 @@ export default class App extends Component {
 			this._loadNewPlaybackInstance(false);
 
 		})
+		
 	}
-	// componentDidUpdate(prevProps, prevState) {
-	// 	// only update chart if the data has changed
-	// 	if (prevProps.data !== this.props.data) {
-	// 	  this.chart = c3.load({
-	// 		data: this.props.data
-	// 	  });
-	// 	}
-	//   }
+	componentDidUpdate(prevProps, prevState) {
+		// only update chart if the data has changed
+		if (prevProps.data !== this.props.data) {
+		  this.chart = c3.load({
+			data: this.props.data
+		  });
+		}
+	  }
 
-	// shouldComponentUpdate(){
-	// 	return setInterval(() => {
-	// 		return this.setState(() => {
-	// 			return this.retrievePlaylist().then( res => {
-	// 				let PLAYLIST_new = res;
-	// 				console.log("PLAYLIST NEW", PLAYLIST_new)
-	// 				if(res !== PLAYLIST_new){
-	// 					PLAYLIST = res
-						
-	// 					Audio.setAudioModeAsync({
-	// 						allowsRecordingIOS: false,
-	// 						interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
-	// 						playsInSilentModeIOS: true,
-	// 						shouldDuckAndroid: true,
-	// 						interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
-	// 						playThroughEarpieceAndroid: true
-	// 					});
-	// 					//this._loadNewPlaybackInstance(false);
-	// 					return true
-	// 				}else{
-	// 					return false
-	// 				}
-	// 			})
-	// 		});
-	// 	}, 3000);		
-	// }
+	shouldComponentUpdate(){
+		setInterval(() => {
+			this.setState(() => {
+				this.retrievePlaylist().then( res => {
+					PLAYLIST_new = res;
+					
+					console.log("PLAYLIST", PLAYLIST_new)
+					Audio.setAudioModeAsync({
+						allowsRecordingIOS: false,
+						interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+						playsInSilentModeIOS: true,
+						shouldDuckAndroid: true,
+						interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+						playThroughEarpieceAndroid: true
+					});
+					this.setState({ fontLoaded: true });
+					this._loadNewPlaybackInstance(false);
+					if(res !== PLAYLIST_new){
+						PLAYLIST = res
+						return true
+					}else{
+						return false
+					}
+				})
+			});
+		}, 3000);		
+	}
 
 	async _loadNewPlaybackInstance(playing) {
 		if (this.playbackInstance != null) {

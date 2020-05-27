@@ -109,7 +109,7 @@ export default class viewAlbum extends Component{
   };
 
 
-  reproducirCancion(ruta){
+  reproducirCancion(ruta,idCancion,idAlbum,correo){
     console.log("THIS.RUTAAAAAAAAAA", ruta)
     //obtener URL de canciones
     {
@@ -169,7 +169,7 @@ export default class viewAlbum extends Component{
                     }
                     title={item.nombre} //Song
                     subtitle={item.idCancion.l_id.u} //Artist
-                    onPress={ () => {this.reproducirCancion(this.props.route.params)}}//this.reproducirCancion(this.props.route.params)
+                    onPress={ () => {this.reproducirCancion(this.props.route.params, item.idCancion.c_id, item.idCancion.l_id.l_id, item.idCancion.l_id.u)}}//this.reproducirCancion(this.props.route.params)
                     bottomDivider
                   />
                 ))

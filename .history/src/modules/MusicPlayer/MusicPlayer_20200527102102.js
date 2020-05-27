@@ -13,7 +13,6 @@ import {Audio} from 'expo-av';
 //import {Font} from 'expo-font';
 import { Asset } from 'expo';
 import { MaterialIcons } from '@expo/vector-icons';
-import {NavigationEvents} from 'react-navigation';
 
 class PlaylistItem {
 	constructor(name, uri, image) {
@@ -79,64 +78,33 @@ export default class App extends Component {
 		//console.log("PLAYLIST: ", this.props.route.params.PLAYLIST)
 		console.log("PLAYLIST: ", this.props)
 		//const {playlist} = this.props.route.params
-		this.retrievePlaylist().then( res => {
+
+		setInterval(() => {
+			this.setState(() => {
+				this.retrievePlaylist().then( res => {
+					PLAYLIST = res;
+					console.log("PLAYLIST", PLAYLIST)
+					Audio.setAudioModeAsync({
+						allowsRecordingIOS: false,
+						interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+						playsInSilentModeIOS: true,
+						shouldDuckAndroid: true,
+						interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+						playThroughEarpieceAndroid: true
+					});
+					// (async () => {
+					// 	await Font.loadAsync({
+					// 		roboto: require('./assets/fonts/Roboto.ttf'),
+					// 	});
+						 this.setState({ fontLoaded: true });
+					// })();
 			
-			PLAYLIST = res;
-			console.log("PLAYLIST", PLAYLIST)
-			Audio.setAudioModeAsync({
-				allowsRecordingIOS: false,
-				interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
-				playsInSilentModeIOS: true,
-				shouldDuckAndroid: true,
-				interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
-				playThroughEarpieceAndroid: true
-			});
-			// (async () => {
-			// 	await Font.loadAsync({
-			// 		roboto: require('./assets/fonts/Roboto.ttf'),
-			// 	});
-					this.setState({ fontLoaded: true });
-			// })();
+					this._loadNewPlaybackInstance(false);
 	
-			this._loadNewPlaybackInstance(false);
-
-		})
+				})
+			});
+		}, 10000);
 	}
-	// componentDidUpdate(prevProps, prevState) {
-	// 	// only update chart if the data has changed
-	// 	if (prevProps.data !== this.props.data) {
-	// 	  this.chart = c3.load({
-	// 		data: this.props.data
-	// 	  });
-	// 	}
-	//   }
-
-	// shouldComponentUpdate(){
-	// 	return setInterval(() => {
-	// 		return this.setState(() => {
-	// 			return this.retrievePlaylist().then( res => {
-	// 				let PLAYLIST_new = res;
-	// 				console.log("PLAYLIST NEW", PLAYLIST_new)
-	// 				if(res !== PLAYLIST_new){
-	// 					PLAYLIST = res
-						
-	// 					Audio.setAudioModeAsync({
-	// 						allowsRecordingIOS: false,
-	// 						interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
-	// 						playsInSilentModeIOS: true,
-	// 						shouldDuckAndroid: true,
-	// 						interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
-	// 						playThroughEarpieceAndroid: true
-	// 					});
-	// 					//this._loadNewPlaybackInstance(false);
-	// 					return true
-	// 				}else{
-	// 					return false
-	// 				}
-	// 			})
-	// 		});
-	// 	}, 3000);		
-	// }
 
 	async _loadNewPlaybackInstance(playing) {
 		if (this.playbackInstance != null) {
@@ -327,7 +295,7 @@ export default class App extends Component {
 		}
 		return '';
 	}
-	
+
 	render() {
 		return !this.state.fontLoaded ? (
 			<View />

@@ -52,7 +52,7 @@ export default class App extends Component {
 			volume: 1.0,
 			rate: 1.0,
 			portrait: null,
-			
+			playlist: [],
 		};
 	}
 
@@ -80,7 +80,7 @@ export default class App extends Component {
 		console.log("PLAYLIST: ", this.props)
 		//const {playlist} = this.props.route.params
 		this.retrievePlaylist().then( res => {
-			
+			this.setState({playlist: res})
 			PLAYLIST = res;
 			console.log("PLAYLIST", PLAYLIST)
 			Audio.setAudioModeAsync({
@@ -101,42 +101,8 @@ export default class App extends Component {
 			this._loadNewPlaybackInstance(false);
 
 		})
+		
 	}
-	// componentDidUpdate(prevProps, prevState) {
-	// 	// only update chart if the data has changed
-	// 	if (prevProps.data !== this.props.data) {
-	// 	  this.chart = c3.load({
-	// 		data: this.props.data
-	// 	  });
-	// 	}
-	//   }
-
-	// shouldComponentUpdate(){
-	// 	return setInterval(() => {
-	// 		return this.setState(() => {
-	// 			return this.retrievePlaylist().then( res => {
-	// 				let PLAYLIST_new = res;
-	// 				console.log("PLAYLIST NEW", PLAYLIST_new)
-	// 				if(res !== PLAYLIST_new){
-	// 					PLAYLIST = res
-						
-	// 					Audio.setAudioModeAsync({
-	// 						allowsRecordingIOS: false,
-	// 						interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
-	// 						playsInSilentModeIOS: true,
-	// 						shouldDuckAndroid: true,
-	// 						interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
-	// 						playThroughEarpieceAndroid: true
-	// 					});
-	// 					//this._loadNewPlaybackInstance(false);
-	// 					return true
-	// 				}else{
-	// 					return false
-	// 				}
-	// 			})
-	// 		});
-	// 	}, 3000);		
-	// }
 
 	async _loadNewPlaybackInstance(playing) {
 		if (this.playbackInstance != null) {

@@ -101,6 +101,7 @@ export default class App extends Component {
 			this._loadNewPlaybackInstance(false);
 
 		})
+		
 	}
 	// componentDidUpdate(prevProps, prevState) {
 	// 	// only update chart if the data has changed
@@ -137,7 +138,6 @@ export default class App extends Component {
 	// 		});
 	// 	}, 3000);		
 	// }
-
 	async _loadNewPlaybackInstance(playing) {
 		if (this.playbackInstance != null) {
 			await this.playbackInstance.unloadAsync();
