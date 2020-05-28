@@ -80,8 +80,8 @@ class NetworkService {
   listSongsPodcast(data){
     console.log('Fetch songs podcast');
     var url=`${BASE_URL}/listPodcast`
-    //console.log('PodcastID', data.idpodcast);
-    //console.log('User', data.user);
+    console.log('PodcastID', data.idpodcast);
+    console.log('User', data.user);
     console.log('URLLLLLL', url);
     return RequestService.postRequest(url,data);
   }
@@ -122,7 +122,7 @@ class NetworkService {
     var url=`${BASE_URL}/cambiarNombre`
     update={}
     update.user = data.correo
-    update.name = data.nombre
+    update.nick = data.nombre
     update.newName = data.newName
     console.log('URLLLLLL', url);
     console.log('UPDATE: ', update);
@@ -225,6 +225,8 @@ class NetworkService {
     console.log('Servicio Crear Podcast', data);
     var url=`${BASE_URL}/createPodcast`
     console.log('URLLLLLL', url);
+    update={}
+    update.podcast = data.nombrePodcast
     let formData = new FormData();
     formData.append('email', data.user.correo);
     formData.append('podcast',data.nombrePodcast);

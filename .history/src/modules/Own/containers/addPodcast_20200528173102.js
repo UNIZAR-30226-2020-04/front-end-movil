@@ -38,6 +38,8 @@ export default class addPodcast extends React.Component {
   componentDidMount(){
     //recuperar datos del usuario
     console.log("Antes retrieve data")
+    //recuperar datos del usuario
+    console.log("Antes retrieve data")
     let user_state;
     this.retrieveData().then( res => {this.setState({user: res,});}).catch(err => console.log("Error",err));
     console.log("user_state",user_state);
@@ -92,6 +94,9 @@ export default class addPodcast extends React.Component {
     console.log("ELEMENT URI",element);
     await NetworkService.addCapituloPodcast(element.nombre,element.URI,this.state.idpodcast, this.state.user.correo)//this.state.user.correo
           .then( res => {this.state.result = res});
+
+
+    //console.log("Resultadoooo añadir cancion",this.state.result)
   }
 
 

@@ -7,7 +7,6 @@ import { Ionicons } from '@expo/vector-icons';
 import NetworkService from '../networks/NetworkService'
 import { ListItem } from 'react-native-elements'
 import { Icon } from 'react-native-elements'
-import * as DocumentPicker from 'expo-document-picker';
 
 export default class viewPodcast extends Component{
   constructor(props) {
@@ -23,11 +22,12 @@ export default class viewPodcast extends Component{
   }
 
   componentDidMount(){
+
     //HAcer consulta de songs
     data={}
     data.user=this.props.route.params.artist
     data.idalbum = this.props.route.params.paramId
-    data.idalbum = data.idalbum.toString()
+    data.idalbum = data.idpodcast.toString()
     console.log("********************************")
     console.log("DATA PODCAST",data)
     NetworkService.listSongsPodcast(data).then(res => {this.setState({songs: res, loadedSongs:true});console.log("Songs RES:", res)})//this.props.route.params.artist, this.props.route.params.paramId
@@ -50,19 +50,6 @@ export default class viewPodcast extends Component{
       console.log("Error al obtener datos")
     }
   };
-
-  _pickDocument = async () => {
-    let result = await DocumentPicker.getDocumentAsync({});
-    this.state.cancionAdd = result
-    console.log("DEVULVE picker final:",result);
-  }
-
-  uploadSelectedSong = async () => {
-    // this.state.nombreC=element.nombre
-    console.log("ELEMENT . NOMBRE:  ",this.state.cancionAdd);
-    NetworkService.addCapituloPodcast(this.state.cancionAdd.name, this.state.cancionAdd.uri , this.props.route.params.paramId, this.props.route.params.artist)//this.state.user.correo
-          .then( res => {this.state.result = res});
-  }
 
   render(){
     //OPcion 1
@@ -116,11 +103,8 @@ export default class viewPodcast extends Component{
             <Text style={styles.title}>
               Artist: {this.props.route.params.artist}
             </Text>
-            <TouchableOpacity style={styles.loginBtn} onPress={this._pickDocument}>
-              <Text style={styles.loginText}>Add new chapter to this podcast</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.loginBtn} onPress={this.uploadSelectedSong}>
-              <Text style={styles.loginText}>Upload selected chapter</Text>
+            <TouchableOpacity style={styles.loginBtn} onPress={this.goLogin}>
+              <Text style={styles.loginText}>Add new song to this album)</Text>
             </TouchableOpacity>
             <View>
               {
@@ -138,7 +122,7 @@ export default class viewPodcast extends Component{
                       />
                     }
                     title={item.nombre} //Song
-                    subtitle={item.idCapitulo.l_id.u} //Artist
+                    subtitle={item.idCancion.l_id.u} //Artist
                     bottomDivider
                   />
                 ))

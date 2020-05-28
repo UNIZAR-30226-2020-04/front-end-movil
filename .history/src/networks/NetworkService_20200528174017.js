@@ -122,7 +122,7 @@ class NetworkService {
     var url=`${BASE_URL}/cambiarNombre`
     update={}
     update.user = data.correo
-    update.name = data.nombre
+    update.nick = data.nombre
     update.newName = data.newName
     console.log('URLLLLLL', url);
     console.log('UPDATE: ', update);

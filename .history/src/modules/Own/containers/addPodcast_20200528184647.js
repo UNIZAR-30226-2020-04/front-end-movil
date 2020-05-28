@@ -38,6 +38,8 @@ export default class addPodcast extends React.Component {
   componentDidMount(){
     //recuperar datos del usuario
     console.log("Antes retrieve data")
+    //recuperar datos del usuario
+    console.log("Antes retrieve data")
     let user_state;
     this.retrieveData().then( res => {this.setState({user: res,});}).catch(err => console.log("Error",err));
     console.log("user_state",user_state);

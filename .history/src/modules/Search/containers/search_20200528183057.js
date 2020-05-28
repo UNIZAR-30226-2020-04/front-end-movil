@@ -76,7 +76,7 @@ export default class Search extends Component{
       textSearch: text,
     });
   }
-
+  
   render(){
  
     const { selectedIndex } = this.state
@@ -100,6 +100,7 @@ export default class Search extends Component{
                             { user.nombre }
                           </Text> 
                         </TouchableOpacity>
+
                     )
       }
       else {   mostrar= <Text  style={[styles.title,{marginTop: 10}]}> Sin resultados  </Text> }
