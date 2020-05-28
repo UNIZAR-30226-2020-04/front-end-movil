@@ -97,6 +97,7 @@ export default class Search extends Component{
          mostrar =    this.state.resultados.map(user => 
                           <TouchableOpacity  onPress={() => this.props.navigation.navigate('profileSearch', user)}>
                           <Text  style={[styles.title,{marginTop: 10}]} > 
+                          
                             { user.nombre }
                           </Text> 
                         </TouchableOpacity>
@@ -118,7 +119,7 @@ export default class Search extends Component{
 
          mostrar =    this.state.resultados.map(album => 
                             //////////////////////////////////////////////////////////////Cambiar que te lleve al album.
-                          <TouchableOpacity  onPress={() => this.props.navigation.navigate('profileSearch', user)}>
+                          <TouchableOpacity  onPress={() => this.props.navigation.navigate('albumSearch', album)}>
                           <Text  style={[styles.title,{marginTop: 10}]} > 
                             { album.nombre }
                           </Text> 
