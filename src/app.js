@@ -15,6 +15,7 @@ import DashBoard from "./modules/DashBoard/containers/dashboard"; //Main screen 
 
 import Search from "./modules/Search/containers/search";
 import ProfileSearch from "./modules/Search/containers/profileSearch"
+import AlbumSearch from "./modules/Search/containers/AlbumSearch"
 
 import MusicPlayer from "./modules/MusicPlayer/MusicPlayer";
 
@@ -30,6 +31,7 @@ import addPlaylist from "./modules/Own/containers/addPlaylist";
 import ViewAlbum from './modules/viewAlbum'
 import ViewPlaylist from './modules/viewPlaylist'
 import ViewPodcast from './modules/viewPodcast'
+
 
 
 //ToastAndroid.show('Button pressed', ToastAndroid.SHORT)
@@ -79,6 +81,7 @@ const OwnStack = createStackNavigator();
       }}>
         <SearchStack.Screen name="Search" component={Search} />
         <SearchStack.Screen name="profileSearch" component={ProfileSearch} />
+        <SearchStack.Screen name="albumSearch" component={AlbumSearch} />
       </SearchStack.Navigator>
     );
   }
