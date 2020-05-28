@@ -172,7 +172,8 @@ export default class App extends React.Component {
   render() {
 
     return (
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView style={styles.container}>
+      <View contentContainerStyle={styles.container}>
         <ImageBackground source={require('../../../Wallpapers/fondoPantallaPrincipal.jpg')} style={styles.backgroundImage}>
             <View style={styles.inputView} >
             <Text style={styles.text}>{this.state.user.correo}</Text> 
@@ -217,7 +218,8 @@ export default class App extends React.Component {
         
             </View>
         </ImageBackground>
-       </ScrollView>
+       </View>
+      </ScrollView>
   
      
     );

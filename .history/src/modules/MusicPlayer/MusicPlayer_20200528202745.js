@@ -133,7 +133,7 @@ export default class App extends Component {
 
 					 console.log("URL compareeeeee", playold_string.toString())
 					
-					if(playold_string.toString()!==playnew_string.toString()){//PLAYLIST_OLD.toString() != PLAYLIST_NUEVA.toString()
+					if(playold_string.toString()!=playnew_string.toString()){//PLAYLIST_OLD.toString() != PLAYLIST_NUEVA.toString()
 						console.log("DENTRO IFIFIFIFIFIFIFIFIFIF")
 						PLAYLIST = PLAYLIST_NUEVA
 						// Audio.setAudioModeAsync({

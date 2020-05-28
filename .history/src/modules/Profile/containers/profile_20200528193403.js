@@ -47,9 +47,7 @@ export default class Profile extends Component{
   getAlbumsDB = async () => {
     try {
       //console.log("STATE.USER",this.state.user)
-      await NetworkService.fetchAlbums(this.state.user).then(res => {this.setState({albums: res, loadedAlbums:true});
-        //console.log("GETALBUMS RES:", res);console.log("GETALBUMS ALBUMS:", this.state.albums)
-      });
+      await NetworkService.fetchAlbums(this.state.user).then(res => {this.setState({albums: res, loadedAlbums:true});console.log("GETALBUMS RES:", res);console.log("GETALBUMS ALBUMS:", this.state.albums)});
     } catch (error) {
       console.log("Error al obtener Albumes")
     }
@@ -58,9 +56,7 @@ export default class Profile extends Component{
   getPlaylistsDB = async () => {
     try {
       //console.log("STATE.USER",this.state.user)
-      await NetworkService.fetchPlaylists(this.state.user).then(res => {this.setState({playlists: res, loadedPlaylists:true});
-      //console.log("GETPLAYLIST RES:", res);console.log("GETPLAYLIST PLAYLIST:", this.state.playlists)
-      });
+      await NetworkService.fetchPlaylists(this.state.user).then(res => {this.setState({playlists: res, loadedPlaylists:true});console.log("GETPLAYLIST RES:", res);console.log("GETPLAYLIST PLAYLIST:", this.state.playlists)});
     } catch (error) {
       console.log("Error al obtener Playlists")
     }
@@ -69,9 +65,7 @@ export default class Profile extends Component{
   getPodcastsDB = async () => {
     try {
       //console.log("STATE.USER",this.state.user)
-      await NetworkService.fetchPodcasts(this.state.user).then(res => {this.setState({podcasts: res, loadedPodcasts:true});
-        //console.log("GETPodcasts RES:", res);console.log("GETPodcasts Podcasts:", this.state.podcasts)
-      });
+      await NetworkService.fetchPodcasts(this.state.user).then(res => {this.setState({podcasts: res, loadedPodcasts:true});console.log("GETPodcasts RES:", res);console.log("GETPodcasts Podcasts:", this.state.podcasts)});
     } catch (error) {
       console.log("Error al obtener Podcasts")
     }

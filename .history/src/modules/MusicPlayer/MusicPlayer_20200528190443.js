@@ -23,10 +23,6 @@ class PlaylistItem {
 	}
 }
 
-function arraysAreEqual(ary1,ary2){
-	return (ary1.join('') == ary2.join(''));
-  }
-
 const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window');
 const BACKGROUND_COLOR = '#FFFFFF';
 const DISABLED_OPACITY = 0.5;
@@ -37,7 +33,6 @@ const RATE_SCALE = 3.0;
 
 var PLAYLIST = [];
 var PLAYLIST_OLD = [];
-var PLAYLIST_NUEVA = [];
 
 export default class App extends Component {
 	constructor(props) {
@@ -65,7 +60,7 @@ export default class App extends Component {
 	retrievePlaylist = async () => {
 		try {
 		  const retrieveItem = await AsyncStorage.getItem('PlaylistNow');
-		  //console.log("retrieve item:", retrieveItem)
+		  console.log("retrieve item:", retrieveItem)
 		  if (retrieveItem !== null) {
 			//We have data!!
 			console.log("AQUI BN")
@@ -77,7 +72,7 @@ export default class App extends Component {
 		  //Error retrieving data
 		  console.log("Error al obtener datos Music")
 		}
-	};
+	  };
 
 	componentDidMount() {
 		console.log("PLAYLIST: ", PLAYLIST)
@@ -108,61 +103,25 @@ export default class App extends Component {
 
 		})
 
+
+
+
 		//Hacer cada X segs
 		setInterval(() => {
 			this.setState(() => {
 				this.retrievePlaylist().then( res => {
 					PLAYLIST_OLD = PLAYLIST
-					PLAYLIST_NUEVA = res
-					console.log("PLAYLIST_OLD",PLAYLIST_OLD)
-					console.log("PLAYLIST_NUEVA",PLAYLIST_NUEVA);
-					
-					var playold_string = PLAYLIST_OLD.map(function(item) {
-						return item['uri'].toString();
-					  });
-					
-					var playnew_string = PLAYLIST_NUEVA.map(function(item) {
-						item['uri'].toString();
-					});
-					
-					// var result = new Boolean(false);
-					// for(element of playnew_string){
-					// 	result = (playold_string.)
-					// }
+					PLAYLIST = res;
+					this.setState({user: res, loadedUser:true})}).catch(err => console.log("Error",err));
 
 
-					 console.log("URL compareeeeee", playold_string.toString())
-					
-					if(playold_string.toString()!==playnew_string.toString()){//PLAYLIST_OLD.toString() != PLAYLIST_NUEVA.toString()
-						console.log("DENTRO IFIFIFIFIFIFIFIFIFIF")
-						PLAYLIST = PLAYLIST_NUEVA
-						// Audio.setAudioModeAsync({
-						// 	allowsRecordingIOS: false,
-						// 	interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
-						// 	playsInSilentModeIOS: true,
-						// 	shouldDuckAndroid: true,
-						// 	interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
-						// 	playThroughEarpieceAndroid: true
-						// });
-						// (async () => {
-						// 	await Font.loadAsync({
-						// 		roboto: require('./assets/fonts/Roboto.ttf'),
-						// 	});
-								this.setState({ fontLoaded: true });
-						// })();
-				
-						this._loadNewPlaybackInstance(false);
-					}else{
-						console.log("NoOOOSODOOSOO IGUALES")
-					}
-				
-				});
-		  	});
-		},10000)
+
+			});
+		  }, 10000);
 	}
+
 	//Comprobar si nueva playlist es diferente a la vieja, y si es así acutalizar
 	
-
 	componentDidUpdate(prevProps, prevState) {
 		this.retrievePlaylist().then( res => {})
 		// only update chart if the data has changed
@@ -172,6 +131,33 @@ export default class App extends Component {
 		  });
 		}
 	  }
+
+	// shouldComponentUpdate(){
+	// 	return setInterval(() => {
+	// 		return this.setState(() => {
+	// 			return this.retrievePlaylist().then( res => {
+	// 				let PLAYLIST_new = res;
+	// 				console.log("PLAYLIST NEW", PLAYLIST_new)
+	// 				if(res !== PLAYLIST_new){
+	// 					PLAYLIST = res
+						
+	// 					Audio.setAudioModeAsync({
+	// 						allowsRecordingIOS: false,
+	// 						interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+	// 						playsInSilentModeIOS: true,
+	// 						shouldDuckAndroid: true,
+	// 						interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+	// 						playThroughEarpieceAndroid: true
+	// 					});
+	// 					//this._loadNewPlaybackInstance(false);
+	// 					return true
+	// 				}else{
+	// 					return false
+	// 				}
+	// 			})
+	// 		});
+	// 	}, 3000);		
+	// }
 
 	async _loadNewPlaybackInstance(playing) {
 		if (this.playbackInstance != null) {
