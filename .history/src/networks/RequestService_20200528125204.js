@@ -60,7 +60,7 @@ class RequestService {
 
     async postRequestFormData(url,formData){
       console.log(url);
-      //console.log("opbjecccctt:",object);
+      console.log("opbjecccctt:",object);
       let aux3;
       let data = await (fetch(url, {
         method: 'POST',

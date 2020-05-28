@@ -162,11 +162,11 @@ class NetworkService {
     console.log('Servicio Crear Album', data);
     var url=`${BASE_URL}/createAlbum`
     console.log('URLLLLLL', url);
-    let formData = new FormData();
-    formData.append('email', data.user.correo);
-    formData.append('name',data.nombreAlbum);
+
+    data.email = data.user.correo
+    data.name = data.nombreAlbum
     console.log("CORREO", data.correo)
-    return RequestService.postRequestFormData(url,formData);
+    return RequestService.postRequest(url,data);
   }
 
   deleteAlbum(correo,idalbum){
@@ -208,13 +208,6 @@ class NetworkService {
     return RequestService.addSongRequest(url,nombreC,uri,idalbum,correo);
   }
 
-  recoverPassword(data){
-    console.log('Dataaaa:', data);
-    var url=`${BASE_URL}/recoverEmail`
-    console.log('URLLLLLL', url);
-    return RequestService.postRequest(url,data);
-  }
-
   addCapituloPodcast(nombreC,uri,idalbum,correo){
     console.log('Servicio Subir cancion Podcast', {url,nombreC,uri,idalbum,correo});
     var url=`${BASE_URL}/subirCapitulo`
@@ -237,10 +230,11 @@ class NetworkService {
     console.log('Servicio Crear Playlist', data);
     var url=`${BASE_URL}/createPlaylist`
     console.log('URLLLLLL', url);
-    let formData = new FormData();
-    formData.append('email', data.user.correo);
-    formData.append('playlist',data.nombrePlaylist);
-    return RequestService.postRequestFormData(url,formData);
+
+    data.user = data.user.correo
+    data.playlist = data.nombrePlaylist
+    console.log("CORREO", data.correo)
+    return RequestService.postRequest(url,data);
   }
 
   //añade cancion to playlist

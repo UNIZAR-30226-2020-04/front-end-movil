@@ -42,7 +42,7 @@ export default class viewAlbum extends Component{
     data.idalbum = data.idalbum.toString()
 
     NetworkService.listSongsAlbum(data).then(res => {this.setState({songs: res, loadedSongs:true});console.log("Songs RES:", res)})//this.props.route.params.artist, this.props.route.params.paramId
-    console.log("SONGS", this.state.songs)
+    console.log("SONGS", songs)
     //Me devuelve una lista de canciones
   }
 

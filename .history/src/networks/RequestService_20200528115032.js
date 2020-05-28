@@ -58,82 +58,6 @@ class RequestService {
       return data;
     }
 
-    async postRequestFormData(url,formData){
-      console.log(url);
-      //console.log("opbjecccctt:",object);
-      let aux3;
-      let data = await (fetch(url, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'multipart/form-data',
-        },
-        body: formData,
-      })
-      .then(
-        res =>{
-          let aux = res.json();
-          let aux2;
-          console.log("DENTRO",aux);
-          return aux.then(function(value) {
-            aux2 = value;
-            aux3 = value;
-            console.log("VALUE:",aux2);
-            return aux2;
-          })
-        }
-      )
-      .catch(
-        err=>{
-          console.log("Error in postRequest",err);
-        }
-      ));
-      console.log("RESULTADO:", data);
-      return data;
-    }
-
-    async postRequestRegister1(url,object){
-      console.log(url);
-      console.log("opbjecccctt:",object);
-      let formData = new FormData();
-      formData.append('name',object.name);
-      formData.append('email', object.email);
-      formData.append('dateOfBirth',object.dateOfBirth);
-      formData.append('surname', object.surname);
-      formData.append('password', object.password);
-      formData.append('username', object.username);
-
-      let aux3;
-      let data = await (fetch(url, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'multipart/form-data',
-        },
-        body: formData,
-      })
-      .then(
-        res =>{
-          let aux = res.json();
-          let aux2;
-          console.log("DENTRO",aux);
-          return aux.then(function(value) {
-            aux2 = value;
-            aux3 = value;
-            console.log("VALUE:",aux2);
-            return aux2;
-          })
-        }
-      )
-      .catch(
-        err=>{
-          console.log("Error in postRequest",err);
-        }
-      ));
-      console.log("RESULTADO:", data);
-      return data;
-    }
-
     async postRequestRegistro(url,object){
       console.log("ONJET", object)
       let uriParts = object.foto.split('.');
@@ -141,9 +65,9 @@ class RequestService {
       let formData = new FormData();
 
     formData.append('foto', {
-      uri: object.foto,
+      uri,
       name: `recording.${fileType}`,
-      type: `image/jpeg`,
+      type: `image`,
     });
     formData.append('name',object.name);
 		formData.append('email', object.email);
@@ -157,7 +81,7 @@ class RequestService {
       body: formData,
       headers: {
         'Accept': 'application/json',
-        //'Content-Type': 'multipart/form-data',
+        'Content-Type': 'multipart/form-data',
       },
     };
   

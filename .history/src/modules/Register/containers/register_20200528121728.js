@@ -57,7 +57,7 @@ export default class App extends Component{
         if(res == false){
           ToastAndroid.show('Register failed', ToastAndroid.SHORT);
         }else{
-          this.props.navigation.navigate('Login')
+          //this.props.navigation.navigate('Login')
         }
     }).catch(err => {
       console.log('Error:', err)
