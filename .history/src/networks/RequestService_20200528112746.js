@@ -58,59 +58,17 @@ class RequestService {
       return data;
     }
 
-    async postRequestFormData(url,formData){
-      console.log(url);
-      //console.log("opbjecccctt:",object);
-      let aux3;
-      let data = await (fetch(url, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'multipart/form-data',
-        },
-        body: formData,
-      })
-      .then(
-        res =>{
-          let aux = res.json();
-          let aux2;
-          console.log("DENTRO",aux);
-          return aux.then(function(value) {
-            aux2 = value;
-            aux3 = value;
-            console.log("VALUE:",aux2);
-            return aux2;
-          })
-        }
-      )
-      .catch(
-        err=>{
-          console.log("Error in postRequest",err);
-        }
-      ));
-      console.log("RESULTADO:", data);
-      return data;
-    }
-
-    async postRequestRegister1(url,object){
+    async postRequestRegistro(url,object){
       console.log(url);
       console.log("opbjecccctt:",object);
-      let formData = new FormData();
-      formData.append('name',object.name);
-      formData.append('email', object.email);
-      formData.append('dateOfBirth',object.dateOfBirth);
-      formData.append('surname', object.surname);
-      formData.append('password', object.password);
-      formData.append('username', object.username);
-
       let aux3;
       let data = await (fetch(url, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json'
         },
-        body: formData,
+        body: JSON.stringify(object),
       })
       .then(
         res =>{
@@ -134,35 +92,34 @@ class RequestService {
       return data;
     }
 
-    async postRequestRegistro(url,object){
-      console.log("ONJET", object)
-      let uriParts = object.foto.split('.');
-      let fileType = uriParts[uriParts.length - 1];
-      let formData = new FormData();
-
-    formData.append('foto', {
-      uri: object.foto,
-      name: `recording.${fileType}`,
-      type: `image/jpeg`,
-    });
-    formData.append('name',object.name);
-		formData.append('email', object.email);
-    formData.append('dateOfBirth',object.dateOfBirth);
-    formData.append('surname', object.surname);
-    formData.append('password', object.password);
-    formData.append('username', object.username);
-  
-    let options = {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'Accept': 'application/json',
-        //'Content-Type': 'multipart/form-data',
-      },
-    };
-  
-    return fetch(url, options);
-    }
+    // async postRequestURL(url,object){
+    //   console.log(url);
+    //   console.log("opbjecccctt:",object);
+    //   let aux3;
+    //   let data = await (fetch(url, {
+    //     method: 'POST',
+    //     headers: {
+    //       'Accept': 'application/json',
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify(object),
+    //   })
+    //   .then(
+    //     res =>{
+    //       let aux = res;
+    //       let aux2;
+    //       console.log("DENTRO",aux);
+    //       return aux
+    //     }
+    //   )
+    //   .catch(
+    //     err=>{
+    //       console.log("Error in postRequest",err);
+    //     }
+    //   ));
+    //   console.log("RESULTADO:", data);
+    //   return data;
+    // }
 
     //añadir cancion
     addSongRequest = async(url,nombreC,uri,idalbum,correo) => {

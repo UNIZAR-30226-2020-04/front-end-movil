@@ -102,6 +102,7 @@ export default class Dashboard extends Component{
           <View style={[styles.container]}>
             <Text style={[styles.title, {marginTop: 70}]}>
               Wellcome again {this.state.user.nick} !
+              Nombre: {this.state.user.nombre} !
             </Text>
           </View>
         </ScrollView>

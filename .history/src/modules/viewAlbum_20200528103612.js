@@ -42,7 +42,7 @@ export default class viewAlbum extends Component{
     data.idalbum = data.idalbum.toString()
 
     NetworkService.listSongsAlbum(data).then(res => {this.setState({songs: res, loadedSongs:true});console.log("Songs RES:", res)})//this.props.route.params.artist, this.props.route.params.paramId
-    console.log("SONGS", this.state.songs)
+    console.log("SONGS", songs)
     //Me devuelve una lista de canciones
   }
 
@@ -52,9 +52,9 @@ export default class viewAlbum extends Component{
       const retrieveItem = await AsyncStorage.getItem(albumID);
       if (retrieveItem !== null) {
         // We have data!!
-        //console.log("DashBoardValue: ", retrieveItem);
+        console.log("DashBoardValue: ", retrieveItem);
         const item = JSON.parse(retrieveItem)
-        //console.log("Item: ", item);
+        console.log("Item: ", item);
         return item;
       }
     } catch (error) {
@@ -68,13 +68,13 @@ export default class viewAlbum extends Component{
     console.log("---------------------------viewAlbum------------------------------------------")
    // console.log("this.state.loaded = ",this.state.loaded)
     if (this.state.loadedSongs){
-      //console.log("this.state = ",this.state)
-      //console.log("user = ",this.state.user)
-      //console.log("RENDERLOADED")
+      console.log("this.state = ",this.state)
+      console.log("user = ",this.state.user)
+      console.log("RENDERLOADED")
       //this.getAlbumsDB().then( res => {this.setState({albums: res}); console.log("GETALBUMS RES:", res);console.log("GETALBUMS ALBUMS:", this.state.albums)}).catch(err => console.log("Error",err));
       return this.renderLoaded()
     }else{
-      //console.log("ELSEthis.state.loadedSongs = ",this.state.loadedSongs)
+      console.log("ELSEthis.state.loadedSongs = ",this.state.loadedSongs)
       return(<View><Text>Loading...</Text></View>)
     }
   

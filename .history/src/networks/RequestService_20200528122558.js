@@ -58,40 +58,6 @@ class RequestService {
       return data;
     }
 
-    async postRequestFormData(url,formData){
-      console.log(url);
-      //console.log("opbjecccctt:",object);
-      let aux3;
-      let data = await (fetch(url, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'multipart/form-data',
-        },
-        body: formData,
-      })
-      .then(
-        res =>{
-          let aux = res.json();
-          let aux2;
-          console.log("DENTRO",aux);
-          return aux.then(function(value) {
-            aux2 = value;
-            aux3 = value;
-            console.log("VALUE:",aux2);
-            return aux2;
-          })
-        }
-      )
-      .catch(
-        err=>{
-          console.log("Error in postRequest",err);
-        }
-      ));
-      console.log("RESULTADO:", data);
-      return data;
-    }
-
     async postRequestRegister1(url,object){
       console.log(url);
       console.log("opbjecccctt:",object);
@@ -108,7 +74,7 @@ class RequestService {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json'
         },
         body: formData,
       })

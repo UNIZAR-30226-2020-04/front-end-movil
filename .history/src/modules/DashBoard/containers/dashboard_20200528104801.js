@@ -99,11 +99,47 @@ export default class Dashboard extends Component{
         <ScrollView
           scrollEventThrottle={16}
         >
-          <View style={[styles.container]}>
+          {/* <View style={[styles.container]}>
             <Text style={[styles.title, {marginTop: 70}]}>
-              Wellcome again {this.state.user.nick} !
+              Nick: {this.state.user.nick} !
+              Nombre: {this.state.user.nombre} !
             </Text>
+
+            <Text style={styles.title}>
+              Songs recently listened
+            </Text>
+            <View style={{height: 200, marginTop: 20}}>
+              <ScrollView
+                horizontal={true}>
+                <Element type='album' image={{uri: 'http://metaltrip.com/wp-content/uploads/2015/05/Bullet-For-My-Valentine-400x400.jpg'}} album_name="Venom" song_name="cualquiera"></Element>
+              </ScrollView>
+            </View>
           </View>
+
+
+          <View style={styles.container}>
+            <Text style={styles.title}>
+              Playlist recently listened
+            </Text>
+            <View style={{height: 200, marginTop: 20}}>
+              <ScrollView
+                horizontal={true}>
+                <Element type='album' image={{uri: 'https://bucket3.glanacion.com/anexos/fotos/79/2667179h1080.jpg'}} album_name="Redención" song_name="cualquiera"></Element>
+              </ScrollView>
+            </View>
+          </View>
+
+          <View style={styles.container}>
+            <Text style={styles.title}>
+              Podcast recently listened
+            </Text>
+            <View style={{height: 200, marginTop: 20}}>
+              <ScrollView
+                horizontal={true}>
+                <Element type='album' image={{uri: 'https://www.federico-toledo.com/wp-content/uploads/2017/07/podcast-image.jpg'}} album_name="Redención" song_name="cualquiera"></Element>
+              </ScrollView>
+            </View>
+          </View> */}
         </ScrollView>
       </ImageBackground>
     );

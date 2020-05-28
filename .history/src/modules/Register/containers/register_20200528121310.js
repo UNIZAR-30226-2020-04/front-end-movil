@@ -8,13 +8,13 @@ import * as Permissions from 'expo-permissions';
 
 export default class App extends Component{
   state={
-    name: "Eduardo",
+    name: "",
     surname: "",
-    username: "Edu",
-    email:"a@a.com",
-    password:"1",
-    dateOfBirth: "sadfas",
-    foto: "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Flistenit-fd319780-09b2-4724-a10a-2fbc2abd3ae8/ImagePicker/e297521f-2406-49be-b3a3-eed5a8889510.jpg",
+    username: "",
+    email:"",
+    password:"",
+    dateOfBirth: "",
+    foto: "",
     
   }
 
@@ -54,10 +54,10 @@ export default class App extends Component{
   login = () =>  {Alert.alert('Registrando usuario...')}
   goLogin = () => {
     NetworkService.registerUser(this.state).then(res => {
-        if(res == false){
+        if(res === false){
           ToastAndroid.show('Register failed', ToastAndroid.SHORT);
         }else{
-          this.props.navigation.navigate('Login')
+          //this.props.navigation.navigate('Login')
         }
     }).catch(err => {
       console.log('Error:', err)

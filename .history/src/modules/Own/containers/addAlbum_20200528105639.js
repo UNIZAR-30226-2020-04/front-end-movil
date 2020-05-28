@@ -76,24 +76,6 @@ export default class App extends React.Component {
     console.log("DEVULVE picker final:",this.state.uriCancionAdd);
   }
 
-  _pickImage = async () => {
-    try {
-      let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
-      });
-      if (!result.cancelled) {
-        this.setState({ imagenAlbum: result.uri });
-      }
-
-      console.log("IMAGEN ELEGIDA: ",result);
-    } catch (E) {
-      console.log(E);
-    }
-  };
-
   addSong = async () => {
     console.log("Cancion a añadir:");
     console.log("DEVULVE NOMBRE:",this.state.nombreCancionAdd);
@@ -197,19 +179,13 @@ export default class App extends React.Component {
                 placeholderTextColor="#FFFFFF"
                 onChangeText={text => this.setState({nombreCancionAdd:text})}/>
 
-                <TouchableOpacity style={styles.button}  onPress={this._pickImage}>
-                  <Text style={styles.text}>Seleccione Imagen para la portada</Text>
-                </TouchableOpacity>
-
                 <TouchableOpacity style={styles.button}  onPress={this._pickDocument}>
                     <Text style={styles.text}>Seleccione Cancion</Text>
                 </TouchableOpacity>
-                
 
                 <TouchableOpacity style={styles.button}  onPress={this.addSong}>
                     <Text style={styles.text}>"Introducir Cancion"</Text>
                 </TouchableOpacity>
-                
                 {this.state.CancionesAlbum.map(cancion =><Text style={styles.text}>  {cancion.nombre} </Text> )}
                 <TouchableOpacity style={styles.button}  onPress={this.crearAlbum}>
                     <Text style={styles.text}>"Crear Album"</Text>

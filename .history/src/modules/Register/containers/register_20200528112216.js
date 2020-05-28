@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert, ToastAndroid, Image, ImageBackground, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Alert, ScrollView, Image, ImageBackground, TouchableOpacity } from 'react-native';
 import DatePicker from 'react-native-datepicker'
 import NetworkService from '../../../networks/NetworkService'
 import * as ImagePicker from 'expo-image-picker';
@@ -8,13 +8,12 @@ import * as Permissions from 'expo-permissions';
 
 export default class App extends Component{
   state={
-    name: "Eduardo",
+    name: "",
     surname: "",
-    username: "Edu",
-    email:"a@a.com",
-    password:"1",
-    dateOfBirth: "sadfas",
-    foto: "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Flistenit-fd319780-09b2-4724-a10a-2fbc2abd3ae8/ImagePicker/e297521f-2406-49be-b3a3-eed5a8889510.jpg",
+    username: "",
+    email:"",
+    password:"",
+    dateOfBirth: ""
     
   }
 
@@ -42,7 +41,7 @@ export default class App extends Component{
         quality: 1,
       });
       if (!result.cancelled) {
-        this.setState({ foto: result.uri });
+        this.setState({ imagenAlbum: result.uri });
       }
 
       console.log("IMAGEN ELEGIDA: ",result);
@@ -52,19 +51,11 @@ export default class App extends Component{
   };
 
   login = () =>  {Alert.alert('Registrando usuario...')}
-  goLogin = () => {
-    NetworkService.registerUser(this.state).then(res => {
-        if(res == false){
-          ToastAndroid.show('Register failed', ToastAndroid.SHORT);
-        }else{
-          this.props.navigation.navigate('Login')
-        }
-    }).catch(err => {
-      console.log('Error:', err)
-    });
-    }
+  goLogin = () => {NetworkService.registerUser(this.state);
+  					this.props.navigation.navigate('Login')}
     render(){
       return (
+        
         <View style={styles.container}>
           <ImageBackground source={require('../../../Wallpapers/fondoPantallaPrincipal.jpg')} style={styles.backgroundImage}>
             

@@ -209,7 +209,6 @@ export default class App extends React.Component {
                 <TouchableOpacity style={styles.button}  onPress={this.addSong}>
                     <Text style={styles.text}>"Introducir Cancion"</Text>
                 </TouchableOpacity>
-                
                 {this.state.CancionesAlbum.map(cancion =><Text style={styles.text}>  {cancion.nombre} </Text> )}
                 <TouchableOpacity style={styles.button}  onPress={this.crearAlbum}>
                     <Text style={styles.text}>"Crear Album"</Text>
