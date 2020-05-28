@@ -32,7 +32,6 @@ const BUFFERING_STRING = 'Buffering...';
 const RATE_SCALE = 3.0;
 
 var PLAYLIST = [];
-var PLAYLIST_OLD = [];
 
 export default class App extends Component {
 	constructor(props) {
@@ -109,13 +108,7 @@ export default class App extends Component {
 		//Hacer cada X segs
 		setInterval(() => {
 			this.setState(() => {
-				this.retrievePlaylist().then( res => {
-					PLAYLIST_OLD = PLAYLIST
-					PLAYLIST = res;
-					this.setState({user: res, loadedUser:true})}).catch(err => console.log("Error",err));
-
-
-
+				this.retrieveUser().then( res => {this.setState({user: res, loadedUser:true})}).catch(err => console.log("Error",err));
 			});
 		  }, 10000);
 	}
