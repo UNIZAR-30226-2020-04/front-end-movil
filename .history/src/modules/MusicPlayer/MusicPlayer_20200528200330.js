@@ -113,27 +113,19 @@ export default class App extends Component {
 			this.setState(() => {
 				this.retrievePlaylist().then( res => {
 					PLAYLIST_OLD = PLAYLIST
-					PLAYLIST_NUEVA = res
+					PLAYLIST_NUEVA = res;
 					console.log("PLAYLIST_OLD",PLAYLIST_OLD)
-					console.log("PLAYLIST_NUEVA",PLAYLIST_NUEVA);
+					console.log("PLAYLIST_NUEVA",PLAYLIST_NUEVA)
 					
 					var playold_string = PLAYLIST_OLD.map(function(item) {
-						return item['uri'].toString();
+						return item['uri'];
 					  });
-					
+
 					var playnew_string = PLAYLIST_NUEVA.map(function(item) {
-						item['uri'].toString();
+						return item['uri'];
 					});
 					
-					// var result = new Boolean(false);
-					// for(element of playnew_string){
-					// 	result = (playold_string.)
-					// }
-
-
-					 console.log("URL compareeeeee", playold_string.toString())
-					
-					if(playold_string.toString()!==playnew_string.toString()){//PLAYLIST_OLD.toString() != PLAYLIST_NUEVA.toString()
+					if(arraysAreEqual(PLAYLIST_OLD,PLAYLIST_NUEVA)){//PLAYLIST_OLD.toString() != PLAYLIST_NUEVA.toString()
 						console.log("DENTRO IFIFIFIFIFIFIFIFIFIF")
 						PLAYLIST = PLAYLIST_NUEVA
 						// Audio.setAudioModeAsync({
@@ -152,8 +144,6 @@ export default class App extends Component {
 						// })();
 				
 						this._loadNewPlaybackInstance(false);
-					}else{
-						console.log("NoOOOSODOOSOO IGUALES")
 					}
 				
 				});

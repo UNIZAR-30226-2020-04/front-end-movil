@@ -23,10 +23,6 @@ class PlaylistItem {
 	}
 }
 
-function arraysAreEqual(ary1,ary2){
-	return (ary1.join('') == ary2.join(''));
-  }
-
 const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window');
 const BACKGROUND_COLOR = '#FFFFFF';
 const DISABLED_OPACITY = 0.5;
@@ -65,7 +61,7 @@ export default class App extends Component {
 	retrievePlaylist = async () => {
 		try {
 		  const retrieveItem = await AsyncStorage.getItem('PlaylistNow');
-		  //console.log("retrieve item:", retrieveItem)
+		  console.log("retrieve item:", retrieveItem)
 		  if (retrieveItem !== null) {
 			//We have data!!
 			console.log("AQUI BN")
@@ -113,28 +109,10 @@ export default class App extends Component {
 			this.setState(() => {
 				this.retrievePlaylist().then( res => {
 					PLAYLIST_OLD = PLAYLIST
-					PLAYLIST_NUEVA = res
+					PLAYLIST_NUEVA = res;
 					console.log("PLAYLIST_OLD",PLAYLIST_OLD)
-					console.log("PLAYLIST_NUEVA",PLAYLIST_NUEVA);
-					
-					var playold_string = PLAYLIST_OLD.map(function(item) {
-						return item['uri'].toString();
-					  });
-					
-					var playnew_string = PLAYLIST_NUEVA.map(function(item) {
-						item['uri'].toString();
-					});
-					
-					// var result = new Boolean(false);
-					// for(element of playnew_string){
-					// 	result = (playold_string.)
-					// }
-
-
-					 console.log("URL compareeeeee", playold_string.toString())
-					
-					if(playold_string.toString()!==playnew_string.toString()){//PLAYLIST_OLD.toString() != PLAYLIST_NUEVA.toString()
-						console.log("DENTRO IFIFIFIFIFIFIFIFIFIF")
+					console.log("PLAYLIST_NUEVA",PLAYLIST_NUEVA)
+					if((JSON.stringify(PLAYLIST_OLD)) != (JSON.stringfy(PLAYLIST_NUEVA))){
 						PLAYLIST = PLAYLIST_NUEVA
 						// Audio.setAudioModeAsync({
 						// 	allowsRecordingIOS: false,
@@ -152,8 +130,6 @@ export default class App extends Component {
 						// })();
 				
 						this._loadNewPlaybackInstance(false);
-					}else{
-						console.log("NoOOOSODOOSOO IGUALES")
 					}
 				
 				});
@@ -162,7 +138,6 @@ export default class App extends Component {
 	}
 	//Comprobar si nueva playlist es diferente a la vieja, y si es así acutalizar
 	
-
 	componentDidUpdate(prevProps, prevState) {
 		this.retrievePlaylist().then( res => {})
 		// only update chart if the data has changed

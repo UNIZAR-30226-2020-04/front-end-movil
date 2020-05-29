@@ -3,21 +3,30 @@ import {  StyleSheet, Text, View, TextInput, ImageBackground,Alert, Button,Touch
 import NetworkService from '../../../networks/NetworkService'
 import * as DocumentPicker from 'expo-document-picker';
 import User from '../../DashBoard/containers/user';
+import * as ImagePicker from 'expo-image-picker';
+import Constants from 'expo-constants';
+import * as Permissions from 'expo-permissions';
 
-//Sin implementar. Pendiente de como funciona en backend
+function updateText(text) {
+  this.setState({text})
+}
 
-export default class addPodcast extends React.Component {
+export default class App extends React.Component {
+  constructor(props){
+    super(props)
+    updateText = updateText.bind(this)
+  }
   state={
     user: new User(),
     //email:"a@a.com",
-    nombrePodcast:"",
-    imagenPodcast:"",
-    nombreCapituloAdd: "",
-    uriCapituloAdd: "",
-    cancionesPodcast:[],
+    nombreAlbum:"",
+    imagenAlbum:"",
+    nombreCancionAdd: "",
+    uriCancionAdd: "",
+    CancionesAlbum:[],
     result:"",
     name:"",
-    idpodcast:"",
+    idalbum:"",
   }
   retrieveData = async () => {
     try {
@@ -38,12 +47,24 @@ export default class addPodcast extends React.Component {
   componentDidMount(){
     //recuperar datos del usuario
     console.log("Antes retrieve data")
+    //recuperar datos del usuario
+    console.log("Antes retrieve data")
     let user_state;
-    this.retrieveData().then( res => {this.setState({user: res,});}).catch(err => console.log("Error",err));
+    this.retrieveData().then( res => {this.setState({user: res, loaded:true});}).catch(err => console.log("Error",err));
     console.log("user_state",user_state);
     console.log("this.state",this.state);
     console.log("state completo:",this.state)
+    this.getPermissionAsync();
   }
+
+  getPermissionAsync = async () => {
+    if (Constants.platform.android) {
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      if (status !== 'granted') {
+        alert('Sorry, we need camera roll permissions to make this work!');
+      }
+    }
+  };
 
   goToaddAlbum= () =>{ 
     this.props.navigation.navigate( 'addAlbum' );
@@ -51,29 +72,47 @@ export default class addPodcast extends React.Component {
 
   _pickDocument = async () => {
     let result = await DocumentPicker.getDocumentAsync({});
-    this.state.uriCapituloAdd =result.uri;
-    console.log("DEVULVE picker final:",this.state.uriCapituloAdd);
+    this.state.uriCancionAdd =result.uri;
+    console.log("DEVULVE picker final:",this.state.uriCancionAdd);
   }
+
+  _pickImage = async () => {
+    try {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+      if (!result.cancelled) {
+        this.setState({ imagenAlbum: result.uri });
+      }
+
+      console.log("IMAGEN ELEGIDA: ",result);
+    } catch (E) {
+      console.log(E);
+    }
+  };
 
   addSong = async () => {
     console.log("Cancion a añadir:");
-    console.log("DEVULVE NOMBRE:",this.state.nombreCapituloAdd);
-    console.log("DEVULVE URI:",this.state.uriCapituloAdd);
+    console.log("DEVULVE NOMBRE:",this.state.nombreCancionAdd);
+    console.log("DEVULVE URI:",this.state.uriCancionAdd);
 
-    if (this.state.nombreCapituloAdd != "" && this.state.uriCapituloAdd != ""){
+    if (this.state.nombreCancionAdd != "" && this.state.uriCancionAdd != ""){
 
       this.setState(state => {
-          const cancionesPodcast = state.cancionesPodcast.concat({nombre:this.state.nombreCapituloAdd,URI:this.state.uriCapituloAdd});
+          const CancionesAlbum = state.CancionesAlbum.concat({nombre:this.state.nombreCancionAdd,URI:this.state.uriCancionAdd});
           return {
-            cancionesPodcast,
-            nombreCapituloAdd:"",
-            uriCapituloAdd:""
+            CancionesAlbum,
+            nombreCancionAdd:"",
+            uriCancionAdd:""
           };
 
           });
 
     }
-    else if (this.state.nombreCapituloAdd == "" ) {
+    else if (this.state.nombreCancionAdd == "" ) {
      Alert.alert('Introduzca nombre de la cancion');
 
     }
@@ -81,39 +120,49 @@ export default class addPodcast extends React.Component {
       Alert.alert('Introduzca la cancion');
     }
     console.log("--------------------Canciones añadidas----------------------");
-    this.state.cancionesPodcast.forEach(element => console.log(element.nombre));
+    this.state.CancionesAlbum.forEach(element => console.log(element.nombre));
   }
 
 
 
  async bucleAddSong(element) {
-    this.state.nombreP=element.nombre
+    this.state.nombreC=element.nombre
     console.log("ELEMENT . NOMBRE:  ",element.nombre);
-    console.log("ELEMENT URI",element);
-    await NetworkService.addCapituloPodcast(element.nombre,element.URI,this.state.idpodcast, this.state.user.correo)//this.state.user.correo
+
+  
+    await NetworkService.addCancionAlbum(element.nombre,element.URI,this.state.idalbum, this.state.user.correo)//this.state.user.correo
           .then( res => {this.state.result = res});
+    //console.log("Resultadoooo añadir cancion",this.state.result)
   }
 
+  
 
 
-
-  crearPodcast = async () => {
-    if (this.state.nombrePodcast != ""){
-      console.log("Creando Podcast.....:  ",this.state.nombrePodcast);
-      this.state.name=this.state.nombrePodcast
-      console.log("-------------PODCAST-----------------------");
-      this.state.cancionesPodcast.forEach(element => console.log(element.nombre));
+  crearAlbum = async () => {
+    if (this.state.nombreAlbum != ""){
+      console.log("Creando Album.....:  ",this.state.nombreAlbum);
+      this.state.name=this.state.nombreAlbum
+      console.log("-------------Canciones-----------------------");
+      this.state.CancionesAlbum.forEach(element => console.log(element.nombre));
       console.log("USERRRRRRRRRRRRRRRRRRRRR:  ",this.state.user);
-      await NetworkService.createPodcast(this.state).then( res => {this.state.result = res});
-      console.log("ID del PODCAST",this.state.result.l_id);
-      this.state.idpodcast = this.state.result.l_id;
+      await NetworkService.createAlbum(this.state).then( res => {this.state.result = res});
+      console.log("ID del album",this.state.result.l_id);
+      this.state.idalbum = this.state.result.l_id;
       this.state.user.correo = this.state.user.correo
 
       //Bucle creacion canciones 
       console.log("-------------Bucle Creacion Canciones-------------------");
-      this.state.cancionesPodcast.forEach(element => this.bucleAddSong(element) );
+      this.state.CancionesAlbum.forEach(element => this.bucleAddSong(element) );
+
+      // for(element of this.state.CancionesAlbum){
+      //   await this.bucleAddSong(element)
+      // } 
+
+
+      //this.state.CancionesAlbum.forEach(async (element) => await this.bucleAddSong(element));
+      
     }
-    else {  Alert.alert('Introduzca nombre del Podcast');}
+    else {  Alert.alert('Introduzca nombre del Album');}
   }
 
 
@@ -123,17 +172,18 @@ export default class addPodcast extends React.Component {
   render() {
 
     return (
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView style={styles.container}>
+      <View contentContainerStyle={styles.container}>
         <ImageBackground source={require('../../../Wallpapers/fondoPantallaPrincipal.jpg')} style={styles.backgroundImage}>
             <View style={styles.inputView} >
             <Text style={styles.text}>{this.state.user.correo}</Text> 
             <Text style={styles.text}>{this.state.user.nick}</Text> 
-            <Text style={styles.text}>  Nombre del Podcast </Text> 
+            <Text style={styles.text}>  Nombre del Album </Text> 
               <TextInput  
                 style={styles.inputText}
                 placeholder=" Introduzca Nombre del Album..." 
                 placeholderTextColor="#FFFFFF"
-                onChangeText={text => this.setState({nombrePodcast:text})}/>
+                onChangeText={text => this.setState({nombreAlbum:text})}/>
             <View
               style={{
                 borderBottomColor: 'black',
@@ -146,23 +196,30 @@ export default class addPodcast extends React.Component {
                 style={styles.inputText}
                 placeholder=" Introduzca Nombre de la cancion a añadir.." 
                 placeholderTextColor="#FFFFFF"
-                onChangeText={text => this.setState({nombreCapituloAdd:text})}/>
+                onChangeText={text => this.setState({nombreCancionAdd:text})}/>
+
+                <TouchableOpacity style={styles.button}  onPress={this._pickImage}>
+                  <Text style={styles.text}>Seleccione Imagen para la portada</Text>
+                </TouchableOpacity>
 
                 <TouchableOpacity style={styles.button}  onPress={this._pickDocument}>
-                    <Text style={styles.text}>Seleccione Capitulo Podcast</Text>
+                    <Text style={styles.text}>Seleccione Cancion</Text>
                 </TouchableOpacity>
+                
 
                 <TouchableOpacity style={styles.button}  onPress={this.addSong}>
-                    <Text style={styles.text}>"Introducir Capitulo Podcast"</Text>
+                    <Text style={styles.text}>"Introducir Cancion"</Text>
                 </TouchableOpacity>
-                {this.state.cancionesPodcast.map(cancion =><Text style={styles.text}>  {cancion.nombre} </Text> )}
-                <TouchableOpacity style={styles.button}  onPress={this.crearPodcast}>
-                    <Text style={styles.text}>"Crear Podcast"</Text>
+                
+                {this.state.CancionesAlbum.map(cancion =><Text style={styles.text}>  {cancion.nombre} </Text> )}
+                <TouchableOpacity style={styles.button}  onPress={this.crearAlbum}>
+                    <Text style={styles.text}>"Crear Album"</Text>
                 </TouchableOpacity>
         
             </View>
         </ImageBackground>
-       </ScrollView>
+       </View>
+      </ScrollView>
   
      
     );

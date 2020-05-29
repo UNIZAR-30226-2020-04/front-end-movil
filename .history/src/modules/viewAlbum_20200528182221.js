@@ -5,51 +5,50 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { Ionicons } from '@expo/vector-icons';
 import NetworkService from '../networks/NetworkService'
+import * as DocumentPicker from 'expo-document-picker';
 import { ListItem } from 'react-native-elements'
 import { Icon } from 'react-native-elements'
-import * as DocumentPicker from 'expo-document-picker';
 
-export default class viewPodcast extends Component{
+class PlaylistItem {
+	constructor(name, uri, image) {
+		this.name = name;
+		this.uri = uri;
+		this.image = image;
+	}
+}
+
+const BASE_URL = "http://pruebaslistenit.herokuapp.com/";
+
+const PLAYLIST = [];
+
+export default class viewAlbum extends Component{
   constructor(props) {
     super(props);
     
   }
 
   state={
-    podcast_info: "",
+    album_info: "",
     loadedSongs: false,
     songs: [],
+    selectedSong: "",
+    cancionAdd: "",
 
   }
 
   componentDidMount(){
+
     //HAcer consulta de songs
     data={}
     data.user=this.props.route.params.artist
     data.idalbum = this.props.route.params.paramId
     data.idalbum = data.idalbum.toString()
-    console.log("********************************")
-    console.log("DATA PODCAST",data)
-    NetworkService.listSongsPodcast(data).then(res => {this.setState({songs: res, loadedSongs:true});console.log("Songs RES:", res)})//this.props.route.params.artist, this.props.route.params.paramId
+
+    NetworkService.listSongsAlbum(data).then(res => {this.setState({songs: res, loadedSongs:true});console.log("Songs RES:", res)})//this.props.route.params.artist, this.props.route.params.paramId
+    console.log("SONGS", this.state.songs)
     //Me devuelve una lista de canciones
   }
-
-  //Devuelve el id de podcast a mostrar que se ha guardado en................................
-  retrievePodcast = async (podcastID) => {
-    try {
-      const retrieveItem = await AsyncStorage.getItem(podcastID);
-      if (retrieveItem !== null) {
-        // We have data!!
-        console.log("DashBoardValue: ", retrieveItem);
-        const item = JSON.parse(retrieveItem)
-        console.log("Item: ", item);
-        return item;
-      }
-    } catch (error) {
-      // Error retrieving data
-      console.log("Error al obtener datos")
-    }
-  };
+  
 
   _pickDocument = async () => {
     let result = await DocumentPicker.getDocumentAsync({});
@@ -58,26 +57,46 @@ export default class viewPodcast extends Component{
   }
 
   uploadSelectedSong = async () => {
+    
     // this.state.nombreC=element.nombre
     console.log("ELEMENT . NOMBRE:  ",this.state.cancionAdd);
-    NetworkService.addCapituloPodcast(this.state.cancionAdd.name, this.state.cancionAdd.uri , this.props.route.params.paramId, this.props.route.params.artist)//this.state.user.correo
+
+  
+    NetworkService.addCancionAlbum(this.state.cancionAdd.nombre, this.state.cancionAdd.uri , this.props.route.params.paramId, this.props.route.params.artist)//this.state.user.correo
           .then( res => {this.state.result = res});
   }
 
+  
+
+  //Devuelve el id de album a mostrar que se ha guardado en................................
+  retrieveAlbum = async (albumID) => {
+    try {
+      const retrieveItem = await AsyncStorage.getItem(albumID);
+      if (retrieveItem !== null) {
+        // We have data!!
+        //console.log("DashBoardValue: ", retrieveItem);
+        const item = JSON.parse(retrieveItem)
+        //console.log("Item: ", item);
+        return item;
+      }
+    } catch (error) {
+      // Error retrieving data
+      console.log("Error al obtener datos")
+    }
+  };
+
   render(){
     //OPcion 1
-    console.log("---------------------------NUEVA------------------------------------------")
+    console.log("---------------------------viewAlbum------------------------------------------")
    // console.log("this.state.loaded = ",this.state.loaded)
     if (this.state.loadedSongs){
-      console.log("---------------------------1------------------------------------------")
-      console.log("this.state = ",this.state)
-      console.log("user = ",this.state.user)
-      console.log("RENDERLOADED")
-      //this.getPodcastsDB().then( res => {this.setState({podcasts: res}); console.log("GETALBUMS RES:", res);console.log("GETALBUMS ALBUMS:", this.state.podcasts)}).catch(err => console.log("Error",err));
+      //console.log("this.state = ",this.state)
+      //console.log("user = ",this.state.user)
+      //console.log("RENDERLOADED")
+      //this.getAlbumsDB().then( res => {this.setState({albums: res}); console.log("GETALBUMS RES:", res);console.log("GETALBUMS ALBUMS:", this.state.albums)}).catch(err => console.log("Error",err));
       return this.renderLoaded()
     }else{
-      console.log("---------------------------2------------------------------------------")
-      console.log("ELSEthis.state.loadedSongs = ",this.state.loadedSongs)
+      //console.log("ELSEthis.state.loadedSongs = ",this.state.loadedSongs)
       return(<View><Text>Loading...</Text></View>)
     }
   
@@ -101,26 +120,64 @@ export default class viewPodcast extends Component{
     )
   }
 
+  //Guarda el state del usuario
+  storePlaylist = async () => {
+    try {
+      await AsyncStorage.setItem('PlaylistNow', JSON.stringify(PLAYLIST));
+      console.log("Guardando playlist...")
+    } catch (error) {
+        console.log("Fallo al guardar..")
+      // Error saving data
+    }
+  };
+
+
+  reproducirCancion(ruta){
+    console.log("THIS.RUTAAAAAAAAAA", ruta)
+    //obtener URL de canciones
+    {
+      let url
+      this.state.songs.map((item, i) => (
+        console.log("item: ", item),
+       //NetworkService.pedirURL(idCancion.toString(),idAlbum.toString(),correo).then(
+           url = BASE_URL + "Cancion?idsong=" + item.idCancion.c_id + item.idCancion.l_id.l_id + item.idCancion.l_id.u + ".mp3",
+           console.log("URL reproducir: ",url),
+           console.log("i ",i),
+          //nomrbe, url, foto
+          PLAYLIST[i] = new PlaylistItem(
+            item.nombre,
+            url,
+            this.props.route.params.image.uri,
+          )))
+    }
+
+    console.log("Playlist en viewALBUM-------------------------", PLAYLIST)
+    //ruta.props.navigation.navigate("MusicPlayer", {playlist: PLAYLIST})
+    this.storePlaylist().then(res => { console.log("GUARDADO! res:",res);ruta.props.navigation.navigate("MusicPlayer");})
+    
+  }
+
   renderLoaded(){
     console.log("Params",this.props.route.params)
     return(
       <ImageBackground source={require('../Wallpapers/fondo.jpg')} style={styles.container}>
+        <ScrollView>
           <View style={styles.container}>
             <Text style={styles.title}>
-              Podcast name:
+              Album name:
               {this.props.route.params.name}
             </Text>
             <Text style={styles.title}>
-              Podcast id: {this.props.route.params.paramId}
+              Album id: {this.props.route.params.paramId}
             </Text>
             <Text style={styles.title}>
               Artist: {this.props.route.params.artist}
             </Text>
             <TouchableOpacity style={styles.loginBtn} onPress={this._pickDocument}>
-              <Text style={styles.loginText}>Add new chapter to this podcast</Text>
+              <Text style={styles.loginText}>Add new song to this album)</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.loginBtn} onPress={this.uploadSelectedSong}>
-              <Text style={styles.loginText}>Upload selected chapter</Text>
+              <Text style={styles.loginText}>Upload selected song</Text>
             </TouchableOpacity>
             <View>
               {
@@ -138,13 +195,15 @@ export default class viewPodcast extends Component{
                       />
                     }
                     title={item.nombre} //Song
-                    subtitle={item.idCapitulo.l_id.u} //Artist
+                    subtitle={item.idCancion.l_id.u} //Artist
+                    onPress={ () => {this.reproducirCancion(this.props.route.params)}}//this.reproducirCancion(this.props.route.params)
                     bottomDivider
                   />
                 ))
               }
             </View>
           </View>
+        </ScrollView>
       </ImageBackground>
       
     );

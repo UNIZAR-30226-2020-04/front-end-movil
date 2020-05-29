@@ -7,7 +7,6 @@ import { Ionicons } from '@expo/vector-icons';
 import NetworkService from '../networks/NetworkService'
 import { ListItem } from 'react-native-elements'
 import { Icon } from 'react-native-elements'
-import * as DocumentPicker from 'expo-document-picker';
 
 export default class viewPodcast extends Component{
   constructor(props) {
@@ -117,7 +116,7 @@ export default class viewPodcast extends Component{
               Artist: {this.props.route.params.artist}
             </Text>
             <TouchableOpacity style={styles.loginBtn} onPress={this._pickDocument}>
-              <Text style={styles.loginText}>Add new chapter to this podcast</Text>
+              <Text style={styles.loginText}>Add new chapter to this podcast)</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.loginBtn} onPress={this.uploadSelectedSong}>
               <Text style={styles.loginText}>Upload selected chapter</Text>

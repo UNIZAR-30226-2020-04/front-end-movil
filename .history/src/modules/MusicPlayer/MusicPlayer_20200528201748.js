@@ -124,16 +124,11 @@ export default class App extends Component {
 					var playnew_string = PLAYLIST_NUEVA.map(function(item) {
 						item['uri'].toString();
 					});
-					
-					// var result = new Boolean(false);
-					// for(element of playnew_string){
-					// 	result = (playold_string.)
-					// }
 
 
-					 console.log("URL compareeeeee", playold_string.toString())
+					console.log("URL compareeeeee", playold_string==playnew_string)
 					
-					if(playold_string.toString()!==playnew_string.toString()){//PLAYLIST_OLD.toString() != PLAYLIST_NUEVA.toString()
+					if(playold_string!=playnew_string){//PLAYLIST_OLD.toString() != PLAYLIST_NUEVA.toString()
 						console.log("DENTRO IFIFIFIFIFIFIFIFIFIF")
 						PLAYLIST = PLAYLIST_NUEVA
 						// Audio.setAudioModeAsync({

@@ -296,21 +296,6 @@ class NetworkService {
     return RequestService.postRequest(url,data);
   }
 
-  addToPlaylistCancion(user, userCancion, idAlbum, idPlaylist, idCancion){
-    var url=`${BASE_URL}/addToPlaylist`
-    console.log('URLLLLLL', url);
-    data={}
-    data.user = user
-    data.user_c = userCancion
-    data.idalbum = idAlbum.toString()
-    data.idplaylist = idPlaylist.toString()
-    data.idcancion = idCancion.toString()
-    
-    return RequestService.postRequest(url,data);
-
-  }
-
-
 
 }
 

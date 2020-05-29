@@ -117,7 +117,7 @@ export default class viewPodcast extends Component{
               Artist: {this.props.route.params.artist}
             </Text>
             <TouchableOpacity style={styles.loginBtn} onPress={this._pickDocument}>
-              <Text style={styles.loginText}>Add new chapter to this podcast</Text>
+              <Text style={styles.loginText}>Add new chapter to this podcast)</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.loginBtn} onPress={this.uploadSelectedSong}>
               <Text style={styles.loginText}>Upload selected chapter</Text>

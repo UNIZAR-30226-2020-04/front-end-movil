@@ -80,8 +80,8 @@ class NetworkService {
   listSongsPodcast(data){
     console.log('Fetch songs podcast');
     var url=`${BASE_URL}/listPodcast`
-    //console.log('PodcastID', data.idpodcast);
-    //console.log('User', data.user);
+    console.log('PodcastID', data.idpodcast);
+    console.log('User', data.user);
     console.log('URLLLLLL', url);
     return RequestService.postRequest(url,data);
   }
@@ -122,7 +122,7 @@ class NetworkService {
     var url=`${BASE_URL}/cambiarNombre`
     update={}
     update.user = data.correo
-    update.name = data.nombre
+    update.nick = data.nombre
     update.newName = data.newName
     console.log('URLLLLLL', url);
     console.log('UPDATE: ', update);
@@ -295,21 +295,6 @@ class NetworkService {
     var url=`${BASE_URL}/searchPodcast`
     return RequestService.postRequest(url,data);
   }
-
-  addToPlaylistCancion(user, userCancion, idAlbum, idPlaylist, idCancion){
-    var url=`${BASE_URL}/addToPlaylist`
-    console.log('URLLLLLL', url);
-    data={}
-    data.user = user
-    data.user_c = userCancion
-    data.idalbum = idAlbum.toString()
-    data.idplaylist = idPlaylist.toString()
-    data.idcancion = idCancion.toString()
-    
-    return RequestService.postRequest(url,data);
-
-  }
-
 
 
 }

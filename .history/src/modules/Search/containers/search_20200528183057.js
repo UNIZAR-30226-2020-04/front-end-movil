@@ -76,7 +76,7 @@ export default class Search extends Component{
       textSearch: text,
     });
   }
-
+  
   render(){
  
     const { selectedIndex } = this.state
@@ -97,10 +97,10 @@ export default class Search extends Component{
          mostrar =    this.state.resultados.map(user => 
                           <TouchableOpacity  onPress={() => this.props.navigation.navigate('profileSearch', user)}>
                           <Text  style={[styles.title,{marginTop: 10}]} > 
-                          
                             { user.nombre }
                           </Text> 
                         </TouchableOpacity>
+
                     )
       }
       else {   mostrar= <Text  style={[styles.title,{marginTop: 10}]}> Sin resultados  </Text> }
@@ -119,7 +119,7 @@ export default class Search extends Component{
 
          mostrar =    this.state.resultados.map(album => 
                             //////////////////////////////////////////////////////////////Cambiar que te lleve al album.
-                          <TouchableOpacity  onPress={() => this.props.navigation.navigate('albumSearch', album)}>
+                          <TouchableOpacity  onPress={() => this.props.navigation.navigate('profileSearch', user)}>
                           <Text  style={[styles.title,{marginTop: 10}]} > 
                             { album.nombre }
                           </Text> 
@@ -142,7 +142,7 @@ export default class Search extends Component{
 
          mostrar =    this.state.resultados.map(playlist=> 
                             //////////////////////////////////////////////////////////////Cambiar que te lleve a playlist.
-                          <TouchableOpacity  onPress={() => this.props.navigation.navigate('playlistSearch', playlist)}>
+                          <TouchableOpacity  onPress={() => this.props.navigation.navigate('profileSearch', user)}>
                           <Text  style={[styles.title,{marginTop: 10}]} > 
                             { playlist.nombre }
                           </Text> 
