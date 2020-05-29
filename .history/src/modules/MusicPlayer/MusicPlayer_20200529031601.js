@@ -408,7 +408,7 @@ export default class App extends Component {
 					<Text>
 						{this.state.playbackInstanceName}
 					</Text>
-					<Text>Género</Text>
+					<Text>Genero: genero</Text>
 					<Text>
 						
 						{this.state.isBuffering ? (

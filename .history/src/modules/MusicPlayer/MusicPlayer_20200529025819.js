@@ -93,16 +93,6 @@ export default class App extends Component {
 		};
 	}
 
-	storePlaylist= async () => {
-		try {
-		  await AsyncStorage.setItem('PlaylistNow', JSON.stringify(PLAYLIST));
-		  console.log("Guardando this.user...")
-		} catch (error) {
-			console.log("Fallo al guardar..")
-		  // Error saving data
-		}
-	  };
-
 	retrievePlaylist = async () => {
 		try {
 		  const retrieveItem = await AsyncStorage.getItem('PlaylistNow');
@@ -125,28 +115,26 @@ export default class App extends Component {
 		console.log("PLAYLIST: ", this.props.route.params)
 		//console.log("PLAYLIST: ", this.props.route.params.PLAYLIST)
 		console.log("PLAYLIST: ", this.props)
-			this.storePlaylist().then(res => {
-			//const {playlist} = this.props.route.params
-			this.retrievePlaylist().then( res => {
-				PLAYLIST = res;
-				console.log("PLAYLIST", PLAYLIST)
-				Audio.setAudioModeAsync({
-					allowsRecordingIOS: false,
-					interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
-					playsInSilentModeIOS: true,
-					shouldDuckAndroid: true,
-					interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
-					playThroughEarpieceAndroid: true
-				});
-				// (async () => {
-				// 	await Font.loadAsync({
-				// 		roboto: require('./assets/fonts/Roboto.ttf'),
-				// 	});
-						this.setState({ fontLoaded: true });
-				// })();
-		
-				this._loadNewPlaybackInstance(false);
-			})
+		//const {playlist} = this.props.route.params
+		this.retrievePlaylist().then( res => {
+			PLAYLIST = res;
+			console.log("PLAYLIST", PLAYLIST)
+			Audio.setAudioModeAsync({
+				allowsRecordingIOS: false,
+				interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+				playsInSilentModeIOS: true,
+				shouldDuckAndroid: true,
+				interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+				playThroughEarpieceAndroid: true
+			});
+			// (async () => {
+			// 	await Font.loadAsync({
+			// 		roboto: require('./assets/fonts/Roboto.ttf'),
+			// 	});
+					this.setState({ fontLoaded: true });
+			// })();
+	
+			this._loadNewPlaybackInstance(false);
 
 		})
 
@@ -200,7 +188,7 @@ export default class App extends Component {
 				
 				});
 		  	});
-		},6000)
+		},10000)
 	}
 	//Comprobar si nueva playlist es diferente a la vieja, y si es así acutalizar
 
@@ -240,7 +228,7 @@ export default class App extends Component {
 		} else {
 			this.setState({
 				playbackInstanceName: PLAYLIST[this.index].name,
-				portrait: "http://metaltrip.com/wp-content/uploads/2015/05/Bullet-For-My-Valentine-400x400.jpg",
+				portrait: PLAYLIST[this.index].image,
 				isLoading: false,
 			});
 		}
@@ -408,9 +396,7 @@ export default class App extends Component {
 					<Text>
 						{this.state.playbackInstanceName}
 					</Text>
-					<Text>Género</Text>
 					<Text>
-						
 						{this.state.isBuffering ? (
 							BUFFERING_STRING
 						) : (
@@ -595,8 +581,8 @@ const styles = StyleSheet.create({
 		width: 200,
 	},
 	detailsContainer: {
-		height: 60,
-		marginTop: 30,
+		height: 40,
+		marginTop: 40,
 		alignItems: 'center',
 	},
 	playbackContainer: {

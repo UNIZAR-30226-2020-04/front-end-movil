@@ -408,7 +408,7 @@ export default class App extends Component {
 					<Text>
 						{this.state.playbackInstanceName}
 					</Text>
-					<Text>Género</Text>
+					<Text>Genero: genero</Text>
 					<Text>
 						
 						{this.state.isBuffering ? (
@@ -595,8 +595,8 @@ const styles = StyleSheet.create({
 		width: 200,
 	},
 	detailsContainer: {
-		height: 60,
-		marginTop: 30,
+		height: 40,
+		marginTop: 20,
 		alignItems: 'center',
 	},
 	playbackContainer: {

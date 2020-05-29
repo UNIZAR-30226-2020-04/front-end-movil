@@ -94,14 +94,14 @@ export default class Search extends Component{
                          Resultados: {this.state.resultados.length} 
                       </Text>
 
-         mostrar =    this.state.resultados.map(user => 
+         mostrar =    this.state.resultados.map(user => {
                           <TouchableOpacity  onPress={() => this.props.navigation.navigate('profileSearch', user)}>
                           <Text  style={[styles.title,{marginTop: 10}]} > 
                           
                             { user.nombre }
                           </Text> 
                         </TouchableOpacity>
-                    )
+         })
       }
       else {   mostrar= <Text  style={[styles.title,{marginTop: 10}]}> Sin resultados  </Text> }
                 
@@ -242,3 +242,5 @@ export default class Search extends Component{
       resizeMode: "contain"},
 
   });
+  
+  
