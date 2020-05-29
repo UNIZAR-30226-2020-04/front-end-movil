@@ -109,7 +109,7 @@ export default class Profile extends Component{
           //Traes data del usuario
           //¿Hacerlo todo junto?
       });
-    }, 10000);
+    }, 90000);
     console.log("state completo:",this.state)
   }
 

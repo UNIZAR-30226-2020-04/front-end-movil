@@ -86,7 +86,7 @@ export default class Dashboard extends Component{
           
 
       });
-    }, 2000);
+    }, 90000);
     console.log("state completo:",this.state)
   }
 

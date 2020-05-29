@@ -149,7 +149,7 @@ export default class Search extends Component{
 
          mostrar =    this.state.resultados.map(playlist=> 
                             //////////////////////////////////////////////////////////////Cambiar que te lleve a playlist.
-                          <TouchableOpacity  onPress={() => this.props.navigation.navigate('profileSearch', user)}>
+                          <TouchableOpacity  onPress={() => this.props.navigation.navigate('playlistSearch', playlist)}>
                           <Text  style={[styles.title,{marginTop: 10}]} > 
                             { playlist.nombre }
                           </Text> 
