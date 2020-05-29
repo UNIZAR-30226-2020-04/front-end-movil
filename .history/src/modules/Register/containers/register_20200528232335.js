@@ -13,9 +13,8 @@ export default class App extends Component{
     username: "Edu",
     email:"a@a.com",
     password:"1",
-    dateOfBirth: "",
+    dateOfBirth: "sadfas",
     foto: "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252Flistenit-fd319780-09b2-4724-a10a-2fbc2abd3ae8/ImagePicker/e297521f-2406-49be-b3a3-eed5a8889510.jpg",
-    nombrePlaylist: "Favoritas",
     
   }
 
@@ -59,12 +58,7 @@ export default class App extends Component{
           ToastAndroid.show('Register failed', ToastAndroid.SHORT);
         }else{
           //Crear playlist de mg vacia
-         // NetworkService.createPlaylist(this.state.email,this.state.nombrePlaylist).then(
-            // res => 
-            this.props.navigation.navigate('Login')
-          // ).catch(err => {
-          //   console.log('Error:', err)
-          // })
+          this.props.navigation.navigate('Login')
           
         }
     }).catch(err => {
@@ -142,7 +136,6 @@ export default class App extends Component{
                 }
               }}
               onDateChange={(date) => {this.setState({dateOfBirth: date})}}
-              placeholderTextColor="white"
             />
 
             <TouchableOpacity style={styles.loginBtn}  onPress={this._pickImage}>

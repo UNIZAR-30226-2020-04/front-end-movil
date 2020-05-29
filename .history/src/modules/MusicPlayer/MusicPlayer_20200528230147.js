@@ -138,20 +138,24 @@ export default class App extends Component {
 					if(n != 0){//PLAYLIST_OLD.toString() != PLAYLIST_NUEVA.toString()
 						console.log("DENTRO IFIFIFIFIFIFIFIFIFIF")
 						PLAYLIST = PLAYLIST_NUEVA
-						Audio.setAudioModeAsync({
-							allowsRecordingIOS: false,
-							interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
-							playsInSilentModeIOS: true,
-							shouldDuckAndroid: true,
-							interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
-							playThroughEarpieceAndroid: true
-						});
-
-						this.setState({ fontLoaded: true });
+						// Audio.setAudioModeAsync({
+						// 	allowsRecordingIOS: false,
+						// 	interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+						// 	playsInSilentModeIOS: true,
+						// 	shouldDuckAndroid: true,
+						// 	interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+						// 	playThroughEarpieceAndroid: true
+						// });
+						// (async () => {
+						// 	await Font.loadAsync({
+						// 		roboto: require('./assets/fonts/Roboto.ttf'),
+						// 	});
+								this.setState({ fontLoaded: true });
+						// })();
 				
 						this._loadNewPlaybackInstance(false);
 					}else{
-						console.log(" IGUALES")
+						console.log("NoOOOSODOOSOO IGUALES")
 					}
 				
 				});
@@ -159,6 +163,17 @@ export default class App extends Component {
 		},10000)
 	}
 	//Comprobar si nueva playlist es diferente a la vieja, y si es así acutalizar
+	
+
+	componentDidUpdate(prevProps, prevState) {
+		this.retrievePlaylist().then( res => {})
+		// only update chart if the data has changed
+		if (prevProps.data !== this.props.data) {
+		  this.chart = c3.load({
+			data: this.props.data
+		  });
+		}
+	  }
 
 	async _loadNewPlaybackInstance(playing) {
 		if (this.playbackInstance != null) {

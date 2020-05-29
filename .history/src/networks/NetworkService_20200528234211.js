@@ -165,8 +165,7 @@ class NetworkService {
     let formData = new FormData();
     formData.append('email', data.user.correo);
     formData.append('name',data.nombreAlbum);
-    formData.append('foto', data.imagenAlbum);
-    console.log("DATA", formData)
+    console.log("CORREO", data.correo)
     return RequestService.postRequestFormData(url,formData);
   }
 
@@ -209,14 +208,10 @@ class NetworkService {
     return RequestService.addSongRequest(url,nombreC,uri,idalbum,correo);
   }
 
-  deleteCancionAlbum(user, idAlbum, idCancion){
+  deleteCancionAlbum(nombreC,uri,idalbum,correo){
     //console.log('Servicio Subir Cancion Album', data);
     var url=`${BASE_URL}/deleteCancion`
-    data = {}
-    data.user = user
-    data.idalbum = idAlbum
-    data.idcancion = idCancion
-    return RequestService.postRequest(url,data);
+    return RequestService.addSongRequest(url,nombreC,uri,idalbum,correo);
   }
 
   recoverPassword(data){
@@ -230,16 +225,6 @@ class NetworkService {
     console.log('Servicio Subir cancion Podcast', {url,nombreC,uri,idalbum,correo});
     var url=`${BASE_URL}/subirCapitulo`
     return RequestService.addSongRequest(url,nombreC,uri,idalbum,correo);
-  }
-
-  deleteCapituloPodcast(user, idCap, idPod){
-    //console.log('Servicio Subir Cancion Album', data);
-    var url=`${BASE_URL}/deleteCapitulo`
-    data = {}
-    data.user = user
-    data.idpodcast = idPod
-    data.idcapitulo = idCap
-    return RequestService.postRequest(url,data);
   }
 
   createPodcast(data){

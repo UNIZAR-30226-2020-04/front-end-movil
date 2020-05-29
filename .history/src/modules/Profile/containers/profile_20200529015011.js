@@ -9,7 +9,7 @@ import Element from '../../DashBoard/containers/element'
 import User from '../../DashBoard/containers/user'
 import NetworkService from '../../../networks/NetworkService'
 
-const DEFAULT_URI = "http://metaltrip.com/wp-content/uploads/2015/05/Bullet-For-My-Valentine-400x400.jpg"
+const DEFAULT_URI = "https://lh3.googleusercontent.com/proxy/-s1qzyfiX9pljbSFmP83F7LSa-nuc0afcmkdvU1Oo2oY8gnp5MxyCHA1Zyec_KCPzizv9uvd0LARMOdAwwovDE6wziYIya4pQV59EavUOvlS6R-EB25DHK68NZ3Tcd4ssaCV5Q"
 const BASE_URL = "http://pruebaslistenit.herokuapp.com/";
 export default class Profile extends Component{
   constructor(props) {

@@ -142,7 +142,7 @@ export default class viewPodcast extends Component{
                     }}
                       />
                     }
-                    title={item.nombre} //Song
+                    title={item.nombre + item.fechaPublicacion} //Song
                     subtitle={item.idCapitulo.l_id.u} //Artist
                     bottomDivider
                   />

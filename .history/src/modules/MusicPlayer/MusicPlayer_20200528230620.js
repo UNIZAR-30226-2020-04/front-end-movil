@@ -146,8 +146,12 @@ export default class App extends Component {
 							interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
 							playThroughEarpieceAndroid: true
 						});
-
-						this.setState({ fontLoaded: true });
+						// (async () => {
+						// 	await Font.loadAsync({
+						// 		roboto: require('./assets/fonts/Roboto.ttf'),
+						// 	});
+								this.setState({ fontLoaded: true });
+						// })();
 				
 						this._loadNewPlaybackInstance(false);
 					}else{
@@ -159,6 +163,17 @@ export default class App extends Component {
 		},10000)
 	}
 	//Comprobar si nueva playlist es diferente a la vieja, y si es así acutalizar
+	
+
+	componentDidUpdate(prevProps, prevState) {
+		this.retrievePlaylist().then( res => {})
+		// only update chart if the data has changed
+		if (prevProps.data !== this.props.data) {
+		  this.chart = c3.load({
+			data: this.props.data
+		  });
+		}
+	  }
 
 	async _loadNewPlaybackInstance(playing) {
 		if (this.playbackInstance != null) {

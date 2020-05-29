@@ -40,7 +40,7 @@ export default class viewAlbum extends Component{
 
     //HAcer consulta de songs
     data={}
-    data.user=this.props.route.params.artist //a@a.com
+    data.user=this.props.route.params.artist
     data.idalbum = this.props.route.params.paramId
     data.idalbum = data.idalbum.toString()
 
@@ -174,7 +174,7 @@ export default class viewAlbum extends Component{
               Album id: {this.props.route.params.paramId}
             </Text>
             <Text style={styles.title}>
-              Artist: {this.props.route.params.autor}
+              Artist: {this.props.route.params.artist}
             </Text>
             <TouchableOpacity style={styles.loginBtn} onPress={this._pickDocument}>
               <Text style={styles.loginText}>Add new song to this album)</Text>

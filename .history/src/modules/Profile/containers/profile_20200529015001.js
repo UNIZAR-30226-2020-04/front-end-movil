@@ -9,7 +9,7 @@ import Element from '../../DashBoard/containers/element'
 import User from '../../DashBoard/containers/user'
 import NetworkService from '../../../networks/NetworkService'
 
-const DEFAULT_URI = "http://metaltrip.com/wp-content/uploads/2015/05/Bullet-For-My-Valentine-400x400.jpg"
+const DEFAULT_URI = "https://lh3.googleusercontent.com/proxy/-s1qzyfiX9pljbSFmP83F7LSa-nuc0afcmkdvU1Oo2oY8gnp5MxyCHA1Zyec_KCPzizv9uvd0LARMOdAwwovDE6wziYIya4pQV59EavUOvlS6R-EB25DHK68NZ3Tcd4ssaCV5Q"
 const BASE_URL = "http://pruebaslistenit.herokuapp.com/";
 export default class Profile extends Component{
   constructor(props) {
@@ -143,7 +143,7 @@ export default class Profile extends Component{
                 {this.state.albums.map(
                   element => 
                    
-                    <Element type='album' paramId={element.idAlbum.l_id} image = {{ uri: element.urlfoto!=null ? DEFAULT_URI : element.urlfoto }} autor={element.autor} name={element.nombre} artist={element.idAlbum.u} props={this.props}></Element>
+                    <Element type='album' paramId={element.idAlbum.l_id} image = {{ uri: element.urlfoto===null ? DEFAULT_URI : element.urlfoto }} autor={element.autor} name={element.nombre} artist={element.idAlbum.u} props={this.props}></Element>
                 
                     )
                 }

@@ -40,7 +40,7 @@ export default class viewAlbum extends Component{
 
     //HAcer consulta de songs
     data={}
-    data.user=this.props.route.params.artist //a@a.com
+    data.user=this.props.route.params.artist
     data.idalbum = this.props.route.params.paramId
     data.idalbum = data.idalbum.toString()
 
@@ -74,6 +74,7 @@ export default class viewAlbum extends Component{
       const retrieveItem = await AsyncStorage.getItem(albumID);
       if (retrieveItem !== null) {
         // We have data!!
+        //console.log("DashBoardValue: ", retrieveItem);
         const item = JSON.parse(retrieveItem)
         //console.log("Item: ", item);
         return item;
@@ -152,12 +153,13 @@ export default class viewAlbum extends Component{
     }
 
     console.log("Playlist en viewALBUM-------------------------", PLAYLIST)
+    //ruta.props.navigation.navigate("MusicPlayer", {playlist: PLAYLIST})
     this.storePlaylist().then(res => { console.log("GUARDADO! res:",res);ruta.props.navigation.navigate("MusicPlayer");})
     
   }
 
   peticionBorrar = async (item) => {
-    await NetworkService.deleteCancionAlbum(item.idCancion.l_id.u, item.idCancion.l_id.l_id.toString(), item.idCancion.c_id.toString()).then(res => console.log("BORRADO??: ", res)).catch(err => console.log("Error ", err))
+    await NetworkService.deleteCancionAlbum(item.idCancion.l_id.u, item.idCancion.l_id.l_id, item.idCancion.c_id).then(res => console.log("BORRADO??: ", res)).catch(err => console.log("Error ", err))
   }
 
   renderLoaded(){
@@ -174,7 +176,7 @@ export default class viewAlbum extends Component{
               Album id: {this.props.route.params.paramId}
             </Text>
             <Text style={styles.title}>
-              Artist: {this.props.route.params.autor}
+              Artist: {this.props.route.params.artist}
             </Text>
             <TouchableOpacity style={styles.loginBtn} onPress={this._pickDocument}>
               <Text style={styles.loginText}>Add new song to this album)</Text>

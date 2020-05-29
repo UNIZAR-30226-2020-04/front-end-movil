@@ -40,7 +40,7 @@ export default class viewAlbum extends Component{
 
     //HAcer consulta de songs
     data={}
-    data.user=this.props.route.params.artist //a@a.com
+    data.user=this.props.route.params.artist
     data.idalbum = this.props.route.params.paramId
     data.idalbum = data.idalbum.toString()
 
@@ -74,6 +74,7 @@ export default class viewAlbum extends Component{
       const retrieveItem = await AsyncStorage.getItem(albumID);
       if (retrieveItem !== null) {
         // We have data!!
+        //console.log("DashBoardValue: ", retrieveItem);
         const item = JSON.parse(retrieveItem)
         //console.log("Item: ", item);
         return item;
@@ -152,6 +153,7 @@ export default class viewAlbum extends Component{
     }
 
     console.log("Playlist en viewALBUM-------------------------", PLAYLIST)
+    //ruta.props.navigation.navigate("MusicPlayer", {playlist: PLAYLIST})
     this.storePlaylist().then(res => { console.log("GUARDADO! res:",res);ruta.props.navigation.navigate("MusicPlayer");})
     
   }
@@ -174,7 +176,7 @@ export default class viewAlbum extends Component{
               Album id: {this.props.route.params.paramId}
             </Text>
             <Text style={styles.title}>
-              Artist: {this.props.route.params.autor}
+              Artist: {this.props.route.params.artist}
             </Text>
             <TouchableOpacity style={styles.loginBtn} onPress={this._pickDocument}>
               <Text style={styles.loginText}>Add new song to this album)</Text>

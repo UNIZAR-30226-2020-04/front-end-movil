@@ -9,7 +9,7 @@ import Element from '../../DashBoard/containers/element'
 import User from '../../DashBoard/containers/user'
 import NetworkService from '../../../networks/NetworkService'
 
-const DEFAULT_URI = "http://metaltrip.com/wp-content/uploads/2015/05/Bullet-For-My-Valentine-400x400.jpg"
+const DEFAULT_URI = "https://w7.pngwing.com/pngs/98/38/png-transparent-phonograph-record-lp-record-music-others-miscellaneous-album-disc-jockey.png"
 const BASE_URL = "http://pruebaslistenit.herokuapp.com/";
 export default class Profile extends Component{
   constructor(props) {

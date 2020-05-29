@@ -85,9 +85,27 @@ export default class viewPodcast extends Component{
 
   peticionBorrar = async (item) => {
     console.log("ITEEEEM: ", item)
-    await NetworkService.deleteCapituloPodcast(item.idCapitulo.l_id.u, item.idCapitulo.l_id.l_id.toString() , item.idCapitulo.c_id.toString()).then(res => console.log("BORRADO PODCAST??: ", res)).catch(err => console.log("Error ", err))
+    await NetworkService.deleteCapituloPodcast(item.idPodcast.u, item.idPodcast.l_id.toString() , item.idPodcast.p_id).then(res => console.log("BORRADO PODCAST??: ", res)).catch(err => console.log("Error ", err))
   }
-  
+
+  mostrarOpciones(){
+    return(
+      <ListItem
+        key="hola"
+        leftIcon={<Icon name='volume-up'
+        type='font-awesome'
+        color='#000'/>}
+        
+        rightIcon={
+          <Icon name='ellipsis-h'
+          type='font-awesome'
+          color='#000'
+          />
+        }
+        bottomDivider
+      />
+    )
+  }
 
   renderLoaded(){
     console.log("Params",this.props.route.params)
@@ -118,7 +136,6 @@ export default class viewPodcast extends Component{
                     leftIcon={<Icon name='volume-up'
                     type='font-awesome'
                     color='#000'/>}
-                    rightTitle={item.fechaPublicacion}
                     rightIcon={
                       <Icon name='ellipsis-h'
                       type='font-awesome'

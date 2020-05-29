@@ -165,8 +165,8 @@ class NetworkService {
     let formData = new FormData();
     formData.append('email', data.user.correo);
     formData.append('name',data.nombreAlbum);
-    formData.append('foto', data.imagenAlbum);
-    console.log("DATA", formData)
+    formData.append('foto', data.user.imagenAlbum);
+    console.log("DATA", data)
     return RequestService.postRequestFormData(url,formData);
   }
 

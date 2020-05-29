@@ -146,8 +146,12 @@ export default class App extends Component {
 							interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
 							playThroughEarpieceAndroid: true
 						});
-
-						this.setState({ fontLoaded: true });
+						// (async () => {
+						// 	await Font.loadAsync({
+						// 		roboto: require('./assets/fonts/Roboto.ttf'),
+						// 	});
+								this.setState({ fontLoaded: true });
+						// })();
 				
 						this._loadNewPlaybackInstance(false);
 					}else{

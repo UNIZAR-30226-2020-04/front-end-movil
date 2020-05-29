@@ -147,6 +147,10 @@ export default class App extends Component {
 							playThroughEarpieceAndroid: true
 						});
 
+						this.index = 0;
+						this.isSeeking = false;
+						this.shouldPlayAtEndOfSeek = false;
+						this.playbackInstance = null;
 						this.setState({ fontLoaded: true });
 				
 						this._loadNewPlaybackInstance(false);

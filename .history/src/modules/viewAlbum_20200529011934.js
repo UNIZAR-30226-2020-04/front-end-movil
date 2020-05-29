@@ -40,7 +40,7 @@ export default class viewAlbum extends Component{
 
     //HAcer consulta de songs
     data={}
-    data.user=this.props.route.params.artist //a@a.com
+    data.user=this.props.route.params.artist //correo
     data.idalbum = this.props.route.params.paramId
     data.idalbum = data.idalbum.toString()
 

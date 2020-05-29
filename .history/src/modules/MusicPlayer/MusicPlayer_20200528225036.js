@@ -120,11 +120,10 @@ export default class App extends Component {
 					  });
 					
 					var playnew_string = PLAYLIST_NUEVA.map(function(item) {
-						return item['uri'].toString();
+						item['uri'].toString();
 					});
 
 					var n = playold_string.toString().localeCompare(playnew_string.toString());
-					console.log("COMPARACION", playold_string.toString()==playnew_string.toString() )
 					
 					// var result = new Boolean(false);
 					// for(element of playnew_string){
@@ -132,26 +131,29 @@ export default class App extends Component {
 					// }
 
 
-					 console.log("OLD", playold_string.toString())
-					 console.log("NEW", playnew_string.toString())
+					 console.log("URL compareeeeee", playold_string.toString())
 					console.log("N: ", n)
 					if(n != 0){//PLAYLIST_OLD.toString() != PLAYLIST_NUEVA.toString()
 						console.log("DENTRO IFIFIFIFIFIFIFIFIFIF")
 						PLAYLIST = PLAYLIST_NUEVA
-						Audio.setAudioModeAsync({
-							allowsRecordingIOS: false,
-							interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
-							playsInSilentModeIOS: true,
-							shouldDuckAndroid: true,
-							interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
-							playThroughEarpieceAndroid: true
-						});
-
-						this.setState({ fontLoaded: true });
+						// Audio.setAudioModeAsync({
+						// 	allowsRecordingIOS: false,
+						// 	interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+						// 	playsInSilentModeIOS: true,
+						// 	shouldDuckAndroid: true,
+						// 	interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+						// 	playThroughEarpieceAndroid: true
+						// });
+						// (async () => {
+						// 	await Font.loadAsync({
+						// 		roboto: require('./assets/fonts/Roboto.ttf'),
+						// 	});
+								this.setState({ fontLoaded: true });
+						// })();
 				
 						this._loadNewPlaybackInstance(false);
 					}else{
-						console.log(" IGUALES")
+						console.log("NoOOOSODOOSOO IGUALES")
 					}
 				
 				});
@@ -159,6 +161,17 @@ export default class App extends Component {
 		},10000)
 	}
 	//Comprobar si nueva playlist es diferente a la vieja, y si es así acutalizar
+	
+
+	componentDidUpdate(prevProps, prevState) {
+		this.retrievePlaylist().then( res => {})
+		// only update chart if the data has changed
+		if (prevProps.data !== this.props.data) {
+		  this.chart = c3.load({
+			data: this.props.data
+		  });
+		}
+	  }
 
 	async _loadNewPlaybackInstance(playing) {
 		if (this.playbackInstance != null) {
