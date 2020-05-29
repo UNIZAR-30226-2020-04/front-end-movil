@@ -28,14 +28,20 @@ export default class Profile extends Component{
     loadedPodcasts: false,
   }
 
+  
+
+  
+  
+
+
   retrieveUser = async () => {
     try {
       const retrieveItem = await AsyncStorage.getItem('UserState');
       if (retrieveItem !== null) {
         // We have data!!
-        //console.log("Profile: ", retrieveItem);
+        console.log("Profile: ", retrieveItem);
         const item = JSON.parse(retrieveItem)
-        //console.log("Item: ", item);
+        console.log("Item: ", item);
         return item;
       }
     } catch (error) {
@@ -46,10 +52,8 @@ export default class Profile extends Component{
 
   getAlbumsDB = async () => {
     try {
-      //console.log("STATE.USER",this.state.user)
-      await NetworkService.fetchAlbums(this.state.user).then(res => {this.setState({albums: res, loadedAlbums:true});
-        //console.log("GETALBUMS RES:", res);console.log("GETALBUMS ALBUMS:", this.state.albums)
-      });
+      console.log("STATE.USER",this.state.user)
+      await NetworkService.fetchAlbums(this.state.user).then(res => {this.setState({albums: res, loadedAlbums:true});console.log("GETALBUMS RES:", res);console.log("GETALBUMS ALBUMS:", this.state.albums)});
     } catch (error) {
       console.log("Error al obtener Albumes")
     }
@@ -57,10 +61,8 @@ export default class Profile extends Component{
 
   getPlaylistsDB = async () => {
     try {
-      //console.log("STATE.USER",this.state.user)
-      await NetworkService.fetchPlaylists(this.state.user).then(res => {this.setState({playlists: res, loadedPlaylists:true});
-      //console.log("GETPLAYLIST RES:", res);console.log("GETPLAYLIST PLAYLIST:", this.state.playlists)
-      });
+      console.log("STATE.USER",this.state.user)
+      await NetworkService.fetchPlaylists(this.state.user).then(res => {this.setState({playlists: res, loadedPlaylists:true});console.log("GETPLAYLIST RES:", res);console.log("GETPLAYLIST PLAYLIST:", this.state.playlists)});
     } catch (error) {
       console.log("Error al obtener Playlists")
     }
@@ -68,10 +70,8 @@ export default class Profile extends Component{
 
   getPodcastsDB = async () => {
     try {
-      //console.log("STATE.USER",this.state.user)
-      await NetworkService.fetchPodcasts(this.state.user).then(res => {this.setState({podcasts: res, loadedPodcasts:true});
-        //console.log("GETPodcasts RES:", res);console.log("GETPodcasts Podcasts:", this.state.podcasts)
-      });
+      console.log("STATE.USER",this.state.user)
+      await NetworkService.fetchPodcasts(this.state.user).then(res => {this.setState({podcasts: res, loadedPodcasts:true});console.log("GETPodcasts RES:", res);console.log("GETPodcasts Podcasts:", this.state.podcasts)});
     } catch (error) {
       console.log("Error al obtener Podcasts")
     }
@@ -109,8 +109,8 @@ export default class Profile extends Component{
           //Traes data del usuario
           //¿Hacerlo todo junto?
       });
-    }, 10000);
-    //console.log("state completo:",this.state)
+    }, 90000);
+    console.log("state completo:",this.state)
   }
 
   goToSettings = () => {this.props.navigation.navigate("Settings", {props: this.state})}

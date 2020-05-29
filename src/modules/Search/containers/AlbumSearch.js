@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useReducer } from 'react';
 import { StyleSheet, Text, View, ToastAndroid, TextInput, Button, Alert, ScrollView, Image, ImageBackground, AsyncStorage } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -24,37 +24,42 @@ export default class AlbumSearch extends Component{
   constructor(props) {
     super(props);
     data={}
+    
     album_info=this.props.route.params;
     data.user=this.props.route.params.autor
-    console.log("ALBUM SEARCH THIS RUTE PARAMS",this.props.route.params)
+
     data.idalbum = this.props.route.params.idAlbum.l_id
 
-    console.log("DATA ID ALBUM 1",this.props.route.params.idAlbum.l_id)
 
     data.idalbum = data.idalbum.toString()
-    
+
   }
 
   state={
     album_info: "",
     loadedSongs: false,
-    songs: []
-
+    songs: [],
+    //User es usuario logeado
+    user:""
   }
 
   componentDidMount(){
 
     //HAcer consulta de songs
     data={}
+    this.retrieveUser().then( res => {this.setState({user: res})
+
+
     data.user=this.props.route.params.idAlbum.u
     data.idalbum = this.props.route.params.idAlbum.l_id
-    console.log("OBJETO PARAMS", this.props.route.params)
+   
     
     data.idalbum = data.idalbum.toString()
+  
 
     NetworkService.listSongsAlbum(data).then(res => {this.setState({songs: res, loadedSongs:true});console.log("Songs RES:", res)})
-    //this.props.route.params.artist, this.props.route.params.paramId
-    //Me devuelve una lista de canciones
+  }) 
+  
   }
 
   //Devuelve el id de album a mostrar que se ha guardado en................................
@@ -82,6 +87,7 @@ export default class AlbumSearch extends Component{
       console.log("this.state = ",this.state)
       console.log("user = ",this.state.user)
       console.log("RENDERLOADED")
+      console.log("MOSTRANDO AUXX AUXX AUXX AUXX", this.state.aux)
       //this.getAlbumsDB().then( res => {this.setState({albums: res}); console.log("GETALBUMS RES:", res);console.log("GETALBUMS ALBUMS:", this.state.albums)}).catch(err => console.log("Error",err));
       return this.renderLoaded()
     }else{
@@ -90,24 +96,53 @@ export default class AlbumSearch extends Component{
     }
   
   }
-  mostrarOpciones(){
-    return(
-      <ListItem
-        key="hola"
-        leftIcon={<Icon name='volume-up'
-        type='font-awesome'
-        color='#000'/>}
-        
-        rightIcon={
-          <Icon name='ellipsis-h'
-          type='font-awesome'
-          color='#000'
-          />
-        }
-        bottomDivider
-      />
-    )
+  mostrarOpciones(cancion){
+    Alert.alert(
+      'Seleccione Opciones',
+      ' ',
+      [
+        {
+          text: 'Return',
+          onPress: () => console.log('Return')
+        },
+        {
+          text: 'Seguir',
+          onPress: () => this.goToseguir(this.state.user, cancion),
+          style: 'cancel'
+        },
+        { text: 'MG', onPress: () => console.log('OK Pressed') }
+      ],
+      { cancelable: false }
+    );
+     
   }
+
+
+async goToseguir(user, cancion) {
+      let data = {}
+      data.user=user
+      data.cancion=cancion
+      console.log("Estoy en goToseguirDatatatatata",data)
+     
+      this.props.navigation.navigate('addSongPlaylist',data)
+}
+
+  retrieveUser = async () => {
+    try {
+      const retrieveItem = await AsyncStorage.getItem('UserState');
+      if (retrieveItem !== null) {
+        // We have data!!
+        console.log("Profile: ", retrieveItem);
+        const item = JSON.parse(retrieveItem)
+        console.log("Item: ", item);
+        return item;
+      }
+    } catch (error) {
+      // Error retrieving data
+      console.log("Error al obtener datos")
+    }
+  };
+
 
   //Guarda el state del usuario
   storePlaylist = async () => {
@@ -118,21 +153,27 @@ export default class AlbumSearch extends Component{
         console.log("Fallo al guardar..")
       // Error saving data
     }
-  };
+  }
 
 
   reproducirCancion(ruta){
-    console.log("THIS.RUTAAAAAAAAAA", ruta)
+  
     //obtener URL de canciones
     {
       let url
       this.state.songs.map((item, i) => (
-        console.log("itemSearchh: ", item),
+        console.log("itemSearchhWiew: ", item),
        //NetworkService.pedirURL(idCancion.toString(),idAlbum.toString(),correo).then(
            url = BASE_URL + "Cancion?idsong=" + item.idCancion.c_id + item.idCancion.l_id.l_id + item.idCancion.l_id.u + ".mp3",
            console.log("URL reproducir: ",url),
            console.log("i ",i),
           //nomrbe, url, foto
+          console.log("AQUIIIIIIIIIIIIIIIIIIIIIIII:", item.nombre,
+          url,
+          "https://picsum.photos/200/300",),
+        
+
+
           PLAYLIST[i] = new PlaylistItem(
             item.nombre,
             url,
@@ -142,12 +183,12 @@ export default class AlbumSearch extends Component{
 
     console.log("Playlist en viewALBUM-------------------------", PLAYLIST)
     //ruta.props.navigation.navigate("MusicPlayer", {playlist: PLAYLIST})
-    this.storePlaylist().then(res => { console.log("Mostrandooooo ruta.props",ruta);ruta.props.navigation.navigate("MusicPlayer");})
+    this.storePlaylist().then(res => { console.log("Mostrandooooo ruta.props",ruta);this.props.navigation.navigate("MusicPlayer");})
     
   }
 
   renderLoaded(){
-    console.log("Params",this.props.route.params)
+    
     return(
       <ImageBackground source={require('../../../Wallpapers/fondo.jpg')} style={styles.container}>
           <View style={styles.container}>
@@ -161,9 +202,6 @@ export default class AlbumSearch extends Component{
             <Text style={styles.title}>
               Artist: {this.props.route.params.autor}
             </Text>
-            <Text style={styles.title}>
-              image uri: {'https://picsum.photos/250/300'}
-            </Text>
             <View>
               {
                 this.state.songs.map((item, i) => (
@@ -176,7 +214,7 @@ export default class AlbumSearch extends Component{
                       <Icon name='ellipsis-h'
                       type='font-awesome'
                       color='#000'
-                      onPress={() => this.mostrarOpciones()}
+                      onPress={() => this.mostrarOpciones(item)}
                       />
                     }
                     title={item.nombre} //Song
